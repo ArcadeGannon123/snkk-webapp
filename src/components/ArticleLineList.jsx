@@ -12,7 +12,7 @@ function ArticleLineList({data}) {
             </Head>
 
             <ArticlesLine>            
-              {data.length ===0 ? <p>Cargando</p> : data.map((articulo) => (<ArticleLine key={articulo.title} data={articulo}/>))}
+              {data.length ===0 ? <p>Cargando</p> : data.map((articulo) => (<ArticleLine key={articulo.id} data={articulo}/>))}
             </ArticlesLine>
 
         </>

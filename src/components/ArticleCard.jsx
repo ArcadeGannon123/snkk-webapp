@@ -27,6 +27,7 @@ function ArticleCard({data}) {
 
         <div className='author-date'>{data.author} - {data.publishedAt}</div>
 
+
         <a href={data.url} target="_blank" rel="noreferrer noopener">Ir a la noticia</a> 
 
         

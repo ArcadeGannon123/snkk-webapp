@@ -10,9 +10,7 @@ function ReliabilityList({data}) {
               <hr/>        
             </Head>
             <Medios>
-                {data.articles.map((articulo) => (
-                    <Reliability data={articulo}/>
-                ))}
+              {data.length ===0 ? <p>Cargando</p> : data.map((articulo) => (<Reliability key={articulo.id} data={articulo}/>))}   
             </Medios>
         </div>
     );

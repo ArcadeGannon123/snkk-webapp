@@ -12,6 +12,7 @@ import {
   FaBars,
   FaTimes
 } from "react-icons/fa";
+import {NavLink} from 'react-router-dom';
 /*
 import {
   FaBattleNet,
@@ -32,7 +33,9 @@ const Navbar = () => {
       <Wrapper>
 
         <LogoContainer>
-          <img src={require('../images/icon3.png')} alt='icon'/>
+          <NavLink to='/'>
+            <img src={require('../images/icon3.png')} alt='icon'/>
+          </NavLink>
         </LogoContainer>
 
         <MobileIcon onClick={() => setShowMobileMenu(!showMobileMenu)}>

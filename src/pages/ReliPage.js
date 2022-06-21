@@ -1,15 +1,28 @@
-import React from 'react';
+import React,{useState, useEffect} from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import styled from 'styled-components';
-import dataset from '../data/dataset';
 import ReliabilityList from '../components/ReliabilityList';
 import SideBar from '../components/SideBar/SideBar';
 import {
   BsSearch
 } from "react-icons/bs";
+import axios from 'axios';
 
 
 function ReliPage() {
+
+    const [data,setData]= useState([]);
+    useEffect(() => {
+      const url='https://api-news-feria-2022.herokuapp.com/medio/confiabilidad-medios'
+      const getData = async () => {
+        const response = await axios.get(url)
+        setData(response.data)
+      }
+      getData();
+    }, []);
+
+
+
     return (
         <>
             <Navbar />
@@ -18,7 +31,7 @@ function ReliPage() {
                     <SideBar />
                 </Menu>
                 <div className='news-list'>
-                  <ReliabilityList data={dataset} />
+                  <ReliabilityList data={data} />
                 </div>
                 <Filter>
                     <div className='search'>

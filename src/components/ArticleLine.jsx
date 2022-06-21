@@ -5,6 +5,7 @@ import Dot from './Dot';
 
 
 
+
 function ArticleLine({data}) {
 
   const bias_color ={
@@ -20,17 +21,22 @@ function ArticleLine({data}) {
     <Articulo>
         <Dot data={{ bias:data.bias, style:{backgroundColor:bias_color[data.bias]} }} />
         <div className='news-data'>
-          <h2>{data.medio}</h2>
+          <h2>{data['medio'] ? data['medio'].name : ""}</h2>
 
           <h1>{data.title}</h1>
-
+          
           <div className='author-date'>{data.author} - {data.published_date}</div>
+          
+          <p>{data.content}</p>
           <div className='news-link-ref'>
            <a href={data.url} target="_blank" rel="noreferrer noopener">Ir a la noticia</a>
           </div>
           
+          
         </div>
-
+        
+        <img src={data.urlToImage} alt='imagen'/>
+       
         
     </Articulo>
   )
@@ -40,7 +46,7 @@ export default ArticleLine
 
 const Articulo = styled.div`
   display:grid;
-  grid-template-columns: 10% 90%;
+  grid-template-columns: 10% 70% 20%;
   background-color: #ffffff;
   position:relative;
   padding: 0.4em 0;
@@ -76,6 +82,7 @@ const Articulo = styled.div`
     max-width:90%;
     margin-left: auto;
     margin-right: auto;
+    border-radius:10px;
   }
 
 

@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar/Navbar';
 import styled from 'styled-components'
+import { Link } from 'react-router-dom';
 
 
 
@@ -17,7 +18,9 @@ function HomePage(props) {
                     <p>
                         {text}
                     </p>
-                    <button >Ir a las noticias</button>
+                    <Link to='/news'>
+                        <button >Ir a las noticias</button>
+                    </Link>
                 </div>
                 <div className='main-img'>
                     <img src={require('../components/images/icono.png')} alt='logo'/>
@@ -72,6 +75,7 @@ const Main = styled.div`
         margin: 1em 0;
         display: block;
         max-width:100%;
+        border-radius:10px;
     }
 `
 

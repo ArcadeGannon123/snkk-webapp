@@ -1,26 +1,17 @@
 import React from 'react';
-import Dot from './Dot';
 import styled from 'styled-components'
 
 function Reliability({data}) {
     
-    const bias_color ={
-        'far-left': '#2e64a0',
-        'lean-left': '#9dc8eb',
-        'center': '#96659e',
-        'lean-right': '#cb9a98',
-        'far-right': '#ca0800',
-      }
- 
     return (
-        <Articulo>       
+        <Articulo>  
+            <a href={`https://${data.url}`} target="_blank" rel="noreferrer noopener">
+              <img src={`https://logo.clearbit.com/${data.url}`} alt=''/>
+            </a>     
             
-            <img src={data.urlToLogo} alt=''/>
-            <h2>{data.source.name}</h2>
-            <h3>Confiabilidad percibida:</h3>
-            <div className='data-rel'>{data.reliability}</div>
+            <h2>{data.nombre}</h2>
             <h3>Sesgo promedio del medio:</h3>
-            <Dot data={{ bias:data.bias, style:{backgroundColor:bias_color[data.bias]} }} />
+            <div className='data-rel'>{data.bias}</div>
     
             
         </Articulo>
@@ -37,8 +28,13 @@ const Articulo = styled.div`
   border: 1px solid #878680;
   border-radius: 10px;
 
+  h3{
+    font-size: 1.2em;
+  }
+
   h2{
     color: #669495;
+    text-align:center;
   }
   img{
     margin: 1em;
