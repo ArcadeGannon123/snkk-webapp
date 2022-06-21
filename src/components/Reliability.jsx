@@ -5,14 +5,17 @@ function Reliability({data}) {
     
     return (
         <Articulo>  
-            <a href={`https://${data.url}`} target="_blank" rel="noreferrer noopener">
-              <img src={`https://logo.clearbit.com/${data.url}`} alt=''/>
-            </a>     
-            
-            <h2>{data.nombre}</h2>
-            <h3>Sesgo promedio del medio:</h3>
-            <div className='data-rel'>{data.bias}</div>
-    
+          <div className='media-name'>
+            {data.nombre}
+          </div>        
+          <a href={`https://${data.url}`} target="_blank" rel="noreferrer noopener">
+            <img src={`https://logo.clearbit.com/${data.url}`} alt=''/>
+          </a>     
+          
+          
+          <span>Sesgo promedio del medio:</span>
+          <div className='data-rel'>{data.bias}</div>
+  
             
         </Articulo>
     );
@@ -28,13 +31,14 @@ const Articulo = styled.div`
   border: 1px solid #878680;
   border-radius: 10px;
 
-  h3{
-    font-size: 1.2em;
-  }
 
-  h2{
+
+  .media-name{
+    position:relative;
     color: #669495;
     text-align:center;
+    font-size: 1em;
+    font-weight:bold;
   }
   img{
     margin: 1em;

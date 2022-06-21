@@ -14,7 +14,7 @@ function SideBar() {
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
-    <Base>
+    <BaseSideBar>
       <IconContext.Provider value={{ size: 20, color: '#fff' }}>
         <div className='navbar'>
           <Link to='#' className='menu-bars'>
@@ -35,7 +35,9 @@ function SideBar() {
               return (
                 <li key={index} className={item.cName}>
                   <Link to={item.path}>
-                    {item.icon}
+                    <div className='side-item-icon'>
+                      {item.icon}
+                    </div>                   
                     <span>{item.title}</span>
                   </Link>
                 </li>
@@ -44,13 +46,13 @@ function SideBar() {
           </ul>
         </nav>
       </IconContext.Provider>
-    </Base>
+    </BaseSideBar>
   );
 }
 
 export default SideBar;
 
-const Base = styled.div`
+const BaseSideBar = styled.div`
   position: sticky;
   top: 0;
 

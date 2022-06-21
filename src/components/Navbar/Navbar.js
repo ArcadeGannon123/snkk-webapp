@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   LogoContainer,
@@ -12,6 +12,7 @@ import {
   FaBars,
   FaTimes
 } from "react-icons/fa";
+import User from '../User';
 import {NavLink} from 'react-router-dom';
 /*
 import {
@@ -28,6 +29,15 @@ import {
 const Navbar = () => {
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
+  const _setShowMobileMenu = (showMobileMenu) =>{
+    setShowMobileMenu(!showMobileMenu)
+  }
+
+  useEffect(() => {
+  }, [showMobileMenu]);
+
+
+
   return (
     <Container>
       <Wrapper>
@@ -38,48 +48,50 @@ const Navbar = () => {
           </NavLink>
         </LogoContainer>
 
-        <MobileIcon onClick={() => setShowMobileMenu(!showMobileMenu)}>
+        <MobileIcon onClick={() => _setShowMobileMenu(showMobileMenu)}>
           {showMobileMenu ? <FaTimes /> : <FaBars />}
         </MobileIcon>
-
         <Menu open={showMobileMenu}>
+          <div className="mobile-menu-user">
+            <User data={{ username:"Usuario no registrado" }}/>
+          </div>          
           <MenuItem>
-            <MenuItemLink onClick={() => setShowMobileMenu(!showMobileMenu)} to='/'>
+            <MenuItemLink onClick={() => _setShowMobileMenu(showMobileMenu)} to='/'>
               <div>
                 Home
               </div>
             </MenuItemLink>
           </MenuItem>
           <MenuItem>
-            <MenuItemLink onClick={() => setShowMobileMenu(!showMobileMenu)} to='/news'>
+            <MenuItemLink onClick={() => _setShowMobileMenu(showMobileMenu)} to='/news'>
               <div>
                 Noticias
               </div>
             </MenuItemLink>
           </MenuItem>
           <MenuItem>
-            <MenuItemLink onClick={() => setShowMobileMenu(!showMobileMenu)} to='/extension'>
+            <MenuItemLink onClick={() => _setShowMobileMenu(showMobileMenu)} to='/extension'>
               <div>
                 Extensión
               </div>
             </MenuItemLink>
           </MenuItem>
           <MenuItem>
-            <MenuItemLink onClick={() => setShowMobileMenu(!showMobileMenu)} to='/about'>
+            <MenuItemLink onClick={() => _setShowMobileMenu(showMobileMenu)} to='/about'>
               <div>
                 Nosotros
               </div>
             </MenuItemLink>
           </MenuItem>
           <MenuItem>
-            <MenuItemLink onClick={() => setShowMobileMenu(!showMobileMenu)} to='/contact'>
+            <MenuItemLink onClick={() => _setShowMobileMenu(showMobileMenu)} to='/contact'>
               <div>
                 Contacto
               </div>
             </MenuItemLink>
           </MenuItem>
           <MenuItem>
-            <MenuItemLink onClick={() => setShowMobileMenu(!showMobileMenu)} to='/sesion'>
+            <MenuItemLink onClick={() => _setShowMobileMenu(showMobileMenu)} to='/sesion'>
               <div>
                 Iniciar sesión
               </div>

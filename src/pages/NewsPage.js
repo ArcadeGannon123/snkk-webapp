@@ -1,8 +1,11 @@
 import React,{useState, useEffect} from 'react';
 import Navbar from '../components/Navbar/Navbar';
+import MobileFooter from '../components/MobileFooter';
 import styled from 'styled-components';
 import ArticleLineList from '../components/ArticleLineList';
 import axios from 'axios';
+
+//import data from '../data/dataset';
 
 import SideBar from '../components/SideBar/SideBar';
 import {
@@ -10,7 +13,7 @@ import {
 } from "react-icons/bs";
 
 function NewsPage() {
-
+  
   const [data,setData]= useState([]);
 
 
@@ -24,7 +27,7 @@ function NewsPage() {
     }
     getData();
   }, []);
-
+  
 
   return (
     <>
@@ -51,15 +54,25 @@ function NewsPage() {
           </div>
         </Filter>
       </FrontPage>
+      <div className='footer-mobile'>
+        <MobileFooter/>
+      </div>
+      
       
     </>
   )
 }
 
-export default NewsPage
+export default NewsPage 
+
+
 
 const Menu = styled.div`
   position:relative;
+  @media screen and (max-width: 960px) {
+    display:none;
+  }
+  
 
 `
 
@@ -78,19 +91,23 @@ const Filter = styled.div`
   .tags{
     display:flex;
     margin: 1em 0;
+    flex-wrap: wrap;
     cursor: pointer;
     div{
       padding:2px;
       border: 1px solid #878680;
       margin: 2px;
       background-color:#fff;
-      border-radius:25px;
+      border-radius:10px;
       font-size:0.9em;
     }
     div:hover{
       background-color: #999B95;
       transition: 0.5s all ease;
     }
+  }
+  @media screen and (max-width: 1250px) {
+    display:none;
   }
 
 `
@@ -103,6 +120,15 @@ const FrontPage = styled.div`
     border:1px solid #87868083;
     margin:1em;
     background-color:#fff;
+  }
+  @media screen and (max-width: 1250px) {
+    grid-template-columns: 20% 80%;
+  }
+  @media screen and (max-width: 960px) {
+    grid-template-columns: 100%;
+    margin-bottom:10vh;
+
+
   }
   
 

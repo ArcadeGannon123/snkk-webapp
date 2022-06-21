@@ -34,7 +34,8 @@
     align-items: center;
     padding: 8px 0px 8px 16px;
     list-style: none;
-    height: 60px;
+    height: 95px;
+    
   }
   
   .nav-text a {
@@ -55,6 +56,7 @@
   
   .nav-menu-items {
     width: 100%;
+    padding-left:0;
   }
   
   .navbar-toggle {
@@ -68,4 +70,5 @@
   
   span {
     margin-left: 16px;
+    font-size: 100%;
   }

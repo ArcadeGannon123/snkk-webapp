@@ -21,10 +21,10 @@ function ArticleLine({data}) {
     <Articulo>
         <Dot data={{ bias:data.bias, style:{backgroundColor:bias_color[data.bias]} }} />
         <div className='news-data'>
-          <h2>{data['medio'] ? data['medio'].name : ""}</h2>
+          <h2>{data['medio'] ? data['medio'].name : "MEDIO"}</h2>
 
           <h1>{data.title}</h1>
-          
+          <img className='article-img-mobile' src={data.urlToImage} alt='imagen'/>
           <div className='author-date'>{data.author} - {data.published_date}</div>
           
           <p>{data.content}</p>
@@ -34,8 +34,8 @@ function ArticleLine({data}) {
           
           
         </div>
-        
-        <img src={data.urlToImage} alt='imagen'/>
+      
+        <img className='article-img-desk' src={data.urlToImage} alt='imagen'/>
        
         
     </Articulo>
@@ -84,6 +84,26 @@ const Articulo = styled.div`
     margin-right: auto;
     border-radius:10px;
   }
-
+  .article-img-mobile{
+      display:none
+  }
+  @media screen and (max-width: 960px) {
+    grid-template-columns: 100%;
+    .article-img-desk{
+      display:none
+    }
+    .article-img-mobile{
+      display:block;
+      max-width:550px;
+    }
+    .news-data{
+      margin: 0 1em 0 1em;
+    }
+  }
+  @media screen and (max-width: 750px) {
+    .article-img-mobile{
+      max-width:90%;
+    }
+  }
 
 `

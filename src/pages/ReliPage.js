@@ -8,9 +8,11 @@ import {
 } from "react-icons/bs";
 import axios from 'axios';
 
+//import data from '../data/dataset2';
+
 
 function ReliPage() {
-
+    
     const [data,setData]= useState([]);
     useEffect(() => {
       const url='https://api-news-feria-2022.herokuapp.com/medio/confiabilidad-medios'
@@ -21,7 +23,7 @@ function ReliPage() {
       getData();
     }, []);
 
-
+    
 
     return (
         <>
@@ -57,9 +59,14 @@ function ReliPage() {
 export default ReliPage;
 
 
+
 const Menu = styled.div`
   position:relative;
+  @media screen and (max-width: 960px) {
+    display:none;
+  }
   
+
 `
 
 const Filter = styled.div`
@@ -77,19 +84,23 @@ const Filter = styled.div`
   .tags{
     display:flex;
     margin: 1em 0;
+    flex-wrap: wrap;
     cursor: pointer;
     div{
       padding:2px;
       border: 1px solid #878680;
       margin: 2px;
       background-color:#fff;
-      border-radius:25px;
+      border-radius:10px;
       font-size:0.9em;
     }
     div:hover{
       background-color: #999B95;
       transition: 0.5s all ease;
     }
+  }
+  @media screen and (max-width: 1250px) {
+    display:none;
   }
 
 `
@@ -98,12 +109,24 @@ const FrontPage = styled.div`
   display: grid;
   grid-template-columns: 17% 60% 23%;
   gap: 1em;
-  background-color:#fff;
   .news-list{
     border:1px solid #87868083;
     margin:1em;
     background-color:#fff;
   }
+  @media screen and (max-width: 1250px) {
+    grid-template-columns: 20% 80%;
+  }
+  @media screen and (max-width: 960px) {
+    grid-template-columns: 100%;
+    margin-bottom:10vh;
+
+
+  }
+  
+
+
+
 
 
 `

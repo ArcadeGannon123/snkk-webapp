@@ -3,16 +3,16 @@ import styled from 'styled-components';
 
 function User({data}) {
     return (
-        <Base>
+        <BaseUser>
             <Logo src={require('./images/icono.png')} />
             <UserName>{data.username}</UserName>
-        </Base>
+        </BaseUser>
     );
 }
 
 export default User;
 
-const Base = styled.div`
+const BaseUser = styled.div`
     position: relative;
     border: 1px solid #fff;
     margin: 1em;
