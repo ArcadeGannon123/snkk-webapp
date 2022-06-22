@@ -23,7 +23,7 @@ function ReliPage() {
       getData();
     }, []);
 
-    
+  
 
     return (
         <>

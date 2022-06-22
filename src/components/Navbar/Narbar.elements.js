@@ -13,7 +13,6 @@ export const Container = styled.div`
 
 export const Wrapper = styled.div`
   width: 100%;
-  max-width: 1300px;
   height: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -48,7 +47,7 @@ export const Menu = styled.ul`
     background-color: #313132;
     position: absolute;
     top: 50px;
-    right: ${({ open }) => (open ? "0" : "-100%")}; //Import
+    right: ${({ open }) => (open ? "0" : "100%")}; //Import
     width: 100%;
     height: 100vh;
     justify-content: center;
