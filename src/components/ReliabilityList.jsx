@@ -7,7 +7,7 @@ function ReliabilityList({data}) {
     return (
         <div>
             <Head>
-              <h1>Confianza percibida de los medios comunicación</h1>       
+              <h1>Sesgo promedio de los medios comunicación</h1>       
               <hr/>        
             </Head>
             <Medios>

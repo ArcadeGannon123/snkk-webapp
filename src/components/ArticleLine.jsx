@@ -16,23 +16,32 @@ function ArticleLine({data}) {
     'U-C': '#ca0800',
     '0':'#000'
   }
-  const check_bias ={
-    1.0: 'U-P',
-    0.8: 'P',
-    0.4: 'Centro',
-    0.2: 'C',
-    0.0: 'U-C',
+
+
+  const check_bias = (bias) =>{
+    if(bias < 0.2){
+      return 'U-C'
+    }else if(bias <0.4){
+      return 'C'
+    }else if(bias <0.6){
+      return 'Centro'
+    }else if(bias <0.8){
+      return 'P'
+    }else{
+      return 'U-P'
+    }
+
   }
 
   return (
     <Articulo>
-        <Dot data={{ bias:check_bias[data.bias], style:{backgroundColor:bias_color[check_bias[data.bias]]} }} />
+        <Dot data={{ bias:check_bias(data.bias), style:{backgroundColor:bias_color[check_bias(data.bias)]} }} />
         <div className='news-data'>
-          <h2>{data['medio'] ? data['medio'].name : "MEDIO"}</h2>
+          <h2>{data['medio'] ? (data['medio'].name ? data['medio'].name : data['medio'].url ) : "MEDIO"}</h2>
 
           <h1>{data.title}</h1>
           <img className='article-img-mobile' src={data.urlToImage} alt='imagen'/>
-          <div className='author-date'>{data.author} - {data.published_date}</div>
+          <div className='author-date'>{data.author ? data.author:'Anónimo'} - {data.published_date}</div>
           
           <p>{data.content}</p>
           <div className='news-link-ref'>

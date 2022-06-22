@@ -34,7 +34,7 @@ function ReliPage() {
                     <SideBar />
                 </Menu>
                 <div className='news-list'>
-                  <ReliabilityList data={data} />
+                  <ReliabilityList data={data.reverse()} />
                 </div>
                 <Filter>
                     <div className='search'>
