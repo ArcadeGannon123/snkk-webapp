@@ -9,17 +9,24 @@ import Dot from './Dot';
 function ArticleLine({data}) {
 
   const bias_color ={
-    'far-left': '#2e64a0',
-    'lean-left': '#9dc8eb',
-    'center': '#96659e',
-    'lean-right': '#cb9a98',
-    'far-right': '#ca0800',
+    'U-P': '#2e64a0',
+    'P': '#9dc8eb',
+    'Centro': '#96659e',
+    'C': '#cb9a98',
+    'U-C': '#ca0800',
     '0':'#000'
+  }
+  const check_bias ={
+    1.0: 'U-P',
+    0.8: 'P',
+    0.4: 'Centro',
+    0.2: 'C',
+    0.0: 'U-C',
   }
 
   return (
     <Articulo>
-        <Dot data={{ bias:data.bias, style:{backgroundColor:bias_color[data.bias]} }} />
+        <Dot data={{ bias:check_bias[data.bias], style:{backgroundColor:bias_color[check_bias[data.bias]]} }} />
         <div className='news-data'>
           <h2>{data['medio'] ? data['medio'].name : "MEDIO"}</h2>
 

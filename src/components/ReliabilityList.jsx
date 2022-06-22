@@ -16,12 +16,13 @@ function ReliabilityList({data}) {
                   <input type="text" placeholder="Search.."/>
                   <BsSearch/>
                 </div>
-                <div className='mobile-tags'>            
-                  <div>far-left</div>
-                  <div>lean-left</div>
-                  <div>center</div>
-                  <div>lean-right</div>
-                  <div>far-right</div>
+                <div className='mobile-tags'>  
+                  <div>Todos</div>                         
+                  <div>Ultra-Progresista</div>
+                  <div>Progresista</div>
+                  <div>Centro</div>
+                  <div>Conservador</div>
+                  <div>Ultra-Conservador</div>
                 </div>
                 <hr/>
               </div>

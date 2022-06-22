@@ -13,6 +13,14 @@ function ArticleCard({data}) {
     'far-right': '#ca0800',
   }
 
+  const check_bias ={
+    1.0: 'U-P',
+    0.8: 'P',
+    0.4: 'Centro',
+    0.2: 'C',
+    0.0: 'U-C',
+  }
+
   return (
     <Articulo>
         <div className='bias-fact'>
@@ -25,7 +33,7 @@ function ArticleCard({data}) {
 
         <h1>{data.title}</h1>
 
-        <div className='author-date'>{data.author} - {data.publishedAt}</div>
+        <div className='author-date'>{data.author ? data.author:'Anónimo'} - {data.publishedAt}</div>
 
 
         <a href={data.url} target="_blank" rel="noreferrer noopener">Ir a la noticia</a> 
