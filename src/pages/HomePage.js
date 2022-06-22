@@ -46,6 +46,40 @@ const Main = styled.div`
     height: 100%;
     font-family: 'Newsreader', serif;
     font-weight: lighter;
+    @media screen and (max-width: 650px) {
+      
+        .main-intro{
+            h1{
+                font-size: 50px;
+                margin: 1em 0;
+                font-weight:Normal;
+
+            }
+            p{
+                font-size: 20px;
+
+            }
+        }
+
+        
+    }
+    @media screen and (max-width: 300px) {
+      
+        .main-intro{
+            h1{
+                font-size: 30px;
+                margin: 1em 0;
+                font-weight:Normal;
+
+            }
+            p{
+                font-size: 15px;
+
+            }
+        }
+
+        
+    }
 
     button{
         margin: 5px 0px;

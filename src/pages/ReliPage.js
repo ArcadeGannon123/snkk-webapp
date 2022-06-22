@@ -1,6 +1,7 @@
 import React,{useState, useEffect} from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import styled from 'styled-components';
+import MobileFooter from '../components/MobileFooter';
 import ReliabilityList from '../components/ReliabilityList';
 import SideBar from '../components/SideBar/SideBar';
 import {
@@ -51,7 +52,9 @@ function ReliPage() {
                     </div>
                 </Filter>
             </FrontPage>
-        
+            <div className='footer-mobile'>
+              <MobileFooter/>
+            </div>
         </>
     );
 }
