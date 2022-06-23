@@ -42,7 +42,7 @@ function ArticleLine({data}) {
 
           <h1>{data.title}</h1>
           <img className='article-img-mobile' src={data.urlToImage} alt='imagen'/>
-          <div className='author-date'>{data.author ? data.author:'Anónimo'} - {data.published_date}</div>
+          <div className='author-date'>{data.author ? data.author:data['medio'].url} - {data.published_date}</div>
           
           <p>{data.content}</p>
           <div className='news-link-ref'>
