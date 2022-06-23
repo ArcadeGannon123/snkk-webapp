@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components'
-import Dot from './Dot';
+//import Dot from './Dot';
 
 function Reliability({data}) {
-
+/*
   const bias_color ={
     'U-P': '#2e64a0',
     'P': '#9dc8eb',
@@ -14,6 +14,7 @@ function Reliability({data}) {
   }
 
   const check_bias = (bias) =>{
+    console.log(bias);
     if(bias < 0.2){
       return 'U-C'
     }else if(bias <0.4){
@@ -27,7 +28,7 @@ function Reliability({data}) {
     }
 
   }
-    
+    */
     return (
         <Articulo>  
           <div className='media-name'>
@@ -40,8 +41,11 @@ function Reliability({data}) {
           </a>     
           
           
-          <span>Sesgo promedio del medio:</span>
-          <Dot data={{ bias:check_bias(data.bias), style:{backgroundColor:bias_color[check_bias(data.bias)]} }} />     
+          <span>Confiabilidad del medio:</span>
+          <div className='reliability'>
+            {data.bias}
+          </div>
+             
         
 
   
@@ -60,6 +64,11 @@ const Articulo = styled.div`
   border: 1px solid #878680;
   border-radius: 10px;
 
+  .reliability{
+    text-align:center;
+    font-size:2em;
+    color:#669495;
+  }
 
 
   .media-name{

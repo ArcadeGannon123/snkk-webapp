@@ -19,6 +19,7 @@ function ArticleLine({data}) {
 
 
   const check_bias = (bias) =>{
+    console.log(bias);
     if(bias < 0.2){
       return 'U-C'
     }else if(bias <0.4){

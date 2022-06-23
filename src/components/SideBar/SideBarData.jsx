@@ -10,7 +10,7 @@ export const SidebarData = [
     cName: 'nav-text'
   },
   {
-    title: 'Sesgo Promedio de los medios',
+    title: 'Confiabilidad de los medios',
     path: '/reliability',
     icon: <FaIcons.FaHandHoldingHeart />,
     cName: 'nav-text'
