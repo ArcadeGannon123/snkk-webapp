@@ -5,7 +5,7 @@ import * as BiIcons from 'react-icons/bi';
 export const SidebarData = [
   {
     title: 'Noticias Recientes',
-    path: '/news',
+    path: '/noticias',
     icon: <BiIcons.BiNews />,
     cName: 'nav-text'
   },

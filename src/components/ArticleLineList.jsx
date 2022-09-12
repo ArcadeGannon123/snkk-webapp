@@ -2,6 +2,8 @@ import React from 'react';
 import ArticleLine from './ArticleLine';
 import styled from 'styled-components';
 import {BsSearch} from "react-icons/bs";
+import { Puff } from 'react-loading-icons';
+
 
 function ArticleLineList({data}) {
     return (
@@ -14,10 +16,6 @@ function ArticleLineList({data}) {
 
             <ArticlesLine>  
               <div className="news-filter-mobile">
-                <div className='mobile-search'>            
-                  <input type="text" placeholder="Search.."/>
-                  <BsSearch/>
-                </div>
                 <div className='mobile-tags'>  
                   <div>Todos</div>                         
                   <div>Ultra-Progresista</div>
@@ -27,9 +25,8 @@ function ArticleLineList({data}) {
                   <div>Ultra-Conservador</div>
                 </div>
                 <hr/>
-              </div>   
-                     
-              {data.length ===0 ? <p>Cargando</p> : data.map((articulo) => (<ArticleLine key={articulo.id} data={articulo}/>))}
+              </div>                     
+              {data.length ===0 ? <LoadingIcon><Puff stroke='#669495' /></LoadingIcon> : data.map((articulo) => (<ArticleLine key={articulo.id} data={articulo}/>))}
             </ArticlesLine>
 
         </>
@@ -39,10 +36,16 @@ function ArticleLineList({data}) {
 export default ArticleLineList;
 
 
+const LoadingIcon = styled.div`
+  display:flex;
+  justify-content:center;
+`
+
+
 const Head = styled.div`
-  margin: 2em;
+  margin: 10px 20px;
   h1{
-    font-size: 2em;
+    font-size: 25px;
 
   }
 

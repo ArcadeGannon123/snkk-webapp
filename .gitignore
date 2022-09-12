@@ -9,6 +9,7 @@
 /coverage
 /__src
 /__src2
+/Backup
 
 # production
 /build

@@ -36,22 +36,6 @@ function ReliPage() {
                 <div className='news-list'>
                   <ReliabilityList data={data.reverse()} />
                 </div>
-                <Filter>
-                    <div className='search'>
-                        
-                        <input type="text" placeholder="Search.."/>
-                        <BsSearch/>
-                    </div>
-                    <h1>Tags</h1>
-                    <div className='tags'>      
-                        <div>Todos</div>                     
-                        <div>Ultra-Progresista</div>
-                        <div>Progresista</div>
-                        <div>Centro</div>
-                        <div>Conservador</div>
-                        <div>Ultra-Conservador</div>
-                    </div>
-                </Filter>
             </FrontPage>
             <div className='footer-mobile'>
               <MobileFooter/>
@@ -85,24 +69,7 @@ const Filter = styled.div`
       height:100%;
     }
   }
-  .tags{
-    display:flex;
-    margin: 1em 0;
-    flex-wrap: wrap;
-    cursor: pointer;
-    div{
-      padding:2px;
-      border: 1px solid #878680;
-      margin: 2px;
-      background-color:#fff;
-      border-radius:10px;
-      font-size:0.9em;
-    }
-    div:hover{
-      background-color: #999B95;
-      transition: 0.5s all ease;
-    }
-  }
+  
   @media screen and (max-width: 1250px) {
     display:none;
   }
@@ -110,11 +77,11 @@ const Filter = styled.div`
 `
 
 const FrontPage = styled.div`
+  padding-top:65px;
   display: grid;
-  grid-template-columns: 17% 60% 23%;
+  grid-template-columns: 23% 60% auto;
   gap: 1em;
   .news-list{
-    border:1px solid #87868083;
     margin:1em;
     background-color:#fff;
   }

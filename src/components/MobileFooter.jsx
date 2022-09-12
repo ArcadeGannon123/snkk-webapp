@@ -23,12 +23,12 @@ function MobileFooter() {
 export default MobileFooter;
 
 const BaseFooter = styled.footer`
-    background: linear-gradient(180deg, rgba(49,49,50,1) 0%, rgba(49,49,50,1) 35%, rgba(102,148,149,1) 100%);
+    background: #669495;
     display:none;
     justify-content:space-around;
     position:fixed;
     width:100%;
-    height:10vh;
+    height:65px;
     bottom:0px;
     background-color: #000;
     z-index:11;
@@ -42,8 +42,9 @@ const BaseFooter = styled.footer`
         display:flex;
         flex-direction:column;
         justify-content:space-around;
+        align-items:center;
         svg {
-            font-size: 5vh;
+            font-size: 30px;
         }
         span{
             margin-left:0;
@@ -51,8 +52,11 @@ const BaseFooter = styled.footer`
     
     }
     .nav-text {
-        height: 100%;
+        height: 90%;
         padding-left:0;
+        display:flex;
+        justify-content:center;
+        align-items:center;
     }
     
     .nav-text a {
@@ -62,13 +66,10 @@ const BaseFooter = styled.footer`
         font-size:60%;
         border-radius: 4px;
         text-align:center;
+        text-decoration: none;
         
     }
-    
-    .nav-text a:hover {
-        background-color: #669495;
-    }
-      
+
     .nav-text a:hover {
         background-color: #669495;
     }

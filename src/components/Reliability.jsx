@@ -1,97 +1,125 @@
 import React from 'react';
+import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 import styled from 'styled-components'
-//import Dot from './Dot';
+import BiasBar from '../components/BiasBar'
 
 function Reliability({data}) {
-/*
-  const bias_color ={
-    'U-P': '#2e64a0',
-    'P': '#9dc8eb',
-    'Centro': '#96659e',
-    'C': '#cb9a98',
-    'U-C': '#ca0800',
-    '0':'#000'
-  }
 
-  const check_bias = (bias) =>{
-    console.log(bias);
-    if(bias < 0.2){
-      return 'U-C'
-    }else if(bias <0.4){
-      return 'C'
-    }else if(bias <0.6){
-      return 'Centro'
-    }else if(bias <0.8){
-      return 'P'
-    }else{
-      return 'U-P'
-    }
-
-  }
-    */
     return (
-        <Articulo>  
-          <div className='media-name'>
+        <MediaContainer>  
+          <div className='media-logo'>
             <a href={`https://${data.url}`} target="_blank" rel="noreferrer noopener">
+              <img src={`https://logo.clearbit.com/${data.url}`} alt=''/>
               {data.nombre}
             </a> 
-          </div>        
-          <a href={`https://${data.url}`} target="_blank" rel="noreferrer noopener">
-            <img src={`https://logo.clearbit.com/${data.url}`} alt=''/>
-          </a>     
-          
-          
-          <span>Confiabilidad del medio:</span>
-          <div className='reliability'>
-            {data.bias}
-          </div>
-             
-        
-
+          </div>   
+          <div className="media-data">
+            <div className="media-rep">
+              <div className="title">
+                Reputación del medio
+              </div>
+              <MediaStart variant={100 - data.bias*100/5}>
+                <div className="stars">
+                  <div className="out-stars">
+                    <AiOutlineStar /><AiOutlineStar /><AiOutlineStar /><AiOutlineStar /><AiOutlineStar />
+                  </div>                  
+                  <div className="fill-stars">
+                    <div className="blank" />
+                    <AiFillStar /><AiFillStar /><AiFillStar /><AiFillStar /><AiFillStar />
+                  </div>
+                </div>
+              </MediaStart>
+            </div> 
+            <div className="media-bias">
+              <div className="title">
+                Sesgo del medio
+              </div>
+              <div className="bias">
+                <BiasBar data={{bias:data.bias}}/>
+              </div>
+            </div>
+          </div>     
+       
   
-            
-        </Articulo>
+        </MediaContainer>
     );
 }
 
 export default Reliability;
 
-//box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-const Articulo = styled.div`
-  background-color: #ffffff;
+const MediaStart = styled.div`
   position:relative;
-  padding: 1em;
-  border: 1px solid #878680;
+  display:flex;
+  flex-direction:column;
+  .stars{
+    display:flex;
+    justify-content:flex-end;
+  }
+
+  .out-stars{
+    z-index:10;
+    
+  }
+  .blank{    
+    position:absolute;
+    background-color:white;
+    height:20px;
+    width:${(props) => props.variant}%;
+    right:0;
+    z-index:5;
+  }
+  .fill-stars{
+    position:absolute;    
+    z-index:1;
+  }
+
+`
+
+const MediaContainer = styled.div`
+  display: grid;
+  align-items:center;
+  grid-template-columns:30% auto;
+  margin:10px;
+  border: 1px solid grey;
   border-radius: 10px;
 
-  .reliability{
-    text-align:center;
-    font-size:2em;
-    color:#669495;
+  @media screen and (max-width: 750px) {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
   }
 
 
-  .media-name{
-    position:relative;
-    color: #669495;
-    text-align:center;
-    font-size: 1em;
-    font-weight:bold;
+  .media-logo a{
+    margin: 10px;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    text-decoration:none;
+    color:black;
+    font-size: 1.5vw;
+    img{
+      height:100px;
+      background-color:black;
+      margin-bottom: 10px;
+    }
+    @media screen and (max-width: 750px) {
+      font-size: 3vw;
+    }
   }
-  img{
-    margin: 1em;
-    display: block;
-    max-width:90%;
-    margin-left: auto;
-    margin-right: auto;
+  .media-data{
+    padding-right: 20px;
+    @media screen and (max-width: 750px) {
+      padding-right:0;
+      width:90%;
+    }
+    
   }
-  .data-rel{
-    text-align:center;
-    font-weight: bold;
-    font-size: 2em;
-    margin:0.2em;
 
+  .media-bias .bias{
+    @media screen and (max-width: 500px) {
+      padding: 30px 0;
+    }
   }
-
 
 `

@@ -3,34 +3,42 @@ import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { SidebarData } from './SideBarData';
-import './SideBar.css';
 import { IconContext } from 'react-icons';
-import User from '../User';
 import styled from 'styled-components';
 
 function SideBar() {
+
+  const [color, setColor] = useState(false);
+  const changeColor = () => {
+    if (window.scrollY >= 80){
+      setColor(true)
+    }else{
+      setColor(false)
+    }
+  }
+  window.addEventListener('scroll', changeColor)
+
+
+
   const [sidebar, setSidebar] = useState(true);
 
   const showSidebar = () => setSidebar(!sidebar);
 
   return (
-    <BaseSideBar>
-      <IconContext.Provider value={{ size: 20, color: '#fff' }}>
+    <BaseSideBar variant = {color ? 'True':'False'} >
+      <IconContext.Provider value={{ size: 20, color: '#000000'}}>
         <div className='navbar'>
           <Link to='#' className='menu-bars'>
-            <FaIcons.FaBars onClick={showSidebar} style={{ color: '#000' }}/>
+            <FaIcons.FaBars onClick={showSidebar} style={{ display: sidebar ? 'none' : 'block'}}/>
           </Link>
         </div>
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
+        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}  >
           <ul className='nav-menu-items' onClick={showSidebar}>
             <li className='navbar-toggle'>
               <Link to='#' className='menu-bars'>
                 <AiIcons.AiOutlineClose/>
               </Link>
             </li>
-            <User data={{ username:"Usuario no registrado" }}/>
-
-
             {SidebarData.map((item, index) => {
               return (
                 <li key={index} className={item.cName}>
@@ -53,7 +61,88 @@ function SideBar() {
 export default SideBar;
 
 const BaseSideBar = styled.div`
-  position: sticky;
+position: sticky;
+top: 65px;
+.navbar {
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.menu-bars {
+  margin-left: 2rem;
+  font-size: 2rem;
+  background: none;
+  display: flex;
+  align-items: center;
+}
+
+.nav-menu {
+  
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  position: absolute;
   top: 0;
+  left: -100%;    
+  transition: 850ms;
+  
+}
+
+.nav-menu.active {
+  background: ${(props)=> props.variant === 'True' ? 'linear-gradient(90deg, rgba(102,148,149,1) 0%, rgba(144,216,218,0) 60%, rgba(102,148,149,0) 100%)' : 'none'};
+  left: 0;
+
+  
+}
+
+.nav-text {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 8px 0px 8px 0px;
+  list-style: none;
+  height: 95px;
+  
+  
+}
+
+.nav-text a {
+  text-decoration: none;
+  color: #000000;
+  font-size: 18px;
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 0 5px 0 30px;
+  border-top-right-radius: 50px; 
+  border-bottom-right-radius: 50px;
+}
+
+.nav-text a:hover {
+  background-color: #669495;
+  color:white;
+}
+
+.nav-menu-items {
+  width: 100%;
+  padding-left:0;
+}
+
+.navbar-toggle {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+span {
+  margin-left: 16px;
+  font-size: 100%;
+}
 
 `
