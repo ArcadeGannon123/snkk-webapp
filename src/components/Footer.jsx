@@ -1,21 +1,15 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
 import styled from "styled-components";
 import ferialogo from '../images/fesw-logo.png';
 import usm_di from '../images/logo_DI.png';
 import preem_logo from '../images/preem_logo.png';
-import {
-    AiOutlineFacebook,
-    AiOutlineInstagram,
-    AiOutlineYoutube,
-    AiOutlineLinkedin} from 'react-icons/ai';
 
 function Footer(props) {
     return (
-        <>
-            <Base>                
+        <>               
                 
-            </Base>
+                <a style={{position:'absolute', textDecoration:'none', color: '#669495'}} href="https://www.freepik.es/foto-gratis/negocio-tecnologia-globo-fondo-pantalla-degradado_13312403.htm#query=Global&position=22&from_view=search" target="_blank" rel="noreferrer noopener">Imagen de rawpixel.com</a>
+            
             <Logos>
                 <img className='preem' src={preem_logo} alt=''/>
                 <img className='di' src={usm_di} alt=''/>
@@ -31,21 +25,23 @@ function Footer(props) {
 export default Footer;
 
 const Logos = styled.div`
-    height: 60px;
+    padding-top:30px;
+    height: 90px;
     width: 100%;
     background-color:#041511;
     text-align:center;
     display:flex;
     align-items: center;
     justify-content:center;
+    @media screen and (max-width: 900px) {    
+        flex-direction:column;
+        height:auto;
+        
+    }
     img{
         height:50px;
         padding-left:40px;
         padding-right:40px;
-        @media screen and (max-width: 450px) {    
-            height:100%;        
-            width:90%;
-        }
     }
 `
 
@@ -56,14 +52,3 @@ const Copyright = styled.div`
     text-align:center;
 `
 
-const Base = styled.div`
-  padding-top:10px;
-  padding-left: 10%;
-  padding-right: 10%;
-  background-color:#041511;
-  font-family: 'Poppins', sans-serif;
-  display: grid;
-  grid-template-columns: 33% 33% 33%;
-
-
-`;

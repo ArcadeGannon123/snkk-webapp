@@ -22,13 +22,17 @@ function BiasBar({data}) {
     return (
         <BiasContainer>
             <div className="bias-label">
-                Anti-Archia
+                {data.labelL}
             </div>
             <div className="bias-bar" >
+                {data.bias !== -1 ?                    
                 <BiasCircle variant={data.bias*100}><div className="circle"/></BiasCircle>
+                :
+                <></>
+                }
             </div>
             <div className="bias-label">
-                Pro-Archia
+                {data.labelR}
             </div>
         </BiasContainer>
     );
@@ -59,8 +63,10 @@ display:flex;
 justify-content:flex-end;
 align-items:center;
 .bias-label{
-    font-size:15px;
+    font-size: 0.8em;
     font-weight:500;
+    width:25%;
+    text-align:center;
 }
 .bias-bar{
     width:40%;

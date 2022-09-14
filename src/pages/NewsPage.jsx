@@ -65,7 +65,7 @@ function NewsPage() {
                   <h1>{medio.nombre}</h1>
                 </div>
                 <div className="bias-container">
-                  <BiasBar data={{bias:media.bias}}/>
+                  <BiasBar data={{bias : medio.metricas ? medio.metricas.sesgo : -1, labelL: 'Anti-Archia', labelR: 'Pro-Archia'}}/>
                 </div>            
               </div>
             ))}
@@ -87,8 +87,9 @@ export default NewsPage
 
 
 const MediaContainer = styled.div`
-
-padding: 10px;
+border-radius:10px;
+border: 1px solid #87868083;
+padding: 20px;
 margin-top: 10px;
 h1{
   font-size: 20px;
@@ -113,8 +114,9 @@ hr{
 `
 
 const TopicsContainer = styled.div`
-
-padding: 10px;
+border-radius:10px;
+border: 1px solid #87868083;
+padding: 20px;
 
 h1{
   font-size:20px;
@@ -154,6 +156,7 @@ const NewsList = styled.div`
   background-color:#fff;
 `
 const Filter = styled.div`
+  margin-top: 50px;
   padding: 1em;
   @media screen and (max-width: 1250px) {
     display:none;
@@ -164,8 +167,8 @@ const Filter = styled.div`
 const FrontPage = styled.div`
   padding-top:65px;
   display: grid;
-  grid-template-columns: 20% 55% 25%;
-  @media screen and (max-width: 1320px) {
+  grid-template-columns: 20% 50% 25%;
+  @media screen and (max-width: 1480px) {
     grid-template-columns: 20% 50% 30%;
   }
 

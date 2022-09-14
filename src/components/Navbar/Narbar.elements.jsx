@@ -69,7 +69,7 @@ export const Menu = styled.ul`
     color: black;
     background-color: #F7F9F4;
     position: absolute;
-    top: 80px;
+    top: 65px;
     right: ${({ open }) => (open ? "0" : "100%")}; //Import
     width: 100%;
     height: 100vh;
@@ -79,6 +79,19 @@ export const Menu = styled.ul`
     transition: 0.5s all ease;
     padding:0;
     border-radius: 0 0 20px 20px;
+  }
+  .icon-login{
+    display:none;    
+    text-decoration:none;
+    @media screen and (max-width: 1160px) {
+      display:flex;
+    }
+  }
+  .user-bar{
+    text-decoration:none;
+    @media screen and (max-width: 1160px) {
+      display:none;
+    }
   }
 
 `;
@@ -108,7 +121,7 @@ export const MenuItemLink = styled(NavLink)`
   font-family: 'Poppins', sans-serif;
   font-weight:600;
   &:hover {
-    color: ${(props)=> props.variant === 'False' ? '#669495' : '#669495'}; 
+    color: #669495;
     transition: 0.2s all ease;
 
   }
@@ -126,6 +139,7 @@ export const MenuItemLink = styled(NavLink)`
       &:hover {
         background-color: #669495;
         transition: 0.2s all ease;
+        color: black;
 
       }
 

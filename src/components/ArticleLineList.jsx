@@ -1,7 +1,6 @@
 import React from 'react';
 import ArticleLine from './ArticleLine';
 import styled from 'styled-components';
-import {BsSearch} from "react-icons/bs";
 import { Puff } from 'react-loading-icons';
 
 

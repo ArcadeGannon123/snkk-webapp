@@ -1,51 +1,47 @@
-import React from 'react'
+import React,{useEffect,useState} from 'react'
 import styled from 'styled-components'
 import BiasBar from './BiasBar'
+import logo from '../images/blankpointlogo.ico';
 
-
+/*
+    url:"",
+    title:"",
+    urlToImage:"",
+    sesgoIA:{
+      archia:"",
+      sesgo:""
+    },
+    periodista:{
+      nombre:"",
+      bias:""
+    },
+    medio:{
+      url:"",
+      nombre:"",
+      metricas:{
+        sesgo:"",
+        confiabilidad:""
+      }
+    }
+  */
 
 
 
 function ArticleLine({data}) {
 
-  const bias_color ={
-    'U-P': '#2e64a0',
-    'P': '#9dc8eb',
-    'Centro': '#96659e',
-    'C': '#cb9a98',
-    'U-C': '#ca0800',
-    '0':'#000'
-  }
-
-
-  const check_bias = (bias) =>{
-    console.log(bias);
-    if(bias < 0.2){
-      return 'U-C'
-    }else if(bias <0.4){
-      return 'C'
-    }else if(bias <0.6){
-      return 'Centro'
-    }else if(bias <0.8){
-      return 'P'
-    }else{
-      return 'U-P'
-    }
-
-  }
 
   return (
     <Articulo>
-      <NewsContainer>
+      <NewsContainer>    
         <div className='news-data'>
           <div className="media">      
-            <img className='media-logo' src={`https://logo.clearbit.com/${data['medio'].url}`}/>     
-            <h2>{data['medio'] ? (data['medio'].name ? data['medio'].name : data['medio'].url ) : "MEDIO"}</h2>
+            <img className='media-logo' src={data['medio'] ? `https://logo.clearbit.com/${data['medio'].url}` : logo} alt=''/>     
+            <h2>{data['medio'] ? (data['medio'].name ? data['medio'].name : data['medio'].url ).replace('www.','') : "MEDIO"}</h2>
           </div>
 
           <h1 className='headline'>{data.title}</h1>
           <img className='article-img-mobile' src={data.urlToImage} alt='imagen'/>
-          <div className='author-date'>{data.author ? data.author:data['medio'].url} - {data.published_date}</div>
+          <div className='author-date'>{data.author ? data.author : data['medio'] ? data['medio'].url.replace('www.','') : ""} - {data.published_date}</div>
           
           <p>{data.content}</p>
           <div className='news-link-ref'>
@@ -54,21 +50,23 @@ function ArticleLine({data}) {
         </div>
         <img className='article-img-desk' src={data.urlToImage} alt='imagen'/>
       </NewsContainer>
-      <AnalysisContainer>
+      <AnalysisContainer >
         <h1>Análisis de la noticia <hr/></h1>
         <div className="analysis">
           <div className="bias-container">
-            <div className="bias-archia">
+            <div className="bias-news">
               <div className="title">
-                Sesgo en base a igualdad social (Archia)
+                Sesgo encontrado
               </div>
-              <BiasBar data={{bias:data.bias}}/>
+              <BiasBar data={{bias : data.sesgoIA ? data.sesgoIA.archia : -1, labelL: 'Anti-Archia', labelR: 'Pro-Archia'}}/>
+              <BiasBar data={{bias : data.sesgoIA ? data.sesgoIA.archia : -1, labelL: 'Progresista', labelR: 'Conservador'}}/>
             </div>
             <div className="bias-periodista">
               <div className="title">
                 Sesgo del periodista
               </div>
-              <BiasBar data={{bias:data.periodista.bias}}/>
+              <BiasBar data={{bias : data.periodista ? data.periodista.bias : -1, labelL: 'Anti-Archia', labelR: 'Pro-Archia'}}/>
+              <BiasBar data={{bias : data.periodista ? data.periodista.bias : -1, labelL: 'Progresista', labelR: 'Conservador'}}/>
             </div>         
           </div>
           <div className="language-container">
@@ -78,9 +76,7 @@ function ArticleLine({data}) {
             </div>
           </div>
         </div>
-      </AnalysisContainer>
-       
-        
+      </AnalysisContainer>   
     </Articulo>
   )
 }

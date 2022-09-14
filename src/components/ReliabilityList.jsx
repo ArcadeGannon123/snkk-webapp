@@ -37,6 +37,9 @@ const Medios = styled.div`
   .media-list{
     margin:auto;
     padding: 0 50px;
+    @media screen and (max-width: 500px) {
+      padding: 0 10px;
+    }
   }
 
 

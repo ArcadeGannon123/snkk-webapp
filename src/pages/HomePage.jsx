@@ -29,8 +29,8 @@ function HomePage(props) {
                 <div className="subtexto" data-aos="zoom-in" data-aos-delay="100">
                     Descubre el sesgo ideológico al que estas expuesto al leer noticias.
                 </div>
-                <NavLink to='/noticias'>
-                    <div className="button">
+                <NavLink className="button" to='/noticias'>
+                    <div>
                         
                             Ir a las noticias
                         
@@ -73,20 +73,29 @@ const Home = styled.div`
     background-position: center bottom;
     background-size: cover;
     background-attachment: fixed;
-    display:block;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    height:90vh;
+
+    @media screen and (max-height: 900px) {
+        height:auto;
+    }
 
     .button{
-        background-color: #041511a6;
+        background: #669495;
         width: 150px;
         text-align:center;
-        padding: 10px 0;
+        padding: 25px 0;
         margin: 20px auto;
         border-radius: 15px;
         cursor:pointer;
         text-decoration:none;
         color:#e2e2e2;
+        transition: 0.2s all ease;
         &:hover{
-            background-color: #041511;
+            background: #79aeaf;
+            box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
         }
     }
 
@@ -120,6 +129,7 @@ const Home = styled.div`
         font-family: 'Poppins', sans-serif;
         font-weight:300;
         font-size:30px;
+        color: #3f5a5a
     }
 
 
@@ -127,7 +137,10 @@ const Home = styled.div`
 const HomeLogo = styled.div`
     padding: 10px; 
     width: 40%;
-    margin: auto;
+    margin: 0 auto;
+    @media screen and (max-width: 1450px) {
+        width: 50%;
+    }
     @media screen and (max-width: 1000px) {
         width: 80%;
     }

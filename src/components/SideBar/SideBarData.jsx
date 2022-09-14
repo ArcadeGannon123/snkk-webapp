@@ -1,19 +1,20 @@
 import React from 'react';
-import * as FaIcons from 'react-icons/fa';
-import * as BiIcons from 'react-icons/bi';
+import {FaHandHoldingHeart} from 'react-icons/fa';
+import {BiNews} from 'react-icons/bi';
 
 export const SidebarData = [
   {
     title: 'Noticias Recientes',
     path: '/noticias',
-    icon: <BiIcons.BiNews />,
+    icon: <BiNews />,
     cName: 'nav-text'
   },
   {
     title: 'Confiabilidad de los medios',
     path: '/reliability',
-    icon: <FaIcons.FaHandHoldingHeart />,
+    icon: <FaHandHoldingHeart />,
     cName: 'nav-text'
   }
   
 ];
+
