@@ -35,7 +35,7 @@ function Reliability({data}) {
                 Sesgo del medio:
               </div>
               <div className="bias">
-                <BiasBar data={{bias: data.metricas ? data.metricas.sesgo : 0.5, labelL: 'Anti-Archia', labelR: 'Pro-Archia'}}/>
+                <BiasBar data={{bias: data.metricas ? data.metricas.sesgo : 0.5, labelL: 'Progresista', labelR: 'Conservador'}}/>
               </div>
             </div>
           </div>     

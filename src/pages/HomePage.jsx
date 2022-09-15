@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import styled from "styled-components";
 import {NavLink} from 'react-router-dom';
 import logo from '../images/blankpointlogo.png';
@@ -12,9 +12,11 @@ import 'aos/dist/aos.css';
 import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
+import { UserContext } from '../components/UserContext';
 
 function HomePage(props) {
     
+    const {token,setToken} = useContext(UserContext);
 
     return (
         <>
@@ -29,13 +31,21 @@ function HomePage(props) {
                 <div className="subtexto" data-aos="zoom-in" data-aos-delay="100">
                     Descubre el sesgo ideológico al que estas expuesto al leer noticias.
                 </div>
+                {token !== ""?
                 <NavLink className="button" to='/noticias'>
-                    <div>
-                        
-                            Ir a las noticias
-                        
+                    <div>                        
+                            Ir a las noticias                        
                     </div>
                 </NavLink>
+                :
+                <NavLink className="button" to='/login'>
+                    <div>                        
+                            Acceder                       
+                    </div>
+                </NavLink>
+
+                }
+                
                 <blockquote className="blockquote" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="600">
                     <p class="mb-0">“La ideología tiene que ver directamente con el encubrimiento de la verdad de los hechos, con el uso del lenguaje para ofuscar u opacar la realidad al mismo tiempo que nos vuelve miopes.”-Paulo Freire.</p>
                 </blockquote>

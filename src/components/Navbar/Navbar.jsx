@@ -11,12 +11,12 @@ import {
 } from "./Narbar.elements";
 import {
   FaBars,
-  FaTimes,
-  FaUserCircle
+  FaTimes
 } from "react-icons/fa";
 import {NavLink} from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import User from '../User';
+import axios from 'axios';
 
 const Navbar = () => {
 
@@ -30,7 +30,7 @@ const Navbar = () => {
   }
   window.addEventListener('scroll', changeColor)
 
-  const {token,setToken} = useContext(UserContext);
+  const {token,setToken} = useContext(UserContext); 
 
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
@@ -40,6 +40,7 @@ const Navbar = () => {
 
   useEffect(() => {
   }, [showMobileMenu]);
+
 
 
 
@@ -74,13 +75,17 @@ const Navbar = () => {
               </div>
             </MenuItemLink>
           </MenuItem>
+          {token !=="" ?          
           <MenuItem>
             <MenuItemLink variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)} to='/noticias'>
               <div>
                 Noticias
               </div>
             </MenuItemLink>
-          </MenuItem>          
+          </MenuItem>  
+          :
+          <></>
+          }        
           <MenuItem>
             <MenuItemLink variant = {color ? 'True':'False'}  onClick={() => _setShowMobileMenu(showMobileMenu)} to='/register'>
               <div>
@@ -99,19 +104,7 @@ const Navbar = () => {
           </MenuItem>
           :
           <NavLink className="user-bar" to='/login'>
-            <User variant = {color ? 'True':'False'}>
-                <div className="icon">              
-                  <FaUserCircle />
-                </div>
-                <div className="user-data">
-                  <div className="username">
-                    Usuario
-                  </div>
-                  <div className="puntaje">
-                    puntaje: 0
-                  </div>
-                </div>
-            </User>
+            <User variant = {color ? 'True':'False'}/>
           </NavLink>
           }        
           

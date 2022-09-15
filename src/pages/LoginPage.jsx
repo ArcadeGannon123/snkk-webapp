@@ -12,6 +12,8 @@ import 'aos/dist/aos.css';
 function LoginPage(props) {
 
     const {token,setToken} = useContext(UserContext)
+    const {point,setPoint} = useContext(UserContext);
+    const {user,setUser} = useContext(UserContext);
     //const { register, errors, handleSubmit } = useForm();
     const [error,setError] = useState(false)
     const [success,setSuccess] = useState(0)
@@ -41,7 +43,10 @@ function LoginPage(props) {
                     'Authorization': `Basic ${code}`
                 },
             }).then(res => {
+                console.log(res)
                 setToken(res.data.token)
+                setUser(res.data.nombre)
+                setPoint(res.data.puntuacionUsuario)
                 setSuccess(2)
             
             }).catch(err => {

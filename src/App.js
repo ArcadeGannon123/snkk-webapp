@@ -3,8 +3,6 @@ import NewsPage from './pages/NewsPage'
 import HomePage from './pages/HomePage'
 import ExtenPage from './pages/ExtenPage'
 import ReliPage from './pages/ReliPage'
-import AboutPage from './pages/AboutPage'
-import ContactPage from './pages/ContactPage'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import Aos from 'aos';
@@ -20,10 +18,12 @@ function App() {
   }, [])
 
   const [token, setToken] = useState("");
+  const [user, setUser] = useState("");
+  const [point, setPoint] = useState("");
 
   return (
     
-    <UserContext.Provider value={{token, setToken}}>
+    <UserContext.Provider value={{token, setToken,user, setUser,point, setPoint}}>
       <Router>
         <Routes>
             <Route  path='/' element={<HomePage/>}/>
@@ -31,7 +31,7 @@ function App() {
             <Route  path='/extension' element={<ExtenPage/>}/>
             <Route  path='/reliability' element={<ReliPage/>}/>
             <Route  path='/register' element={<RegisterPage/>}/>
-            <Route  path='/login' element={<LoginPage/>}/>          
+            <Route  path='/login' element={<LoginPage/>}/>        
         </Routes>
       </Router>
     </UserContext.Provider>
