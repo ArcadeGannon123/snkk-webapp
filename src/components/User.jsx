@@ -17,7 +17,7 @@ function User() {
                     {user}
                 </div>
                 <div className="puntaje">
-                    puntaje: {point}
+                    puntaje: {point.toFixed(2)}
                 </div>
             </div>
         </Base>

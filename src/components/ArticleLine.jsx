@@ -1,7 +1,9 @@
-import React,{useEffect,useState} from 'react'
+import React,{useEffect,useState,useContext} from 'react'
 import styled from 'styled-components'
 import BiasBar from './BiasBar'
 import logo from '../images/blankpointlogo.ico';
+import { UserContext } from '../components/UserContext';
+import {NavLink} from 'react-router-dom';
 
 /*
     url:"",
@@ -27,11 +29,16 @@ import logo from '../images/blankpointlogo.ico';
 
 
 
-function ArticleLine({data}) {
+function ArticleLine({data,flag}) {
 
+  const {topics,setTopics} = useContext(UserContext);
+  const topicos = () => {
+    setTopics(data.url)
+  }
 
   return (
     <Articulo>
+      
       <NewsContainer>    
         <div className='news-data'>
           <div className="media">      
@@ -45,7 +52,12 @@ function ArticleLine({data}) {
           
           <p>{data.content}</p>
           <div className='news-link-ref'>
-           <a href={data.url} target="_blank" rel="noreferrer noopener">Ir a la noticia</a>
+            {flag ?
+            <NavLink to='/topicos' onClick={() => {topicos()}}>Ver noticias similares</NavLink>
+            :
+            <></>
+            }
+            <a href={data.url} target="_blank" rel="noreferrer noopener">Ir a la noticia</a>
           </div>               
         </div>
         <img className='article-img-desk' src={data.urlToImage} alt='imagen'/>
@@ -56,23 +68,50 @@ function ArticleLine({data}) {
           <div className="bias-container">
             <div className="bias-news">
               <div className="title">
-                Sesgo encontrado
+                Sesgo de la noticia
               </div>
-              <BiasBar data={{bias : data.sesgoIA ? data.sesgoIA.archia : -1, labelL: 'Anti-Archia', labelR: 'Pro-Archia'}}/>
-              <BiasBar data={{bias : data.sesgoIA ? data.sesgoIA.archia : -1, labelL: 'Progresista', labelR: 'Conservador'}}/>
+              <BiasBar data={{bias : data.sesgoIA ? data.sesgoIA.archia : -1, labelL: 'Pro-Archia', labelR: 'Anti-Archia'}}/>
+              <BiasBar data={{bias : data.sesgoIA ? data.sesgoIA.sesgo : -1, labelL: 'Conservador', labelR: 'Progresista'}}/>
             </div>
             <div className="bias-periodista">
               <div className="title">
-                Sesgo del periodista
+                  Sesgo de los periodista/s
               </div>
-              <BiasBar data={{bias : data.periodista ? data.periodista.bias : -1, labelL: 'Anti-Archia', labelR: 'Pro-Archia'}}/>
-              <BiasBar data={{bias : data.periodista ? data.periodista.bias : -1, labelL: 'Progresista', labelR: 'Conservador'}}/>
+              {data.sesgosPeriodistas ?
+                data.sesgosPeriodistas.map((periodista) => (
+                  <>   
+                    <div className="periodista">
+                      {periodista.nombre}
+                    </div>               
+                    <BiasBar data={{bias : periodista.archia, labelL: 'Pro-Archia', labelR: 'Anti-Archia'}}/>
+                    <BiasBar data={{bias : periodista.sesgo, labelL: 'Conservador', labelR: 'Progresista'}}/>
+                  </>
+                ))
+               :
+               <>
+               </>
+              }
             </div>         
           </div>
           <div className="language-container">
-            <div className="title">Uso del lenguaje</div>
-            <div className="language-bias">
-              OFFENSIVO
+            <div className="language">
+              <div className="title">Uso del lenguaje</div>
+              <div className="language-bias">
+                {data.hate_speech}
+              </div>
+            </div>
+            <div className="fake-news">
+              <div className="title">¿Posible noticia falsa?</div>
+              {data.reportesFalsedad ===1 ?
+              <div className="language-bias">
+                {data.reportesFalsedad} vez reportado.
+              </div>
+              :
+              <div className="language-bias">
+                {data.reportesFalsedad} veces reportado.
+              </div>
+              } 
+              
             </div>
           </div>
         </div>
@@ -101,22 +140,36 @@ h1{
 .analysis{
   display:grid;
   grid-template-columns:50% 50%;
+  @media screen and (max-width: 680px) {
+    display:flex;
+    flex-direction:column;
+  }
   .bias-container{  
     
-    padding: 0 10px; 
+    padding: 0 10px;
+    .title{
+      color: #669495;
+    } 
+    .periodista{
+      font-size:15px;
+      padding-left: 10px;
+    }
   }
   .language-container{
     padding: 0 10px;
     .language-bias{
-      width:50px;
-      height:50px;
+      color:black;
+      width:100px;
+      height:100px;
       border-radius:50%;
-      background: radial-gradient(circle, rgba(102,148,149,1) 0%, rgba(144,216,218,1) 48%, rgba(102,148,149,1) 100%); 
+      background: radial-gradient(circle, rgba(102,148,149,1) 0%, rgba(177,253,255,1) 0%, rgba(127,184,185,1) 100%);
       text-shadow: 0 0 2px #669495;     
       display:flex;
       align-items:center;
       justify-content:center;
+      text-align:center;
       margin: 0 auto;
+      
     }
   }
 }
@@ -167,11 +220,15 @@ const NewsContainer = styled.div`
   }
 
   .news-link-ref{
+    display:flex;
+    justify-content:flex-end;
     text-align:right;
     margin-right:1em;
+    gap:20px;
     a{
       font-family: 'Roboto', sans-serif;
       font-weight: bold;
+
     }
   }
 

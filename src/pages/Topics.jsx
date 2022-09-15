@@ -10,10 +10,11 @@ import { UserContext } from '../components/UserContext';
 //import data from '../data/dataset';
 
 import SideBar from '../components/SideBar/SideBar';
-function NewsPage() {
+function Topics() {
   
   const {token,setToken} = useContext(UserContext); 
   const {point,setPoint} = useContext(UserContext);
+  const {topics, setTopics} = useContext(UserContext);
   const [data,setData]= useState([]);
   const [media,setMedia]= useState([]);
 
@@ -32,18 +33,35 @@ function NewsPage() {
     
   }
 
+  const enviarDatos = async () =>{
+
+    const url='https://api-news-feria-2022.herokuapp.com/noticia/recomendaciones'
+    await axios.post(url, {url:topics}, {
+      headers: {
+          'Authorization': `Bearer ${token}`
+      },
+    }).then(res => {
+        console.log(res)
+        setData(res.data)
+    
+    }).catch(err => {
+        console.log(err)
+    })
+      
+}
+
 
   useEffect(() => {
-    const url1='https://api-news-feria-2022.herokuapp.com/noticia/listado-noticias'
     const url2='https://api-news-feria-2022.herokuapp.com/medio/confiabilidad-medios'
     //const url='https://newsapi.org/v2/top-headlines?country=ar&apiKey=42bbcbe72851462e986657adf46c37a9'
+    /*
     const getData = async (url) => {
       const response = await axios.get(url,{
         headers: {
             'Authorization': `Bearer ${token}`
         }})
       setData(response.data)
-    }
+    }*/
     const getMedia = async (url) => {
       const response = await axios.get(url,{
         headers: {
@@ -51,7 +69,8 @@ function NewsPage() {
         }})
       setMedia(response.data)
     }
-    getData(url1);
+    //getData(url1);
+    enviarDatos();
     getMedia(url2);
     puntaje();
   }, []);
@@ -59,15 +78,13 @@ function NewsPage() {
 
   return (
     <>
-    
-    {console.log(media)}
       <Navbar />
       <FrontPage>
         <Menu>
           <SideBar />
         </Menu>
         <NewsList> 
-          <ArticleLineList data={data} title={'Noticias Recientes'} flag={true}/>
+          <ArticleLineList data={data} title={'Noticias Similares'} flag={false} />
         </NewsList>        
         <Filter>
           <MediaContainer>
@@ -80,7 +97,6 @@ function NewsPage() {
                   <h1>{medio.nombre.replace('www.','')}</h1>
                 </div>
                 <div className="bias-container">
-                  <BiasBar data={{bias : medio.metricas ? medio.metricas.archia : -1, labelL: 'Pro-Archia', labelR: 'Anti-Archia'}}/>
                   <BiasBar data={{bias : medio.metricas ? medio.metricas.sesgo : -1, labelL: 'Conservador', labelR: 'Progresista'}}/>
                 </div>            
               </div>
@@ -99,7 +115,7 @@ function NewsPage() {
   )
 }
 
-export default NewsPage 
+export default Topics 
 
 
 const MediaContainer = styled.div`
@@ -129,35 +145,7 @@ hr{
 }
 `
 
-const TopicsContainer = styled.div`
-border-radius:10px;
-border: 1px solid #87868083;
-padding: 20px;
 
-h1{
-  font-size:20px;
-}
-hr{
-  margin: 10px 0;
-}
-.topics{
-  display:flex;
-  flex-wrap: wrap;
-  gap:5px;
-  cursor: pointer;
-  div{
-    padding: 0 10px;
-    border: 1px solid #878680;
-    background-color:#fff;
-    border-radius: 5px;
-    font-size:0.9em;
-  }
-  div:hover{
-    background-color: #e1f1f1;
-    transition: 0.1s all ease; 
-  }
-}
-`
 
 const Menu = styled.div`
   position:relative;

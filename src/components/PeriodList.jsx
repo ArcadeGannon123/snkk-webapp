@@ -1,20 +1,19 @@
 import React from 'react';
-import Reliability from './Reliability';
+import Period from './Period';
 import styled from 'styled-components';
 import { Puff } from 'react-loading-icons';
 
-function ReliabilityList({data}) {
+function PeriodList({data}) {
     return (
         <div>
+            {console.log(data)}
             <Head>
-              <h1>Confiabilidad de los medios</h1>       
+              <h1>Sesgo de periodistas</h1>       
               <hr/>        
             </Head>
             <Medios>
-              <div className="news-filter-mobile">  
-              </div>
               <div className='media-list'>
-                {data.length ===0 ? <LoadingIcon><Puff stroke='#669495' /></LoadingIcon> : data.map((articulo) => (<Reliability key={articulo.id} data={articulo}/>))}
+                {data.length ===0 ? <LoadingIcon><Puff stroke='#669495' /></LoadingIcon> : data.map((articulo) => (<Period key={articulo.id} data={articulo}/>))}
               </div>
                  
             </Medios>
@@ -22,7 +21,7 @@ function ReliabilityList({data}) {
     );
 }
 
-export default ReliabilityList;
+export default PeriodList;
 
 const LoadingIcon = styled.div`
   display:flex;
@@ -42,10 +41,11 @@ const Head = styled.div`
 
 const Medios = styled.div`
   .media-list{
-    margin:auto;
-    padding: 0 50px;
-    @media screen and (max-width: 500px) {
-      padding: 0 10px;
+    display:grid;
+    grid-template-columns: 40% 40%;
+    @media screen and (max-width: 830px) {
+      display:flex;
+      flex-wrap: wrap;
     }
   }
 

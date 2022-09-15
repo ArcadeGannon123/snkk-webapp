@@ -2,12 +2,12 @@ import React,{useState, useEffect, useContext} from 'react';
 import Navbar from '../components/Navbar/Navbar';
 import styled from 'styled-components';
 import MobileFooter from '../components/MobileFooter';
-import ReliabilityList from '../components/ReliabilityList';
+import PeriodList from '../components/PeriodList';
 import SideBar from '../components/SideBar/SideBar';
 import axios from 'axios';
 import { UserContext } from '../components/UserContext';
 
-function ReliPage() {
+function Periodistas() {
     
   const {token,setToken} = useContext(UserContext);
   const {point,setPoint} = useContext(UserContext);
@@ -30,7 +30,7 @@ function ReliPage() {
 
 
   useEffect(() => {
-    const url='https://api-news-feria-2022.herokuapp.com/medio/confiabilidad-medios'
+    const url='https://api-news-feria-2022.herokuapp.com/periodista/sesgo-periodistas'
     const getData = async () => {
       const response = await axios.get(url,{
         headers: {
@@ -52,7 +52,7 @@ function ReliPage() {
                   <SideBar />
               </Menu>
               <div className='news-list'>
-                <ReliabilityList data={data.reverse()} />
+                <PeriodList data={data} />
               </div>
           </FrontPage>
           <div className='footer-mobile'>
@@ -62,7 +62,7 @@ function ReliPage() {
   );
 }
 
-export default ReliPage;
+export default Periodistas;
 
 
 
