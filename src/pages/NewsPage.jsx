@@ -32,7 +32,6 @@ function NewsPage() {
     
   }
 
-
   useEffect(() => {
     const url1='https://api-news-feria-2022.herokuapp.com/noticia/listado-noticias'
     const url2='https://api-news-feria-2022.herokuapp.com/medio/confiabilidad-medios'
@@ -55,12 +54,9 @@ function NewsPage() {
     getMedia(url2);
     puntaje();
   }, []);
-  
 
   return (
     <>
-    
-    {console.log(media)}
       <Navbar />
       <FrontPage>
         <Menu>

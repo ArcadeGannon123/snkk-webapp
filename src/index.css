@@ -6,9 +6,10 @@
 
 body {
   overflow-x: hidden;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto', Helvetica, sans-serif;
 
 }
+
 /*
 font-family: 'Nuosu SIL', serif;
 font-family: 'Raleway', sans-serif;
