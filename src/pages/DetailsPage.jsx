@@ -12,8 +12,9 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Cookies from 'universal-cookie';
 
-
+/*
 const data={
     "id": "633fab77c861d648b77693ef",
     "url": "https://www.emol.com/noticias/Nacional/2022/06/21/1064706/liberan-chileno-secuestrado-en-haiti.html",
@@ -46,7 +47,7 @@ const data={
       "pocoSensacionalista": null,
       "sensacionalista": 0.0004419685587343249
     }
-  }
+  }*/
   const fakenews={
     fecha: '06 agosto 2022',
     fechaAnalisis: '06 agosto 2022',
@@ -74,8 +75,12 @@ const data={
 
 function DetailsPage(props) {
 
+    const cookies = new Cookies();
+    const data = cookies.get('url');
+
+
     return (
-        <>     
+        <>   
             <Navbar />            
             <FrontPage>
                 <div className="title" style={{fontSize:'1.3rem'}}>

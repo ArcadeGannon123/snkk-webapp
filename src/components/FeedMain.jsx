@@ -42,11 +42,11 @@ const fakenews={
 
 function FeedMain({data}) {
 
-    const clickHandler = () => {
+    const handleClick = () =>{
         const cookies = new Cookies();
-        cookies.set('newsData',{data:data},{path:'/'});
-        window.location.href = './news'
-      }
+        cookies.set('url',data,{path:'/'});
+        window.location.href = './detalles/'+data.title;
+    }
 
     return (
         <FeedMainBase>
@@ -82,7 +82,7 @@ function FeedMain({data}) {
                     <StackedBar data={data.sesgoIzquierdaDerecha} />
                 </div>
                 <div className="main-buttom">
-                    <Button  onClick={clickHandler}  variant="outlined" startIcon={<AnalyticsIcon />}>
+                    <Button onClick={handleClick} variant="outlined" startIcon={<AnalyticsIcon />}>
                         Detalles
                     </Button>    
                     <Button  sx={{position:'absolute',right:1}} href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>

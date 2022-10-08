@@ -8,6 +8,7 @@ import Stack from '@mui/material/Stack';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import Cookies from 'universal-cookie';
 
 const fakenews={
     fecha: '06 agosto 2022',
@@ -36,6 +37,14 @@ const fakenews={
 
 
 function RowNews({data}) {
+
+    const handleClick = () =>{
+        const cookies = new Cookies();
+        cookies.set('url',data,{path:'/'});
+        window.location.href = './detalles/'+data.title;
+    }
+
+
     return (
         <FeedMainBase>
             
@@ -74,7 +83,7 @@ function RowNews({data}) {
                 <Button   href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
                     Ir a la noticia
                 </Button> 
-                <Button variant="outlined" startIcon={<AnalyticsIcon />}>
+                <Button onClick={handleClick} variant="outlined" startIcon={<AnalyticsIcon />}>
                     Detalles
                 </Button>  
             </div>

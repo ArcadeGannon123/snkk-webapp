@@ -47,7 +47,7 @@ function App() {
             <Route  path='/populares' element={<PopularPage/>}/>   
             <Route  path='/test' element={<TestPage/>}/>  
             <Route  path='/recientes' element={<NnewsPage/>}/>
-            <Route  path='/news' element={<DetailsPage/>}/>
+            <Route  path='/detalles/:url' element={<DetailsPage/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>
