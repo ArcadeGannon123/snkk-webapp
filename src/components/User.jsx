@@ -1,13 +1,15 @@
-import React, { useContext} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Cookies from 'universal-cookie';
 
 function User() {
+    const cookies = new Cookies();
 
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
       setAnchorEl(event.currentTarget);
@@ -15,15 +17,18 @@ function User() {
     const handleClose = () => {
       setAnchorEl(null);
     };
+    const handleSesion = () => {
+        cookies.remove('userData', { path: '/' });        
+        window.location.href = './';
+    };
     return (
         <Base>
-            <div className="user-container">              
+            <div className="user-container" onClick={handleClick}>              
                 <Avatar        
                     id="basic-button"
                     aria-controls={open ? 'basic-menu' : undefined}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
-                    onClick={handleClick}
                     alt="Remy Sharp" src="/static/images/avatar/1.jpg" 
                     sx={{
                         cursor: 'pointer',
@@ -32,8 +37,8 @@ function User() {
                         }
                     }}
                 />
-                <div className="username">
-                    USERNAME
+                <div className="username" style={{cursor:'pointer'}}>
+                    {cookies.get('userData').nombre}
                 </div>
             </div>
             <Menu
@@ -47,7 +52,7 @@ function User() {
             >
                 <MenuItem onClick={handleClose}>Perfil</MenuItem>
                 <MenuItem onClick={handleClose}>Mi cuenta</MenuItem>
-                <MenuItem onClick={handleClose}>Cerrar sesión</MenuItem>
+                <MenuItem onClick={handleSesion}>Cerrar sesión</MenuItem>
             </Menu>
         </Base>
         

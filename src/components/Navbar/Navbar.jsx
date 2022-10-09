@@ -17,8 +17,11 @@ import {NavLink} from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import User from '../User';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 const Navbar = () => {
+
+  const cookies = new Cookies();
 
   const [color, setColor] = useState(false);
   const changeColor = () => {
@@ -60,13 +63,11 @@ const Navbar = () => {
           {showMobileMenu ? <FaTimes /> : <FaBars />}
         </MobileIcon>
         <Menu open={showMobileMenu} variant = {color ? 'True':'False'}>  
-          {token !== "" ?
+          {cookies.get('userData') ?
           <NavLink className="icon-login" to='/login' >
               <User />
           </NavLink>  
-          :
-          <></>
-          } 
+          :<></>}
             
           <MenuItem>
             <MenuItemLink variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)} to='/'>
@@ -75,17 +76,16 @@ const Navbar = () => {
               </div>
             </MenuItemLink>
           </MenuItem>
-          {token !=="" ?          
+          {cookies.get('userData') ?         
           <MenuItem>
-            <MenuItemLink variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)} to='/noticias'>
+            <MenuItemLink variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)} to='/recientes'>
               <div>
                 Noticias
               </div>
             </MenuItemLink>
           </MenuItem>  
-          :
-          <></>
-          }        
+          :<></>}
+
           <MenuItem>
             <MenuItemLink variant = {color ? 'True':'False'}  onClick={() => _setShowMobileMenu(showMobileMenu)} to='/register'>
               <div>
@@ -93,8 +93,7 @@ const Navbar = () => {
               </div>
             </MenuItemLink>
           </MenuItem>
-          {
-          token === "" ?
+          {!cookies.get('userData') ?
           <MenuItem>
             <MenuItemLink variant = {color ? 'True':'False'}  onClick={() => _setShowMobileMenu(showMobileMenu)} to='/login'>
               <div>
@@ -104,7 +103,7 @@ const Navbar = () => {
           </MenuItem>
           :
           <NavLink className="user-bar" to='/login'>
-            <User variant = {color ? 'True':'False'}/>
+            <User />
           </NavLink>
           }        
           

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { SidebarDataPages,SidebarDataDash,SidebarDataOther } from './SideBarData';
+import { SidebarDataPages,SidebarDataDash,SidebarDataOther,SidebarDataColumnDash,SidebarDataColumnPages,SidebarDataColumnOther} from './SideBarData';
 import { IconContext } from 'react-icons';
 import styled from 'styled-components';
+import Cookies from 'universal-cookie';
 
 function SideBar2({sidebar}) {
 
@@ -15,63 +16,59 @@ function SideBar2({sidebar}) {
     }
   }
   window.addEventListener('scroll', changeColor)
-
+  const cookies = new Cookies();
 
   return (
     <BaseSideBar variant = {color ? 'True':'False'} >
       <IconContext.Provider value={{ size: 20, color: '#ffffff'}}>
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}  >
-          <ul className='nav-menu-items' >      
-            <li className='category'>
-              Actividad
-              <hr/>
-            </li>      
-            {SidebarDataDash.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    <div className='side-item-icon'>
-                      {item.icon}
-                    </div>                   
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              );
-            })}
-            <li className='category'>
-              Análisis
-              <hr/>
-            </li>  
-            {SidebarDataPages.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    <div className='side-item-icon'>
-                      {item.icon}
-                    </div>                   
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              );
-            })}
-            <li className='category'>
-              Otros
-              <hr/>
-            </li> 
-            {SidebarDataOther.map((item, index) => {
-              return (
-                <li key={index} className={item.cName}>
-                  <Link to={item.path}>
-                    <div className='side-item-icon'>
-                      {item.icon}
-                    </div>                   
-                    <span>{item.title}</span>
-                  </Link>
-                </li>
-              );
-            })}            
-          </ul>
-        </nav>
+
+        {cookies.get('userData') ? <>
+        <div className='category'>               
+          <hr/>   
+        </div>  
+        {SidebarDataColumnDash.map((item, index) => {
+          return (
+            <div key={index} >
+              <Link to={item.path} className={item.cName} >
+                <div className='side-item-icon'>
+                  {item.icon}
+                </div>                      
+                <span>{item.title}</span>               
+              </Link>
+            </div>
+          );
+        })}
+        </>:<></>}
+        <div className='category'>                 
+          <hr/>   
+        </div> 
+        {SidebarDataColumnPages.map((item, index) => {
+          return (
+            <div key={index} >
+              <Link to={item.path} className={item.cName} >
+                <div className='side-item-icon'>
+                  {item.icon}
+                </div>                      
+                <span>{item.title}</span>               
+              </Link>
+            </div>
+          );
+        })}        
+        <div className='category'>       
+          <hr/>   
+        </div> 
+        {SidebarDataColumnOther.map((item, index) => {
+          return (
+            <div key={index} >
+              <Link to={item.path} className={item.cName} >
+                <div className='side-item-icon'>
+                  {item.icon}
+                </div>                      
+                <span>{item.title}</span>               
+              </Link>
+            </div>
+          );
+        })}
       </IconContext.Provider>
     </BaseSideBar>
   );
@@ -80,93 +77,37 @@ function SideBar2({sidebar}) {
 export default SideBar2;
 
 const BaseSideBar = styled.div`
+display:flex;
+flex-direction:column;
 width:80px;
+gap:1rem;
 padding: 10px 0;
 .category{
-  padding: 5px 20px;
-  color: white;
-  hr{
-    margin: 10px 0;
-  }
-}
-
-.navbar {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color:blue;
-}
-
-.menu-bars {
-  margin-left: 2rem;
-  font-size: 2rem;
-  background: none;
-  display: flex;
-  align-items: center;
-}
-
-.nav-menu {
-  
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: absolute;
-  left: -100%;    
-  transition: 850ms;
-  
-}
-
-.nav-menu.active {
-  left: 0;
-
-  
-}
-
-.nav-text {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 8px 0px 8px 0px;
-  list-style: none;
-  height: 50px;
-  
-  
-}
-
-.nav-text a {
-  text-decoration: none;
-  color: #ffffff;
-  font-size: 1em;
-  width: 95%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  padding: 0 5px 0 20px;
-  border-top-right-radius: 50px; 
-  border-bottom-right-radius: 50px;
-}
-
-.nav-text a:hover {
-  background-color: #5a5a5a;
   color:white;
+  font-size:0.7rem;
+  text-align:center;
+}
+.category hr{
+  margin:0;
+}
+.nav-text{
+  display:grid;
+  text-align:center;
+  justify-content:center;
+  color:white;
+  text-decoration:none;
+  padding: 5px 0 ;
+}
+.nav-text span{
+  font-size:0.7rem;
 }
 
-.nav-menu-items {
-  width: 100%;
-  padding-left:0;
-}
 
-.navbar-toggle {
-  background-color:blue;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
+.nav-text .side-item-icon svg{
+  font-size:2.3rem;
 }
-
-span {
-  margin-left: 16px;
-  font-size: 100%;
+.nav-text:hover {
+  background-color: #5a5a5a;
 }
 
 `

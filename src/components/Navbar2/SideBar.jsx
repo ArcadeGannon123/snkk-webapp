@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { SidebarDataPages,SidebarDataDash,SidebarDataOther } from './SideBarData';
 import { IconContext } from 'react-icons';
 import styled from 'styled-components';
+import Cookies from 'universal-cookie';
 
 function SideBar({sidebar}) {
 
@@ -16,12 +17,16 @@ function SideBar({sidebar}) {
   }
   window.addEventListener('scroll', changeColor)
 
+  const cookies = new Cookies();
+
 
   return (
     <BaseSideBar variant = {color ? 'True':'False'} >
       <IconContext.Provider value={{ size: 20, color: '#ffffff'}}>
         <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}  >
           <ul className='nav-menu-items' >      
+
+            {cookies.get('userData') ? <>
             <li className='category'>
               Actividad
               <hr/>
@@ -38,6 +43,9 @@ function SideBar({sidebar}) {
                 </li>
               );
             })}
+
+            </>:<></>}
+
             <li className='category'>
               Análisis
               <hr/>

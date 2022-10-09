@@ -22,7 +22,6 @@ ChartJS.register(
   
   const options = {
     responsive: true,
-    aspectRatio:3/2,
     plugins: {
       legend: {
         position: 'top',
@@ -50,9 +49,7 @@ ChartJS.register(
 function BarChart(props) {
 
     return (
-        <div>
-            <Bar options={options}  data={data}/>
-        </div>
+        <Bar options={options}  data={data}/>
     );
 }
 

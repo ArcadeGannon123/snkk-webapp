@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useEffect} from 'react';
 import styled from "styled-components";
 import {NavLink} from 'react-router-dom';
 import logo from '../images/blankpointlogo.png';
@@ -13,10 +13,14 @@ import Navbar from '../components/Navbar/Navbar';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
 import { UserContext } from '../components/UserContext';
+import Cookies from 'universal-cookie';
 
 function HomePage(props) {
-    
-    const {token,setToken} = useContext(UserContext);
+    const cookies = new Cookies();   
+
+    useEffect(() => {        
+        cookies.set('lastpage','/recientes',{path:'/'}); 
+    }, []);
 
     return (
         <>
@@ -31,8 +35,8 @@ function HomePage(props) {
                 <div className="subtexto" data-aos="zoom-in" data-aos-delay="100">
                     Descubre el sesgo ideológico al que estas expuesto al leer noticias.
                 </div>
-                {token !== ""?
-                <NavLink className="button" to='/noticias'>
+                {cookies.get('userData') ?
+                <NavLink className="button" to='/recientes'>
                     <div>                        
                             Ir a las noticias                        
                     </div>

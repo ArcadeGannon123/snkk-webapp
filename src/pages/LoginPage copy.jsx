@@ -7,15 +7,9 @@ import axios from 'axios';
 import { UserContext } from '../components/UserContext';
 import {encode as base64_encode} from 'base-64';
 import 'aos/dist/aos.css';
-import Box from '@mui/material/Box';
-import TextField from '@mui/material/TextField';
-import Cookies from 'universal-cookie';
 //import { useForm } from 'react-hook-form';
 
 function LoginPage(props) {
-
-    const cookies = new Cookies();
-
 
     const {token,setToken} = useContext(UserContext)
     const {point,setPoint} = useContext(UserContext);
@@ -34,7 +28,6 @@ function LoginPage(props) {
             ...datos,
             [event.target.name] : event.target.value,
         })
-        console.log(datos);
     }
 
     const enviarDatos = async (event) =>{
@@ -53,8 +46,7 @@ function LoginPage(props) {
                 console.log(res)
                 setToken(res.data.token)
                 setUser(res.data.nombre)
-                setPoint(res.data.puntuacionUsuario)                
-                cookies.set('userData',{token:res.data.token,nombre:res.data.nombre,score:res.data.puntuacionUsuario},{path:'/'});
+                setPoint(res.data.puntuacionUsuario)
                 setSuccess(2)
             
             }).catch(err => {
@@ -89,21 +81,18 @@ function LoginPage(props) {
                         Iniciar sesión
                     </div>
                     <form onSubmit={enviarDatos}>
-                        <Box
-                            sx={{
-                                maxWidth: '100%',
-                            }}
-                            >
-                            <TextField sx={{width:'100%'}} label="E-mail" name="correo" id="correo"  type="email" onChange={handleInputChange}/>
-                            
-                        </Box>
-                        <Box
-                            sx={{
-                                maxWidth: '100%',
-                            }}
-                            > 
-                            <TextField sx={{width:'100%'}} label="Contraseña" type="password" name="pass" id="pass" onChange={handleInputChange}/> 
-                        </Box>
+                        <div className="form-group">
+                            <label>E-mail:* </label>
+                            <input type="email" name="correo" id="correo" className='form-control' placeholder='E-mail' onChange={handleInputChange}
+                                
+                            />
+                        </div>
+                        <div className="form-group">
+                            <label>Password:* </label>
+                            <input type="password" name="pass" id="pass" className='form-control' placeholder='contraseña' onChange={handleInputChange}
+                                
+                            />
+                        </div>
                         {error ? <span>Faltan campos por rellenar</span> : <></>}
                         {success === 0 ? 
                         <div  className="button-container">
@@ -157,15 +146,15 @@ const LoadingIcon = styled.div`
 const Bottom = styled.div`
     display:flex;
     justify-content:center;
-    margin-bottom:1rem;
 `
 
 const LoginContainer = styled.div`
     border-radius: 10px;
     border: 10px solid linear-gradient(90deg, rgba(102,148,149,1) 0%, rgba(158,239,241,1) 50%, rgba(102,148,149,1) 100%);
     margin: auto;
-    background-color:white;
+    background: linear-gradient(310deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.8) 100%);
     width:30%;
+    height:70%;
     border: 2px solid #669495;
     @media screen and (max-width: 1300px) {
         width:50%;
@@ -175,6 +164,10 @@ const LoginContainer = styled.div`
     }
     @media screen and (max-width: 420px) {
         width:95%;
+    }
+    @media screen and (max-height: 630px) {
+        
+        height:95%;
     }
     .logo-link{
         text-decoration:none;
@@ -192,18 +185,9 @@ const LoginContainer = styled.div`
     .form-container{
         padding: 0 30px ;
         .text{
-            padding: 10px;
-            font-size:2rem;
-            font-weight:300;
-            color:#284b63c7;
             text-align:center;
-            gap:10px;
-            margin-bottom: 10px;
-        }
-
-        form{
-            display: grid;
-            gap:1rem;
+            font-size: 20px;
+            margin-bottom:20px;
         }
         .form-group{
             margin: 10px 0;

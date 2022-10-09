@@ -5,6 +5,8 @@ import { Puff } from 'react-loading-icons';
 import {NavLink} from 'react-router-dom';
 import axios from 'axios';
 import 'aos/dist/aos.css';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
 //import { useForm } from 'react-hook-form';
 
 function RegisterPage(props) {
@@ -64,27 +66,31 @@ function RegisterPage(props) {
                 </NavLink>
                 <div className="form-container">
                     <div className="text">
-                        Formulario de registro: 
+                        Ingrese sus datos: 
                     </div>
                     <form onSubmit={enviarDatos}>
-                        <div className="form-group">
-                            <label>E-mail:* </label>
-                            <input type="email" name="correo" id="correo" className='form-control' placeholder='E-mail' onChange={handleInputChange}
-                                
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Password:* </label>
-                            <input type="password" name="pass" id="pass" className='form-control' placeholder='contraseña' onChange={handleInputChange}
-                                
-                            />
-                        </div>
-                        <div className="form-group">
-                            <label>Username:* </label>
-                            <input type="text" name="nombre" id="nombre" className='form-control' placeholder='username' onChange={handleInputChange}
-                                                         
-                            />
-                        </div>
+                        <Box
+                            sx={{
+                                maxWidth: '100%',
+                            }}
+                            >
+                            <TextField sx={{width:'100%'}} label="E-mail" name="correo" id="correo"  type="email" onChange={handleInputChange}/>
+                            
+                        </Box>
+                        <Box
+                            sx={{
+                                maxWidth: '100%',
+                            }}
+                            > 
+                            <TextField sx={{width:'100%'}} label="Contraseña" type="password" name="pass" id="pass" onChange={handleInputChange}/> 
+                        </Box>                       
+                        <Box
+                            sx={{
+                                maxWidth: '100%',
+                            }}
+                            > 
+                            <TextField sx={{width:'100%'}} label="Nickname" type="text" name="nombre" id="nombre" onChange={handleInputChange}/> 
+                        </Box>
                         {error ? <span>Faltan campos por rellenar</span> : <></>}
                         {success === 0 ? 
                         <div  className="button-container">
@@ -138,15 +144,15 @@ const LoadingIcon = styled.div`
 const Bottom = styled.div`
     display:flex;
     justify-content:center;
+    margin-bottom:1rem;
 `
 
 const RegisterContainer = styled.div`
     border-radius: 10px;
     border: 10px solid linear-gradient(90deg, rgba(102,148,149,1) 0%, rgba(158,239,241,1) 50%, rgba(102,148,149,1) 100%);
     margin: auto;
-    background: linear-gradient(310deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,1) 50%, rgba(255,255,255,0.8) 100%);
+    background-color:white;
     width:30%;
-    height:70%;
     border: 2px solid #669495;
     @media screen and (max-width: 1300px) {
         width:50%;
@@ -156,10 +162,6 @@ const RegisterContainer = styled.div`
     }
     @media screen and (max-width: 420px) {
         width:95%;
-    }
-    @media screen and (max-height: 630px) {
-        
-        height:95%;
     }
     .logo-link{
         text-decoration:none;
@@ -176,12 +178,24 @@ const RegisterContainer = styled.div`
     }
     .form-container{
         padding: 0 30px ;
+        .text{
+            padding: 10px;
+            font-size:1.3rem;
+            font-weight:300;
+            color:#284b63c7;
+            gap:10px;
+            margin-bottom: 10px;
+        }
         .form-group{
             margin: 10px 0;
             display:grid;
             grid-template-columns:100px auto;
             align-items:center;
 
+        }
+        form{
+            display: grid;
+            gap:1rem;
         }
         form .button-container{
             display:flex;

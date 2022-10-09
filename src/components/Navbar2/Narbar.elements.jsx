@@ -1,6 +1,11 @@
 import styled from "styled-components";
 import {NavLink} from 'react-router-dom';
 
+export const UserContainer = styled.div`
+  padding:5px 10px;
+
+`
+
 export const SideBarContainer = styled.div`
 
   top: 50px;

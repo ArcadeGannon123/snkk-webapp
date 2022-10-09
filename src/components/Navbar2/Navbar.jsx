@@ -11,6 +11,7 @@ import {
   MenuItem,
   MenuItemLink,
   MobileIcon,
+  UserContainer
 } from "./Narbar.elements";
 import {
   FaBars,
@@ -22,10 +23,15 @@ import User from '../User';
 import SideBar from './SideBar';
 import SideBar2 from './SideBar2';
 import { NavbarDataNav } from './NavbarData';
+import Button from '@mui/material/Button';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import Cookies from 'universal-cookie';
 
 
 
 const Navbar = () => {
+
+  const cookies = new Cookies();
 
   const [color, setColor] = useState(false);
   const changeColor = () => {
@@ -81,10 +87,6 @@ const Navbar = () => {
             </div>
           </NavLink>
         </LogoContainer>
-
-        <MobileIcon variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)}>
-          {showMobileMenu ? <FaTimes /> : <FaBars />}
-        </MobileIcon>
         
         <Menu open={showMobileMenu} variant = {color ? 'True':'False'}> 
           {NavbarDataNav.map((item, index) => {
@@ -99,8 +101,20 @@ const Navbar = () => {
             );
           })}    
         </Menu>
-        <User />
 
+        <MobileIcon variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)}>
+          {showMobileMenu ? <FaTimes /> : <FaBars />}
+        </MobileIcon>
+
+        <UserContainer>
+          {cookies.get('userData') ?         
+          <User />
+          :
+          <Button sx={{height:'100%'}} component={Link} to="/login" variant="outlined" startIcon={<AccountCircleIcon />}>
+            Acceder
+          </Button>
+          }
+        </UserContainer>
       </Wrapper>
     </Container>
      

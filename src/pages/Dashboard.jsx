@@ -5,6 +5,7 @@ import Donut from '../components/Donut';
 import BarChart from '../components/BarChart';
 import SideBar from '../components/SideBar/SideBar';
 import StackedBar from '../components/StackedBar';
+import DashScore from '../components/DashScore';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 
 
@@ -18,25 +19,19 @@ function ProfilePage(props) {
                     Resumen de actividades                                        
                 </div>
                 <Dashboard>
-                    <div className="db db-point"> 
-                        <div className="title">
-                            Puntaje
-                        </div>
-                        <div className="value">
-                            100
-                        </div>
-                    </div>
-                    <div className="db db-total">
-                        <div className="title">
-                            Total de análisis
-                        </div>
-                        <div className="value">
-                            153
-                        </div>
-                    </div>
+                    <div className="db score s1"><DashScore data={{title:'Nº de usos',score:'153'}}/> </div>
+                    <div className="db score s2"><DashScore data={{title:'Total de análisis',score:'153'}}/> </div>
+                    <div className="db score s3"><DashScore data={{title:'Total de análisis',score:'153'}}/> </div>
+                    <div className="db score s4"><DashScore data={{title:'Total de análisis',score:'153'}}/> </div>
+                    <div className="db chart c1"></div>   
+
+
+                    {/*
                     <div className="db line-chart">
                         <BarChart /> 
-                    </div>
+                    </div>                    
+                    <DashScore data={{title:'Total de análisis',score:'153'}}/>                    
+                    <DashScore data={{title:'Ingresos estimados',score:'0.01$'}}/>
                     
                     <div className="db donut-chart archia"> 
                         <Donut /> 
@@ -44,7 +39,7 @@ function ProfilePage(props) {
                         
                     <div className="db donut-chart con-pro">
                         <Donut /> 
-                    </div>
+                    </div>*/}
                 </Dashboard>
                 
 
@@ -61,41 +56,22 @@ display: grid;
 grid-template-columns: repeat(4,1fr);
 gap: 10px;
 
-.value{
-    font-size:50px;
-    font-weight: 600;
-    color: #669495;
-}
-
 .db{
-    display:flex;
-    flex-direction:column;
-    align-items: center;
-    justify-content:center;    
     background-color:white;
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.score{
+    grid-column:1/2;
+}
+.s3{
+    grid-column:2/3;
+    grid-row:1/2;
+}
+.s4{
+    grid-column:2/3;
+    grid-row:2/3;
+}
+.c1{
 
-}
-
-.db-point{
-}
-.db-total{
-}
-.donut-chart{
-    padding: 0 15%;
-
-}
-.archia{
-    grid-column: 1/3;
-}
-.con-pro{
-    grid-column: 3/5;
-}
-
-
-.line-chart{
-    height: 200px;
-    grid-column: 3/5;
 }
 
 `
