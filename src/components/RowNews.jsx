@@ -117,7 +117,8 @@ grid-template-columns: 25% auto 25%;
 
 .main-image img{
     width:100%;    
-    object-fit: cover;
+    object-fit: cover;    
+    aspect-ratio: 16/9;
 }
 .main-data{
     padding-left:20px;
@@ -132,6 +133,12 @@ grid-template-columns: 25% auto 25%;
     font-weight: bold;
     font-family: 'Monserrat', sans-serif;
     margin: 0.3rem 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
 }
 .main-periodista{
     font-size: 1rem;

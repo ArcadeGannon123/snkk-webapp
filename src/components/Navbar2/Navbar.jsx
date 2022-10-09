@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import logo from '../../images/blankpointlogo4.png';
 import {
   SideBarContainer,
+  SideBarContainer2,
   FaBarsContainer,
   Container,
   LogoContainer,
@@ -19,6 +20,7 @@ import {NavLink, Link} from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import User from '../User';
 import SideBar from './SideBar';
+import SideBar2 from './SideBar2';
 import { NavbarDataNav } from './NavbarData';
 
 
@@ -54,10 +56,16 @@ const Navbar = () => {
 
   return (
     <>
-    
-    <SideBarContainer>          
+    {sidebar ?
+    <SideBarContainer>
       <SideBar sidebar={sidebar} />
     </SideBarContainer>   
+    :
+    <SideBarContainer2>
+      <SideBar2 sidebar={sidebar} />
+    </SideBarContainer2> 
+    
+    }
     <Container variant = {color ? 'True':'False'} >
       <Wrapper>
         <FaBarsContainer>

@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react';
-import StackedBar from '../components/StackedBar';
+import StackedBar from './StackedBar';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
@@ -7,7 +7,7 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import { UserContext } from '../components/UserContext';
+import { UserContext } from './UserContext';
 import {NavLink} from 'react-router-dom';
 import { WindowSharp } from '@mui/icons-material';
 import Cookies from 'universal-cookie';
@@ -40,20 +40,23 @@ const fakenews={
 
 
 
-function FeedMain({data}) {
-    
-    const cookies = new Cookies();
+function NewsCard({data}) {
 
     const handleClick = () =>{
-        cookies.set('data',data,{path:'/'});
+        const cookies = new Cookies();
+        cookies.set('url',data,{path:'/'});
         window.location.href = './detalles/'+data.title;
     }
 
     return (
         <FeedMainBase>
-            <div className="main-image">
+            <div className="main-media">
+                <span>{fakenews.medio.nombre}</span>
+                <span style={{fontWeight:300}}>{data.fechaAnalisis}</span>
+            </div>
+            <div className="main-image">                
                 <img src={data.urlToImage} alt='' />
-                <div className="topic">
+                <div className="image-data">
                     <Stack sx={{position:'absolute',bottom:0, margin:'10px'}} direction="row" spacing={2}>
                         <a href=''>
                             <Avatar>
@@ -68,11 +71,7 @@ function FeedMain({data}) {
                     </Stack>
                 </div>
             </div>
-            <div className="main-data">
-                <div className="main-media">
-                    <span>{fakenews.medio.nombre}</span>
-                    <span style={{fontWeight:300}}>{data.fechaAnalisis}</span>
-                </div>
+            <div className="main-data">                
                 <div className="main-title">
                     {data.title}
                 </div>
@@ -81,29 +80,27 @@ function FeedMain({data}) {
                 </div>
                 <div className="media-bias">
                     <StackedBar data={data.sesgoIzquierdaDerecha} />
-                </div>
-                <div className="main-buttom">
-                    <Button onClick={handleClick} variant="outlined" startIcon={<AnalyticsIcon />}>
+                </div>             
+                <div className="main-buttom" style={{display:'flex',justifyContent:'space-around'}}>
+                    <Button  onClick={handleClick} variant="outlined" startIcon={<AnalyticsIcon />}>
                         Detalles
                     </Button>    
-                    <Button  sx={{position:'absolute',right:1}} href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
+                    <Button  href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" endIcon={<ArrowForwardIcon />}>
                         Ir a la noticia
                     </Button>  
-                </div>
-                            
+                </div>                           
             </div>
         </FeedMainBase>
     );
 }
 
-export default FeedMain;
+export default NewsCard;
 
 const FeedMainBase = styled.div`
-display:grid;
-grid-template-columns: 1fr 1fr;
+position:relative;
+padding: 10px;
 
 .main-button{
-    position:relative;
 }
 
 .main-image{
@@ -111,8 +108,12 @@ grid-template-columns: 1fr 1fr;
     background-color:black;
     
 }
+.main-image .visits{
+    position: absolute;
+    
+}
 
-.main-image .topic{
+.main-image .image-data{
     position: absolute;
     height:100%;
     width:100%;
@@ -123,12 +124,12 @@ grid-template-columns: 1fr 1fr;
 .main-image img{
     width:100%;    
     height:100%;
-    object-fit: cover;    
+    object-fit: cover;
     aspect-ratio: 16/9;
     mask-image: linear-gradient(180deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
 }
 .main-data{
-    padding-left:20px;
+    padding: 0 0.5rem;
     position:relative;
 }
 .main-media{
@@ -137,15 +138,15 @@ grid-template-columns: 1fr 1fr;
     justify-content:space-between;
 }
 .main-title{
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     font-family: 'Monserrat', sans-serif;
-    margin: 10px 0;
+    margin: 0.5rem 0;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3; /* number of lines to show */
-            line-clamp: 3; 
+    -webkit-line-clamp: 2; /* number of lines to show */
+            line-clamp: 2; 
     -webkit-box-orient: vertical;
 }
 .main-periodista{

@@ -1,96 +1,161 @@
-import React from 'react';
+import React,{useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
 import StackedBar from '../components/StackedBar';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
+import axios from 'axios';
+import FeedMain from '../components/FeedMain';
+import NewsCard from '../components/NewsCard';
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
+import Box from '@mui/material/Box';
+import RowNews from '../components/RowNews';
+import Cookies from 'universal-cookie';
 
-function ProfilePage(props) {
+const Topicos = ['Todos','topico2','topico3','hello','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3']
+
+
+function PopularPage(props) {
+
+    const cookies = new Cookies();
+
+    const [data,setData]= useState([]);
+    const [topics,setTopics]= useState(['Todos']);
+    const [value, setValue] = useState(0);
+
+    const getData = async (topic) => {    
+        var url = '';
+        if (topic === 'Todos'){
+            url ='https://api-news-feria-2022.herokuapp.com/noticia/listado-noticias'
+        }else{
+            url ='https://api-news-feria-2022.herokuapp.com/noticia/topico?topico='+topic;
+        }
+        
+        console.log(url)
+        await axios.get(url)
+        .then(res => {                                
+            setData(res.data)
+        
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+    const getTopics = async () => {        
+        const url='https://api-news-feria-2022.herokuapp.com/noticia/topicos'
+        await axios.get(url)
+        .then(res => {  
+            setTopics(['Todos']);                        
+            setTopics(topics.concat(res.data));
+        
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+    useEffect(() => {              
+        cookies.set('lastpage','/populares',{path:'/'});  
+        getData('Todos');
+        getTopics();
+    }, []);
+
+    const handleChange = (event, newValue) => {
+        setValue(newValue);
+        setData([]);
+        getData(topics[newValue]);
+    };
+
     return (
         <>            
             <Navbar />            
-            <FrontPage>    
-                <MainPopular>
-                    <div className='news-main-image'>
-                        <img src = 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e'/>                    
+            <FrontPage>   
+                <div className="title">
+                    <TrendingUpIcon/>
+                    Populares                                      
+                </div>
+                <Box sx={{ maxWidth: '100%', bgcolor: 'background.paper', padding:'0 1rem' }}>
+                    <Tabs
+                        value={value}
+                        onChange={handleChange}
+                        variant="scrollable"
+                        scrollButtons="auto"
+                        aria-label="scrollable auto tabs example"
+                    >
+                       {topics.map((topico) => (                     
+                            <Tab label={topico} />
+                        ))}
+                    </Tabs>
+                </Box>
+                {data[0] ? 
+                <div className="news-container">
+                    <div className="header"> 
+                        {data.slice(0, 6).map((news => (
+                            <NewsCard data={news}/> 
+                        )))}      
                     </div>
-                    <div className="news-data">
-                        <div className="media">
-                            Lacuarta
-                        </div>
-                        <div className="title">
-                            “No aceptaré más incomodidades”: Marlene de la Fuente arremetió en contra de la nueva pareja de Iván Núñez
-                        </div>
-                        <div className="periodista">
-                            holasoygerman
-                        </div>
-                        <div className="bias-container">
-                            <StackedBar/>
+                    <hr/>
+                    <div className="feed-rest-news">
+                        <div className="news">
+                            {data.slice(6).map((news,i) =>(
+                                <div key={i} >
+                                    <RowNews data={news}/>
+                                    <hr/>
+                                </div>
+                            ))}
                         </div>
                     </div>
-       
-                </MainPopular>
+                </div>
+                :
+                <></>}
+                
             </FrontPage>
         </>
     );
 }
 
-export default ProfilePage;
-
-
-
-const MainPopular = styled.div`
-display:grid;
-grid-template-columns:repeat(4,1fr);
-gap: 10px;
-margin-top:50px;
-.news-main-image{
-    grid-column:1/3;
-    object-fit: cover;
-}
-.news-main-image img{
-    width:100%;
-    
-}
-.news-data{
-    grid-column:3/5;
-}
-.news-data .title{
-    
-    font-size:1.5rem;
-}
-
-`
-
-const NewsCard = styled.div`
-position:relative;
-.news-data{
-    position: absolute;
-    background-color:blue;
-    bottom:0;
-    width:100%;
-    background: rgb(0,0,0);
-    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%, rgba(0,0,0,0) 100%);
-    height:90%;
-}
-.title{
-    color:white;
-
-}
-img{
-    width:100%;
-    object-fit: cover;
-}
-
-`
+export default PopularPage;
 
 const FrontPage = styled.div`
-padding-top:50px;
+padding-top:60px;
 display: grid;
-grid-template-columns: 60%;
+grid-template-columns: 65%;
 align-items:center;
 justify-content:center;
+background-color: #f4f4f9;
 
 
+.feed-rest-news{    
+    display:grid;
+    grid-template-columns: 3fr 1fr;
+}
 
+.news-container{
+    background-color: white;
+    padding: 20px;
+}
+.news-container .header{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:20px;
+}
+.news-container .sub-header{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:10px;
+}
+.title{
+    padding: 10px;
+    font-size:2rem;
+    font-weight:300;
+    background-color:white;
+    color:#284b63c7;
+    display:flex;
+    align-items:center;
+    gap:10px;    
+    margin-bottom: 10px;
+    
+}
 
 
 `

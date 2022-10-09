@@ -76,7 +76,8 @@ const data={
 function DetailsPage(props) {
 
     const cookies = new Cookies();
-    const data = cookies.get('url');
+    const data = cookies.get('data');
+    const lastpage = cookies.get('lastpage');
 
 
     return (
@@ -84,7 +85,7 @@ function DetailsPage(props) {
             <Navbar />            
             <FrontPage>
                 <div className="title" style={{fontSize:'1.3rem'}}>
-                    <a style={{textDecoration: 'none'}} href='/recientes'>
+                    <a style={{textDecoration: 'none'}} href={lastpage}>
                         <ArrowBackIcon/>
                         Volver 
                     </a>                                                          
@@ -156,7 +157,7 @@ function DetailsPage(props) {
                     </div>
                     <div className="report fakenews">
                         <span>Nº de veces resportada como noticia falsa</span>
-                        <span className='number'>{data.cantidadSesgosReportados}</span>
+                        <span className='number'>{data.reportesFalsedad}</span>
                     </div>
                     <div className="media-bias">
                         <div className="bias-label"> Sesgo Conservador o Progresista </div>

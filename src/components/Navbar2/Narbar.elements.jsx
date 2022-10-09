@@ -11,6 +11,16 @@ export const SideBarContainer = styled.div`
   justify-content: space-between;
   background-color: #353535;
 `;
+export const SideBarContainer2 = styled.div`
+
+  top: 50px;
+  height:100%;
+  position: fixed;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #353535;
+`;
 
 export const FaBarsContainer = styled.div`
   display: flex;

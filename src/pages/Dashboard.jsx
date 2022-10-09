@@ -5,62 +5,55 @@ import Donut from '../components/Donut';
 import BarChart from '../components/BarChart';
 import SideBar from '../components/SideBar/SideBar';
 import StackedBar from '../components/StackedBar';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 
 
 function ProfilePage(props) {
     return (
         <>            
-            <Navbar />            
-            <FrontPage>                
-                <div className="activity">
-                    <Title>
-                        Resumen de actividades
-                    </Title>
-                    <Dashboard>
-                        <div className="db db-point"> 
-                            <div className="title">
-                                Puntaje
-                            </div>
-                            <div className="value">
-                                100
-                            </div>
-                        </div>
-                        <div className="db db-total">
-                            <div className="title">
-                                Total de análisis
-                            </div>
-                            <div className="value">
-                                153
-                            </div>
-                        </div>
-                        <div className="db line-chart">
-                            <BarChart /> 
-                        </div>
-                        
-                        <div className="db donut-chart archia"> 
-                            <Donut /> 
-                        </div>
-                            
-                        <div className="db donut-chart con-pro">
-                            <Donut /> 
-                        </div>
-                    </Dashboard>
+            <Navbar />
+            <FrontPage>
+                <div className="title">
+                    <NewspaperIcon/>
+                    Resumen de actividades                                        
                 </div>
+                <Dashboard>
+                    <div className="db db-point"> 
+                        <div className="title">
+                            Puntaje
+                        </div>
+                        <div className="value">
+                            100
+                        </div>
+                    </div>
+                    <div className="db db-total">
+                        <div className="title">
+                            Total de análisis
+                        </div>
+                        <div className="value">
+                            153
+                        </div>
+                    </div>
+                    <div className="db line-chart">
+                        <BarChart /> 
+                    </div>
+                    
+                    <div className="db donut-chart archia"> 
+                        <Donut /> 
+                    </div>
+                        
+                    <div className="db donut-chart con-pro">
+                        <Donut /> 
+                    </div>
+                </Dashboard>
+                
+
             </FrontPage>
-            <div>
-                <StackedBar/>
-            </div>
         </>
     );
 }
 
 export default ProfilePage;
-
-const Title = styled.div`
-padding: 10px;
-margin: 10px 0;
-font-size: 1.5em;
-`
 
 const Dashboard = styled.div`
 
@@ -79,6 +72,7 @@ gap: 10px;
     flex-direction:column;
     align-items: center;
     justify-content:center;    
+    background-color:white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
 }
@@ -105,35 +99,46 @@ gap: 10px;
 }
 
 `
-
-
 const FrontPage = styled.div`
-  padding-top:65px;
-  display: grid;
-  grid-template-columns: 60%;
-  align-items:center;
-  justify-content:center;
-  .title-main{
+padding-top:60px;
+display: grid;
+grid-template-columns: 65%;
+align-items:center;
+justify-content:center;
+background-color: #f4f4f9;
 
 
-  }
-  @media screen and (max-width: 1480px) {
-    grid-template-columns: 20% 50% 30%;
-  }
+.feed-rest-news{    
+    display:grid;
+    grid-template-columns: 3fr 1fr;
+}
 
-  @media screen and (max-width: 1250px) {
-    grid-template-columns: 20% 80%;
-  }
-  @media screen and (max-width: 960px) {
-    grid-template-columns: 100%;
-    margin-bottom:10vh;
-
-
-  }
-  
-
-
-
+.news-container{
+    background-color: white;
+    padding: 20px;
+}
+.news-container .header{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:20px;
+}
+.news-container .sub-header{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:10px;
+}
+.title{
+    padding: 10px;
+    font-size:2rem;
+    font-weight:300;
+    background-color:white;
+    color:#284b63c7;
+    display:flex;
+    align-items:center;
+    gap:10px;    
+    margin-bottom: 10px;
+    
+}
 
 
 `

@@ -15,6 +15,7 @@ import {UserContext} from "./components/UserContext"
 import TestPage from './pages/TestPage';
 import NnewsPage from './pages/NnewsPage';
 import DetailsPage from './pages/DetailsPage';
+import Cookies from 'universal-cookie';
 
 
 function App() {
@@ -23,6 +24,8 @@ function App() {
         delay: 200,
       });
   }, [])
+
+  
 
   const [token, setToken] = useState("");
   const [user, setUser] = useState("");

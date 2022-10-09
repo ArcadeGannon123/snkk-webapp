@@ -1,6 +1,5 @@
 import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
-import Box from '@mui/material/Box';
 
 function StackedBar({data,font}) {
 
@@ -39,11 +38,9 @@ function StackedBar({data,font}) {
                         <div className="percent" style={{backgroundColor:Bcolor[i], color:Tcolor[i]}}>
                             { data[key]*100 > 1 ? Math.round(data[key]*100)+'%' : ''}
                         </div>
-                        <Box className='label' component="div" sx={{    textOverflow: 'ellipsis',
-                                                                        overflow: 'hidden',
-                                                                        padding:'0 0.5rem'}}>
+                        <div className='label'>
                             {data[key]*100 > 1 ? key : ''}
-                        </Box>
+                        </div>
                     </div>
                     ))
                 }
@@ -55,9 +52,10 @@ function StackedBar({data,font}) {
 export default StackedBar;
 
 const BarContainer = styled.div`
-margin:1rem;
+margin:1.2rem 0;
 .bar{
     display:grid;
+    width:100%;
 
 }
 .percent{
@@ -69,14 +67,15 @@ margin:1rem;
 .label{
     width:100%;    
     text-align:center;
-    cursor: help;
     font-size: 0.8rem;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
 }
 .bias{
     
-    display:flex;
+    display:grid;
     align-items:center;
-    flex-direction:column;
 }
 
 
