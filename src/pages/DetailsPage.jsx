@@ -13,6 +13,7 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Cookies from 'universal-cookie';
+import axios from 'axios';
 
 /*
 const data={
@@ -76,9 +77,22 @@ const data={
 function DetailsPage(props) {
 
     const cookies = new Cookies();
-    const data = cookies.get('data');
+    const data = cookies.get('data');    
+    const user = cookies.get('userData');
     const lastpage = cookies.get('lastpage');
 
+    const visita = async () =>{
+        const url = 'https://api-news-feria-2022.herokuapp.com/noticia/visualizacion';
+        const body = {"url":data.url};
+        await axios.post(url,body,{
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }}).then(console.log('ooo'))
+        .catch(err => console.log(err))
+    }
+    useEffect(() => {        
+        visita(); 
+    }, []);
 
     return (
         <>   
@@ -111,14 +125,14 @@ function DetailsPage(props) {
                         </div>
                         <div className="main-data">
                             <div className="main-media">
-                                <span>{fakenews.medio.nombre}</span>
-                                <span style={{fontWeight:300}}>{data.fechaAnalisis}</span>
+                                <span>{data.medio.nombre.replace('www.','')}</span>
+                                <span style={{fontWeight:300}}>{data.fechaAnalisis.split('T')[0]}</span>
                             </div>
                             <div className="main-title">
                                 {data.title}
                             </div>
                             <div className="main-periodista">
-                                {fakenews.periodista.nombre} | {data.published_date}
+                                {fakenews.periodista.nombre} | {data.published_date.split('T')[0]}
                             </div>  
                             <div className="main-buttom">
                                 <Button href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
