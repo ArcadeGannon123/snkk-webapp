@@ -141,7 +141,7 @@ padding:1rem;
 `
 
 const FrontPage = styled.div`
-padding-top:60px;
+padding:60px 0;
 display: grid;
 grid-template-columns: 65%;
 align-items:center;

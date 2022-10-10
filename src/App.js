@@ -18,6 +18,8 @@ import DetailsPage from './pages/DetailsPage';
 import MediaAnalysis from './pages/MediaAnalysis';
 import TopicsAnalysis from './pages/TopicsAnalysis';
 import SuscribePage from './pages/SuscribePage';
+import UserNewsPage from './pages/UserNewsPage';
+import WorkPage from './pages/WorkPage';
 import Cookies from 'universal-cookie';
 import HelpPage from "./pages/HelpPage";
 
@@ -45,11 +47,12 @@ function App() {
             <Route  path='/' element={<HomePage/>}/>
             <Route  path='/noticias' element={<NewsPage/>}/>
             <Route  path='/extension' element={<ExtenPage/>}/>
-            <Route  path='/reliability' element={<ReliPage/>}/>
+            <Route  path='/analizados' element={<UserNewsPage/>}/>            
+            <Route  path='/trabajos' element={<WorkPage/>}/>
             <Route  path='/register' element={<RegisterPage/>}/>
             <Route  path='/login' element={<LoginPage/>}/>
             <Route  path='/periodistas' element={<Periodistas/>}/>     
-            <Route  path='/dashboard' element={<ProfilePage/>}/>
+            <Route  path='/dashboard' element={<ProfilePage/>}/>   
             <Route  path='/populares' element={<PopularPage/>}/>   
             <Route  path='/test' element={<TestPage/>}/>  
             <Route  path='/recientes' element={<NnewsPage/>}/>

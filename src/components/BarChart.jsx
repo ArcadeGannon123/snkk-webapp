@@ -24,7 +24,7 @@ ChartJS.register(
 
 
 
-function BarChart({datos,title}) {
+function BarChart({datos,title, label}) {
 
     const [labels,setLabels] = useState([]);
     const [values,setValues] = useState([]);
@@ -33,7 +33,7 @@ function BarChart({datos,title}) {
       labels,
       datasets: [
         {
-          label: 'porcentaje',
+          label: label,
           data: values,
           backgroundColor: '#284B637f',
         },
@@ -65,9 +65,9 @@ function BarChart({datos,title}) {
 
 
     return (
-      <>
+      <div style={{height:'100%',boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px',padding:'0 1rem'}}>
         <Bar options={options}  data={data}/>
-      </>
+      </div>
     );
 }
 

@@ -29,7 +29,7 @@ function PopularPage(props) {
     const getData = async (topic) => {    
         var url = '';
         if (topic === 'Todos'){
-            url ='https://api-news-feria-2022.herokuapp.com/noticia/listado-noticias'
+            url ='https://api-news-feria-2022.herokuapp.com/noticia/populares?dias=2'
         }else{
             url ='https://api-news-feria-2022.herokuapp.com/noticia/topico?topico='+topic;
         }
