@@ -15,6 +15,8 @@ import {UserContext} from "./components/UserContext"
 import TestPage from './pages/TestPage';
 import NnewsPage from './pages/NnewsPage';
 import DetailsPage from './pages/DetailsPage';
+import MediaAnalysis from './pages/MediaAnalysis';
+import TopicsAnalysis from './pages/TopicsAnalysis';
 import Cookies from 'universal-cookie';
 
 
@@ -44,13 +46,14 @@ function App() {
             <Route  path='/reliability' element={<ReliPage/>}/>
             <Route  path='/register' element={<RegisterPage/>}/>
             <Route  path='/login' element={<LoginPage/>}/>
-            <Route  path='/topicos' element={<Topics/>}/>  
             <Route  path='/periodistas' element={<Periodistas/>}/>     
             <Route  path='/dashboard' element={<ProfilePage/>}/>   
             <Route  path='/populares' element={<PopularPage/>}/>   
             <Route  path='/test' element={<TestPage/>}/>  
             <Route  path='/recientes' element={<NnewsPage/>}/>
-            <Route  path='/detalles/:url' element={<DetailsPage/>}/>
+            <Route  path='/detalles/:url' element={<DetailsPage/>}/>            
+            <Route  path='/detalles/topico/:topic' element={<TopicsAnalysis/>}/>
+            <Route  path='/medios' element={<MediaAnalysis/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>

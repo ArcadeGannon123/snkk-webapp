@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { SidebarDataPages,SidebarDataDash,SidebarDataOther,SidebarDataColumnDash,SidebarDataColumnPages,SidebarDataColumnOther} from './SideBarData';
+import { SidebarDataPages,SidebarDataDash,SidebarDataOther} from './SideBarData';
 import { IconContext } from 'react-icons';
 import styled from 'styled-components';
 import Cookies from 'universal-cookie';
@@ -26,14 +26,14 @@ function SideBar2({sidebar}) {
         <div className='category'>               
           <hr/>   
         </div>  
-        {SidebarDataColumnDash.map((item, index) => {
+        {SidebarDataDash.map((item, index) => {
           return (
             <div key={index} >
               <Link to={item.path} className={item.cName} >
                 <div className='side-item-icon'>
                   {item.icon}
                 </div>                      
-                <span>{item.title}</span>               
+                <span>{item.title2}</span>               
               </Link>
             </div>
           );
@@ -42,14 +42,14 @@ function SideBar2({sidebar}) {
         <div className='category'>                 
           <hr/>   
         </div> 
-        {SidebarDataColumnPages.map((item, index) => {
+        {SidebarDataPages.map((item, index) => {
           return (
             <div key={index} >
               <Link to={item.path} className={item.cName} >
                 <div className='side-item-icon'>
                   {item.icon}
                 </div>                      
-                <span>{item.title}</span>               
+                <span>{item.title2}</span>               
               </Link>
             </div>
           );
@@ -57,14 +57,14 @@ function SideBar2({sidebar}) {
         <div className='category'>       
           <hr/>   
         </div> 
-        {SidebarDataColumnOther.map((item, index) => {
+        {SidebarDataOther.map((item, index) => {
           return (
             <div key={index} >
               <Link to={item.path} className={item.cName} >
                 <div className='side-item-icon'>
                   {item.icon}
                 </div>                      
-                <span>{item.title}</span>               
+                <span>{item.title2}</span>               
               </Link>
             </div>
           );

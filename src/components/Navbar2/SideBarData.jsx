@@ -8,28 +8,40 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import PeopleIcon from '@mui/icons-material/People';
 import TvIcon from '@mui/icons-material/Tv';
 import HelpIcon from '@mui/icons-material/Help';
+import TopicIcon from '@mui/icons-material/Topic';
 
 export const SidebarDataPages = [
   {
     title: 'Populares',
+    title2:'Populares',
     path: '/populares',
     icon: <TrendingUpIcon />,
     cName: 'nav-text'
   },
   {
     title: 'Noticias Recientes',
+    title2: 'Recientes',
     path: '/recientes',
     icon: <NewspaperIcon />,
     cName: 'nav-text'
   },
   {
     title: 'Medios de comunicación',
-    path: '/reliability',
+    title2: 'Medios',
+    path: '/medios',
     icon: <TvIcon />,
     cName: 'nav-text'
   },
   {
+    title: 'Tópicos',
+    title2: 'Tópicos',
+    path: '/topicos',
+    icon: <TopicIcon />,
+    cName: 'nav-text'
+  },
+  {
     title: 'Periodistas',
+    title2: 'Periodistas',
     path: '/periodistas',
     icon: <PeopleIcon />,
     cName: 'nav-text'
@@ -39,12 +51,14 @@ export const SidebarDataPages = [
 export const SidebarDataDash = [
   {
     title: 'Dashboard',
+    title2: 'Dashboard',
     path: '/dashboard',
     icon: <DashboardIcon />,
     cName: 'nav-text'
   },
   {
     title: 'Noticias analizadas',
+    title2: 'Noticias',
     path: '/reliability',
     icon: <AnalyticsIcon />,
     cName: 'nav-text'
@@ -55,63 +69,9 @@ export const SidebarDataDash = [
 export const SidebarDataOther = [
   {
     title: 'Ayuda',
+    title2: 'Ayuda',
     path: '/Ayuda',
     icon: <HelpIcon />,
-    cName: 'nav-text'
-  }
-  
-];
-
-export const SidebarDataColumnOther = [
-  {
-    title: 'Ayuda',
-    path: '/Ayuda',
-    icon: <HelpIcon />,
-    cName: 'nav-text'
-  }
-  
-];
-
-export const SidebarDataColumnDash = [
-  {
-    title: 'Dashboard',
-    path: '/dashboard',
-    icon: <DashboardIcon />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Noticias analizadas',
-    path: '/reliability',
-    icon: <AnalyticsIcon />,
-    cName: 'nav-text'
-  }
-  
-];
-
-
-export const SidebarDataColumnPages = [
-  {
-    title: 'Populares',
-    path: '/populares',
-    icon: <TrendingUpIcon />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Recientes',
-    path: '/recientes',
-    icon: <NewspaperIcon />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Medios',
-    path: '/reliability',
-    icon: <TvIcon />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Periodistas',
-    path: '/periodistas',
-    icon: <PeopleIcon />,
     cName: 'nav-text'
   }
   

@@ -13,8 +13,9 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Cookies from 'universal-cookie';
+import DashScore from '../components/DashScore';
 
-/*
+
 const data={
     "id": "633fab77c861d648b77693ef",
     "url": "https://www.emol.com/noticias/Nacional/2022/06/21/1064706/liberan-chileno-secuestrado-en-haiti.html",
@@ -47,7 +48,7 @@ const data={
       "pocoSensacionalista": null,
       "sensacionalista": 0.0004419685587343249
     }
-  }*/
+  }
   const fakenews={
     fecha: '06 agosto 2022',
     fechaAnalisis: '06 agosto 2022',
@@ -73,10 +74,10 @@ const data={
     }}
 
 
-function DetailsPage(props) {
+function TopicDetails(props) {
 
     const cookies = new Cookies();
-    const data = cookies.get('data');
+    const topico = cookies.get('topico');
     const lastpage = cookies.get('lastpage');
 
 
@@ -92,57 +93,26 @@ function DetailsPage(props) {
                 </div>
                 <div className="news-container">
                     <FeedMainBase>
-                        <div className="main-image">
-                            <img src={data.urlToImage} alt='' />
-                            <div className="topic">
-                                <Stack sx={{position:'absolute',bottom:0, margin:'10px'}} direction="row" spacing={2}>
-                                    <a href=''>
-                                        <Avatar>
-                                            <FacebookIcon />
-                                        </Avatar>
-                                    </a>
-                                    <a href=''>
-                                        <Avatar>
-                                            <TwitterIcon />
-                                        </Avatar>
-                                    </a>                       
-                                </Stack>
-                            </div>
-                        </div>
-                        <div className="main-data">
-                            <div className="main-media">
-                                <span>{fakenews.medio.nombre}</span>
-                                <span style={{fontWeight:300}}>{data.fechaAnalisis}</span>
-                            </div>
-                            <div className="main-title">
-                                {data.title}
-                            </div>
-                            <div className="main-periodista">
-                                {fakenews.periodista.nombre} | {data.published_date}
-                            </div>  
-                            <div className="main-buttom">
-                                <Button href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
-                                    Ir a la noticia
-                                </Button>    
-                            </div>                     
-                                        
-                        </div>
-                        
+                        <div className="title">
+                            {topico}
+                        </div> 
+                        <DashScore data={{title:'Noticias totales',score:data.numeroReportes}}/>                               
                     </FeedMainBase>      
                 </div>
                 <div className="title" style={{fontSize:'1.3rem'}}>
                     <NewspaperIcon/>
-                    Análisis                                     
+                    Sesgo del tópico                                     
                 </div>
-                <Analysis>
+                <Analysis> 
                     <div className="media-bias">
                         <div className="bias-label"> Sesgo de Izquierda o Derecha </div>
                         <StackedBar data={data.sesgoIzquierdaDerecha} />
                     </div>
+                     
                     <div  className="report fakenews">
-                        <span>Nº de visitas</span>
+                        <span>Noticias totales</span>
                         <span className='number'>{data.numeroReportes}</span>
-                    </div>
+                    </div> 
                     <div className="media-bias">
                         <div className="bias-label"> Presencia de lenguaje ofensivo </div>
                         <StackedBar data={data.sesgoLenguajeOfensivo} />
@@ -177,7 +147,7 @@ function DetailsPage(props) {
     );
 }
 
-export default DetailsPage;
+export default TopicDetails;
 
 const CommentSection = styled.div`
 height:500px;
@@ -219,7 +189,8 @@ gap:1rem;
 
 const FeedMainBase = styled.div`
 display:grid;
-grid-template-columns: 1fr 1fr;
+grid-template-columns: 3fr 1fr;
+gap:1rem;
 
 .main-button{
     display:flex;
@@ -245,8 +216,7 @@ grid-template-columns: 1fr 1fr;
 .main-image img{
     width:100%;    
     height:100%;
-    object-fit: cover;   
-    aspect-ratio: 16/9;
+    object-fit: cover;
     mask-image: linear-gradient(180deg, rgba(0,0,0,1) 60%, rgba(0,0,0,0) 100%);
 }
 .main-data{

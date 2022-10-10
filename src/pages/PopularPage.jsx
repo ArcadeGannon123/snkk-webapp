@@ -12,6 +12,8 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import RowNews from '../components/RowNews';
 import Cookies from 'universal-cookie';
+import Button from '@mui/material/Button';
+import BarChartIcon from '@mui/icons-material/BarChart';
 
 const Topicos = ['Todos','topico2','topico3','hello','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3']
 
@@ -66,13 +68,23 @@ function PopularPage(props) {
         getData(topics[newValue]);
     };
 
+    const handleClick = () =>{
+        cookies.set('topico',topics[value],{path:'/'});
+        window.location.href = './detalles/topico/'+data.title;
+    }
+
     return (
         <>            
             <Navbar />            
             <FrontPage>   
                 <div className="title">
-                    <TrendingUpIcon/>
-                    Populares                                      
+                    <span>
+                        <NewspaperIcon/>
+                        Populares  
+                    </span>
+                    <Button onClick={handleClick} variant="outlined" startIcon={<BarChartIcon />}>
+                        Detalles del tópico
+                    </Button>                                     
                 </div>
                 <Box sx={{ maxWidth: '100%', bgcolor: 'background.paper', padding:'0 1rem' }}>
                     <Tabs
@@ -144,17 +156,21 @@ background-color: #f4f4f9;
     grid-template-columns: 1fr 1fr 1fr;
     gap:10px;
 }
-.title{
-    padding: 10px;
+.title span{
     font-size:2rem;
     font-weight:300;
-    background-color:white;
     color:#284b63c7;
     display:flex;
     align-items:center;
-    gap:10px;    
-    margin-bottom: 10px;
+    gap:10px;
+}
+.title{
     
+    padding: 10px;    
+    margin-bottom: 10px;
+    background-color:white;
+    display: flex;
+    justify-content: space-between;
 }
 
 

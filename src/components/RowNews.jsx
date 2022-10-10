@@ -40,7 +40,7 @@ function RowNews({data}) {
 
     const handleClick = () =>{
         const cookies = new Cookies();
-        cookies.set('url',data,{path:'/'});
+        cookies.set('data',data,{path:'/'});
         window.location.href = './detalles/'+data.title;
     }
 
