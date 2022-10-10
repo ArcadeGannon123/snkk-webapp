@@ -19,6 +19,7 @@ import MediaAnalysis from './pages/MediaAnalysis';
 import TopicsAnalysis from './pages/TopicsAnalysis';
 import SuscribePage from './pages/SuscribePage';
 import Cookies from 'universal-cookie';
+import HelpPage from "./pages/HelpPage";
 
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
             <Route  path='/register' element={<RegisterPage/>}/>
             <Route  path='/login' element={<LoginPage/>}/>
             <Route  path='/periodistas' element={<Periodistas/>}/>     
-            <Route  path='/dashboard' element={<ProfilePage/>}/>   
+            <Route  path='/dashboard' element={<ProfilePage/>}/>
             <Route  path='/populares' element={<PopularPage/>}/>   
             <Route  path='/test' element={<TestPage/>}/>  
             <Route  path='/recientes' element={<NnewsPage/>}/>
@@ -56,6 +57,7 @@ function App() {
             <Route  path='/detalles/topico/:topic' element={<TopicsAnalysis/>}/>
             <Route  path='/medios' element={<MediaAnalysis/>}/>
             <Route  path='/suscripcion' element={<SuscribePage/>}/>
+            <Route path='/ayuda' element={<HelpPage/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>
