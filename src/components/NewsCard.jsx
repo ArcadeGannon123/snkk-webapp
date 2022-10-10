@@ -51,8 +51,8 @@ function NewsCard({data}) {
     return (
         <FeedMainBase>
             <div className="main-media">
-                <span>{fakenews.medio.nombre}</span>
-                <span style={{fontWeight:300}}>{data.fechaAnalisis}</span>
+                <span>{data.medio.nombre.replace('www.','')}</span>
+                <span style={{fontWeight:300}}>{data.fechaAnalisis.split('T')[0]}</span>
             </div>
             <div className="main-image">                
                 <img src={data.urlToImage} alt='' />
@@ -76,7 +76,7 @@ function NewsCard({data}) {
                     {data.title}
                 </div>
                 <div className="main-periodista">
-                    {fakenews.periodista.nombre} | {data.published_date}
+                    {fakenews.periodista.nombre} | {data.published_date.split('T')[0]}
                 </div>
                 <div className="media-bias">
                     <StackedBar data={data.sesgoIzquierdaDerecha} />

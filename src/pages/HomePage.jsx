@@ -35,20 +35,11 @@ function HomePage(props) {
                 <div className="subtexto" data-aos="zoom-in" data-aos-delay="100">
                     Descubre el sesgo ideológico al que estas expuesto al leer noticias.
                 </div>
-                {cookies.get('userData') ?
                 <NavLink className="button" to='/recientes'>
                     <div>                        
                             Ir a las noticias                        
                     </div>
                 </NavLink>
-                :
-                <NavLink className="button" to='/login'>
-                    <div>                        
-                            Acceder                       
-                    </div>
-                </NavLink>
-
-                }
                 
                 <blockquote className="blockquote" data-aos="zoom-in" data-aos-delay="300" data-aos-duration="600">
                     <p class="mb-0">“La ideología tiene que ver directamente con el encubrimiento de la verdad de los hechos, con el uso del lenguaje para ofuscar u opacar la realidad al mismo tiempo que nos vuelve miopes.”-Paulo Freire.</p>
