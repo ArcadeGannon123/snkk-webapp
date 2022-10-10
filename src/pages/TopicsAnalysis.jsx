@@ -1,19 +1,13 @@
-import React, {useEffect, useContext} from 'react';
-import { UserContext } from '../components/UserContext';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import StackedBar from '../components/StackedBar';
-import Button from '@mui/material/Button';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
+import BarChart from '../components/BarChart';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Cookies from 'universal-cookie';
 import DashScore from '../components/DashScore';
+import axios from 'axios';
 
 
 const data={
@@ -80,6 +74,29 @@ function TopicDetails(props) {
     const topico = cookies.get('topico');
     const lastpage = cookies.get('lastpage');
 
+    const [dataTopico,setDataTopico]= useState({});
+    const [loaded,setLoaded]= useState(false);
+
+    const getDataTopico = async () => {    
+        const url ='https://api-news-feria-2022.herokuapp.com/noticia/sesgo-topico?topico='+topico;
+        
+        console.log(url)
+        await axios.get(url)
+        .then(res => {                                
+            setDataTopico(res.data)
+            setLoaded(true)
+        
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+
+    useEffect(() => { 
+        getDataTopico();
+    }, []);
+
 
     return (
         <>   
@@ -96,7 +113,7 @@ function TopicDetails(props) {
                         <div className="title">
                             {topico}
                         </div> 
-                        <DashScore data={{title:'Noticias totales',score:data.numeroReportes}}/>                               
+                        <DashScore data={{title:'Noticias totales',score:dataTopico.total}}/>                               
                     </FeedMainBase>      
                 </div>
                 <div className="title" style={{fontSize:'1.3rem'}}>
@@ -104,35 +121,28 @@ function TopicDetails(props) {
                     Sesgo del tópico                                     
                 </div>
                 <Analysis> 
+                {loaded ?<>
                     <div className="media-bias">
-                        <div className="bias-label"> Sesgo de Izquierda o Derecha </div>
-                        <StackedBar data={data.sesgoIzquierdaDerecha} />
+                        <div className="bias-label"> Sesgo de Izquierda o Derecha </div>                        
+                        <BarChart datos={dataTopico.sesgos.izquierdaDerecha} title='Porcentaje de noticias' />                                              
                     </div>
-                     
-                    <div  className="report fakenews">
-                        <span>Noticias totales</span>
-                        <span className='number'>{data.numeroReportes}</span>
-                    </div> 
                     <div className="media-bias">
                         <div className="bias-label"> Presencia de lenguaje ofensivo </div>
-                        <StackedBar data={data.sesgoLenguajeOfensivo} />
-                    </div>
-                    <div className="report fakenews">
-                        <span>Nº de veces analizada por usuarios</span>
-                        <span className='number'>{data.cantidadSesgosReportados}</span>
+                        <BarChart datos={dataTopico.sesgos.lenguajeOfensivo} title='Porcentaje de noticias' /> 
                     </div>
                     <div className="media-bias">
                         <div className="bias-label"> ¿Es una noticia sensacionalista? </div>
-                        <StackedBar data={data.sesgoSensacionalismo} />
-                    </div>
-                    <div className="report fakenews">
-                        <span>Nº de veces resportada como noticia falsa</span>
-                        <span className='number'>{data.reportesFalsedad}</span>
+                        <BarChart datos={dataTopico.sesgos.izquierdaDerecha} title='Porcentaje de noticias'/> 
                     </div>
                     <div className="media-bias">
                         <div className="bias-label"> Sesgo Conservador o Progresista </div>
-                        <StackedBar data={data.sesgoConservadorProgresista} />
-                    </div>    
+                        <BarChart datos={dataTopico.sesgos.conservadorProgresista} title='Porcentaje de noticias' /> 
+                    </div> 
+                    <div className="media-bias" >
+                        <div className="bias-label"> Sesgo en libertad económica </div>
+                        <BarChart datos={dataTopico.sesgos.libertadEconomica} title='Porcentaje de noticias' /> 
+                    </div> 
+                </>:<></>}     
                 </Analysis>
                 <div className="title">
                     <NewspaperIcon/>
@@ -157,10 +167,9 @@ background-color:white;
 const Analysis = styled.div`
 
 display:grid;
-grid-template-columns: repeat(4,1fr);
+grid-template-columns: 1fr 1fr;
 gap:1rem;
 .report{
-    grid-column:4/5;
     background-color:white;
     font-size:1.1rem;
     color:#284b63c7;
@@ -179,7 +188,6 @@ gap:1rem;
     color:#284b63c7;
 }
 .media-bias{
-    grid-column: 1/4;
     padding: 0.8rem;     
     background-color:white;
     

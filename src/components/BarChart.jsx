@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
     Chart as ChartJS,
@@ -20,36 +20,54 @@ ChartJS.register(
     Legend
   );
   
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: 'top',
-      },
-      title: {
-        display: true,
-        text: 'Actividad ultimos 30 dias',
-      },
-    },
-  };
-  const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-  const data = {
-    labels,
-    datasets: [
-      {
-        label: 'numero de analisis',
-        data: [30,42,10,0,2,16,80],
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
-      },
-    ],
-  };
 
 
-function BarChart(props) {
+
+
+function BarChart({datos,title}) {
+
+    const [labels,setLabels] = useState([]);
+    const [values,setValues] = useState([]);
+
+    const data = {
+      labels,
+      datasets: [
+        {
+          label: 'porcentaje',
+          data: values,
+          backgroundColor: '#284B637f',
+        },
+      ],
+    };
+
+    const options = {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'top',
+        },
+        title: {
+          display: true,
+          text: title,
+        },
+      },
+    };
+
+    useEffect(() => {
+      
+      console.log(datos)
+      const keys = Object.keys(datos);
+      const values= [];
+      keys.map((key)=> values.push(datos[key])); 
+      setLabels(keys)
+      setValues(values)
+    }, []);
+
 
     return (
+      <>
         <Bar options={options}  data={data}/>
+      </>
     );
 }
 
