@@ -162,7 +162,11 @@ function DetailsPage(props) {
                     <div className="media-bias">
                         <div className="bias-label"> Sesgo Conservador o Progresista </div>
                         <StackedBar data={data.sesgoConservadorProgresista} />
-                    </div>    
+                    </div>   
+                    <div className="media-bias">
+                        <div className="bias-label"> Sesgo en libertad económica </div>
+                        <StackedBar data={data.sesgoLibertadEconomica} />
+                    </div>  
                 </Analysis>
                 <div className="title">
                     <NewspaperIcon/>
