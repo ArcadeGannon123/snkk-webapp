@@ -17,6 +17,7 @@ import NnewsPage from './pages/NnewsPage';
 import DetailsPage from './pages/DetailsPage';
 import MediaAnalysis from './pages/MediaAnalysis';
 import TopicsAnalysis from './pages/TopicsAnalysis';
+import SuscribePage from './pages/SuscribePage';
 import Cookies from 'universal-cookie';
 
 
@@ -54,6 +55,7 @@ function App() {
             <Route  path='/detalles/:url' element={<DetailsPage/>}/>            
             <Route  path='/detalles/topico/:topic' element={<TopicsAnalysis/>}/>
             <Route  path='/medios' element={<MediaAnalysis/>}/>
+            <Route  path='/suscripcion' element={<SuscribePage/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>

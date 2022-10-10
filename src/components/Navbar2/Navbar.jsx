@@ -54,7 +54,7 @@ const Navbar = () => {
   useEffect(() => {
   }, [showMobileMenu]);
 
-  const [sidebar, setSidebar] = useState(true);
+  const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
 
@@ -107,8 +107,12 @@ const Navbar = () => {
         </MobileIcon>
 
         <UserContainer>
-          {cookies.get('userData') ?         
+          {cookies.get('userData') ? 
+          <>          
+          <Button component={Link} to="/suscripcion" variant="outlined" >Suscribirse</Button>   
+          <div style={{  borderLeft: '1px solid #ffffff37',height: '100%'}}></div>         
           <User />
+          </>
           :
           <Button sx={{height:'100%'}} component={Link} to="/login" variant="outlined" startIcon={<AccountCircleIcon />}>
             Acceder

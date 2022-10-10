@@ -23,7 +23,7 @@ function SideBar({sidebar}) {
   return (
     <BaseSideBar variant = {color ? 'True':'False'} >
       <IconContext.Provider value={{ size: 20, color: '#ffffff'}}>
-        <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}  >
+        <nav className='nav-menu active' >
           <ul className='nav-menu-items' >      
 
             {cookies.get('userData') ? <>

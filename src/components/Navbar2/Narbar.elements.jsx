@@ -2,9 +2,12 @@ import styled from "styled-components";
 import {NavLink} from 'react-router-dom';
 
 export const UserContainer = styled.div`
+  display:flex;
+  gap:1rem;
   padding:5px 10px;
 
 `
+
 
 export const SideBarContainer = styled.div`
 
