@@ -1,11 +1,15 @@
 import React from 'react';
 import StackedBar from '../components/StackedBar';
+import TextRating from '../components/Rating';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
+import Avatar from '@mui/material/Avatar';
+import Stack from '@mui/material/Stack';
+import FacebookIcon from '@mui/icons-material/Facebook';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Cookies from 'universal-cookie';
-import FormDialog from '../components/DragDialog';
 
 const fakenews={
     fecha: '06 agosto 2022',
@@ -33,7 +37,7 @@ const fakenews={
 
 
 
-function RowNews2({data}) {
+function RowMedia({data}) {
 
     const handleClick = () =>{
         const cookies = new Cookies();
@@ -46,40 +50,36 @@ function RowNews2({data}) {
         <FeedMainBase>
             
             <div className="main-image">
-                <img src={data.urlToImage} alt='' />
+                <img src={`https://logo.clearbit.com/${data.medio.nombre}`} alt='' />
             </div>
             <div className="main-data">
                 <div className="main-media">
                     <span>{data.medio.nombre.replace('www.','')}</span>
-                    <span style={{fontWeight:300}}>{data.fechaAnalisis.split('T')[0]}</span>
-                </div>
-                <div className="main-title">
-                    {data.title}
-                </div>
-                <div className="main-periodista">
-                    {fakenews.periodista.nombre} | {data.published_date.split('T')[0]}
-                </div>              
+                </div>     
+                <div className="rating">
+                    <TextRating/>
+                </div>    
             </div>
-            <div className="options">
-                    
+            <div className="options">                    
                 <Button   href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
-                    Ir a la noticia
+                    Ir al sítio
                 </Button> 
-                <FormDialog/>
+                <Button onClick={handleClick} variant="outlined" startIcon={<AnalyticsIcon />}>
+                    Detalles
+                </Button>  
             </div>
         </FeedMainBase>
     );
 }
 
-export default RowNews2;
+export default RowMedia;
 
 const FeedMainBase = styled.div`
 display:grid;
-grid-template-columns: 25% auto 25%;
+
 
 .options{
     display:flex;
-    flex-direction:column;
     align-items:center;
     justify-content:space-around;
 }
@@ -92,19 +92,20 @@ grid-template-columns: 25% auto 25%;
 
 .main-image{
     display:flex;
-    align-items:center;
+    align-items:center; 
+    background-color:#284b63c7;
+    padding:1rem;
 }
 
 .main-image img{
     width:100%;    
-    object-fit: cover;    
-    aspect-ratio: 16/9;
+    object-fit: cover;
 }
 .main-data{
     padding-left:20px;
 }
 .main-media{
-    font-size: 0.9rem;
+    font-size: 1rem;
     display:flex;
     justify-content:space-between;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
 import Donut from '../components/Donut';
@@ -9,6 +9,7 @@ import User from '../components/User';
 import Cookies from 'universal-cookie';
 import Chip from '@mui/material/Chip';
 import PublicIcon from '@mui/icons-material/Public';
+import axios from 'axios';
 
 const dataActivity ={
     1:20,
@@ -23,6 +24,29 @@ const dataActivity ={
 function ProfilePage(props) {
     const cookies = new Cookies();
     const userdata = cookies.get('userData');
+
+    const [ingresos,setIngresos]= useState('');
+
+    const getIngresos = async () => {    
+        const url ='https://api-news-feria-2022.herokuapp.com/incentivos/usuario';
+        const token = cookies.get('userData').token;
+        
+        console.log(url)
+        await axios.get(url,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }})
+        .then(res => { 
+            console.log(res.data)                               
+            setIngresos(res.data.pago)        
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+    useEffect(() => {
+        getIngresos();
+    }, []);
 
     return (
         <>            
@@ -49,7 +73,7 @@ function ProfilePage(props) {
                 </div>
                 <Dashboard>
                     <div className="db score s1" style={{gridRow:'1/2',gridColumn:'1/2'}}><DashScore data={{title:'Puntaje BlankPoint',score:'153'}}/> </div>
-                    <div className="db score s1" style={{gridRow:'1/2',gridColumn:'2/3'}}><DashScore data={{title:'Ingresos estimados',score:'0.01$'}}/> </div>
+                    <div className="db score s1" style={{gridRow:'1/2',gridColumn:'2/3'}}><DashScore data={{title:'Ingresos estimados',score:`${ingresos} CLP`}}/> </div>
                     <div className="db score s2" style={{gridRow:'2/3',gridColumn:'1/2'}}><DashScore data={{title:'Noticias analizadas',score:'153'}}/> </div>
                     <div className="db score s3" style={{gridRow:'2/3',gridColumn:'2/3'}}><DashScore data={{title:'Análisis contribuidos',score:'153'}}/> </div> 
                     <div className="db chart c1" style={{gridRow:'1/3',gridColumn:'3/5'}}><BarChart datos={dataActivity} title='Actividad de los últimos 5 días' label='cantidad'/></div>

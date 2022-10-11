@@ -5,21 +5,18 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Paper from '@mui/material/Paper';
-import Draggable from 'react-draggable';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import Box from '@mui/material/Box';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
 
-function PaperComponent(props) {
-  return (
-    <Draggable
-      handle="#draggable-dialog-title"
-      cancel={'[class*="MuiDialogContent-root"]'}
-    >
-      <Paper {...props} />
-    </Draggable>
-  );
-}
 
-export default function DragDialog() {
+
+
+export default function FormDialog() {
+
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -30,31 +27,68 @@ export default function DragDialog() {
     setOpen(false);
   };
 
+  const [age, setAge] = React.useState('');
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
+  function Selection(){
+    return(
+      <Box sx={{ minWidth: 120, padding:'0.5rem 0'}}>
+        <FormControl fullWidth>
+          <InputLabel id="demo-simple-select-label">Sesgo</InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={age}
+            label="Sesgo"
+            onChange={handleChange}
+          >
+            <MenuItem value={10}>Ten</MenuItem>
+            <MenuItem value={20}>Twenty</MenuItem>
+            <MenuItem value={30}>Thirty</MenuItem>
+          </Select>
+        </FormControl>
+      </Box>
+    )
+  }
+
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
-        Open draggable dialog
+      <Button variant="outlined" onClick={handleClickOpen} startIcon={<QueryStatsIcon/>}>        
+        Evaluar
       </Button>
-      <Dialog
-        open={open}
-        onClose={handleClose}
-        PaperComponent={PaperComponent}
-        aria-labelledby="draggable-dialog-title"
-      >
-        <DialogTitle style={{ cursor: 'move' }} id="draggable-dialog-title">
-          Subscribe
-        </DialogTitle>
+      <Dialog open={open} onClose={handleClose}>
+        <DialogTitle>Evaluar</DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We
-            will send updates occasionally.
+          <DialogContentText sx={{fontWeight:'500'}}>
+            indique su percepción del sesgo para los siguientes campos:
           </DialogContentText>
+          <DialogContentText >
+            Sesgo Izquierda-Derecha:
+          </DialogContentText>
+          {Selection()}
+          <DialogContentText >
+            Presencia de lenguaje ofensivo:
+          </DialogContentText>
+          {Selection()}
+          <DialogContentText >
+            ¿Es una noticia sensacionalista?:
+          </DialogContentText>
+          {Selection()}
+          <DialogContentText >
+            Sesgo conservador o progresista:
+          </DialogContentText>
+          {Selection()}
+          <DialogContentText >
+            Sesgo en libertad económica:
+          </DialogContentText>
+          {Selection()}
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleClose}>Subscribe</Button>
+          <Button onClick={handleClose}>Cancel</Button>
+          <Button onClick={handleClose}>Enviar</Button>
         </DialogActions>
       </Dialog>
     </div>

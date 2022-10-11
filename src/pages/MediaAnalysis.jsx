@@ -10,9 +10,10 @@ import NewsCard from '../components/NewsCard';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import RowNews from '../components/RowNews';
+import RowMedia from '../components/RowMedia';
 import Cookies from 'universal-cookie';
 import LanguageIcon from '@mui/icons-material/Language';
+
 
 
 function MediaAnalysis(props) {
@@ -54,7 +55,7 @@ function MediaAnalysis(props) {
         })
     }
     useEffect(() => {              
-        cookies.set('lastpage','/populares',{path:'/'});  
+        cookies.set('lastpage','/medios',{path:'/'});  
         getData('Todos');
         getTopics();
     }, []);
@@ -73,8 +74,13 @@ function MediaAnalysis(props) {
                     <LanguageIcon/>
                     Análisis de medios                                   
                 </div>
-                <div className="news-container">
-                    
+                <div className="media-container">
+                    {data.map((news,i) =>(
+                        <div className='media-wrapper' key={i} >
+                            <RowMedia data={news}/>
+                            <hr/>
+                        </div>
+                    ))}
                 </div>
                 
             </FrontPage>
@@ -93,25 +99,17 @@ justify-content:center;
 background-color: #f4f4f9;
 
 
-.feed-rest-news{    
+.media-container{
+    background-color: white;  
+    gap:1rem;  
+    padding: 20px;
     display:grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: repeat(4,1fr);
+}
+.media-container .media-wrapper{
+    
 }
 
-.news-container{
-    background-color: white;
-    padding: 20px;
-}
-.news-container .header{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap:20px;
-}
-.news-container .sub-header{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap:10px;
-}
 .title{
     padding: 10px;
     font-size:2rem;
