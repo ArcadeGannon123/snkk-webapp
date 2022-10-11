@@ -41,6 +41,9 @@ function HelpPage(props) {
                     Para el juicio de sesgo político dividimos en tres categorías de acuerdo al ala política en la cuál se representan:
                     <span style={{fontWeight: "bold"}}>Izquierda, Centro o Derecha.</span>
                     <div style={{color: "#FF5733"}}><WarningIcon/> Nos basamos en la política Chilena actualmente para esto, por lo que puede ser impreciso con politica exterior.</div>
+                    <br/>
+                    <br/>
+                    Precisión Modelo: 70%
                 </div>
                 <div className="text-container">
                     <div className="secondary-title">Sesgo económico</div>
@@ -50,6 +53,9 @@ function HelpPage(props) {
                     que son el estado de derecho, el tamaño del gobierno, la eficiencia regulatoria y los mercados abiertos.
                     También toma en consideración algunas categorías específicas como los derechos de propiedad,
                     la eficacia judicial, la integridad del gobierno y la carga fiscal.
+                    <br/>
+                    <br/>
+                    Precisión Modelo: 72%
                 </div>
                 <div className="text-container">
                     <div className="secondary-title">Sesgo sensacionalista</div>
@@ -59,10 +65,29 @@ function HelpPage(props) {
                     Es común que en los medios de comunicación sensacionalistas se tienda a verter repetidamente
                     información dudosa, falsa o dañina.
                     <span style={{fontWeight: "bold"}}>Nosotros detectamos este sesgo en base a la forma escrita del titular, también poseemos un tópico clickbait.</span>
+                    <br/>
+                    <br/>
+                    Precisión Modelo: 78%
+                </div>
+                <div className="text-container">
+                    <div className="secondary-title">Sesgo conservador - progresista</div>
+                    El sesgo presentado aquí se refiere a la dimensión valórica en la que está sesgada la noticia.
+                    Problemáticas como libertades en aborto, LGBT, sesgo de género y otras problemáticas se encuentra aquí.
+                    Se entiende entonces el conservadurismo como las tradiciones o costumbres arraigadas en la sociedad
+                    que inhiben libertades humanas en el ámbito valórico, y, por su contra parte el progresismo es dejar
+                    el arraigo a las viejas costumbres en pos de un cambio.
+                    <br/>
+                    <br/>
+                    Precisión Modelo: 82%
                 </div>
                 <div className="text-container">
                     <div className="secondary-title">Discurso de odio</div>
-                    Este modelo distingue principalmente el lenguaje ofensivo dirigido hacia una entidad en específico que podría verse afectado por los dichos presentes en el texto, de tal forma de existir algún tipo de discriminacion, insulto o mofa de una entidad, esto es detectado por nuestro modelo.
+                    Este modelo distingue principalmente el lenguaje ofensivo dirigido hacia una entidad en específico
+                    que podría verse afectado por los dichos presentes en el texto, de tal forma de existir algún tipo
+                    de discriminacion, insulto o mofa de una entidad, esto es detectado por nuestro modelo.
+                    <br/>
+                    <br/>
+                    Precisión Modelo: 74%
                 </div>
             </FrontPage>
         </>
