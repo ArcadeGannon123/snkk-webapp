@@ -24,6 +24,7 @@ background-color:white;
 position:relative;
 box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 height:100%;
+width:100%;
 .d-text{
     
     color:#284b63c7;

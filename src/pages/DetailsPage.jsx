@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import StackedBar from '../components/StackedBar';
+import DashScore from '../components/DashScore'
 import Button from '@mui/material/Button';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import Avatar from '@mui/material/Avatar';
@@ -14,6 +15,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
+import AlignItemsList from '../components/ActivityList';
 
 /*
 const data={
@@ -73,6 +75,15 @@ const data={
       }
     }}
 
+
+const lista =[
+    {nombre:'o_O',actividad:'analizo noticia',fecha:'10/10/10'},
+    {nombre:'o_O',actividad:'analizo noticia',fecha:'10/10/10'},
+    {nombre:'o_O',actividad:'analizo noticia',fecha:'10/10/10'},
+    {nombre:'o_O',actividad:'analizo noticia',fecha:'10/10/10'},
+    {nombre:'o_O',actividad:'analizo noticia',fecha:'10/10/10'},
+    {nombre:'o_O',actividad:'analizo noticia',fecha:'10/10/10'}
+]
 
 function DetailsPage(props) {
 
@@ -149,39 +160,43 @@ function DetailsPage(props) {
                     Análisis                                     
                 </div>
                 <Analysis>
-                    <div className="media-bias">
-                        <div className="bias-label"> Sesgo de Izquierda o Derecha </div>
+                    <div className="c1-3">
+                        <DashScore data={{title:'Nº de visitas',score:data.numeroReportes}}/>
+                    </div>
+                    <div>
+                        <DashScore data={{title:'Nº de veces analizada por usuarios',score:data.numeroReportes}}/>
+                    </div>
+                    <div>
+                        <DashScore data={{title:'Nº de veces resportada como noticia falsa',score:data.numeroReportes}}/>
+                    </div>
+                    <div className="media-bias c1-5" >
+                        <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem'}}> Sesgo de Izquierda o Derecha </div>
                         <StackedBar data={data.sesgoIzquierdaDerecha} />
                     </div>
-                    <div  className="report fakenews">
-                        <span>Nº de visitas</span>
-                        <span className='number'>{data.numeroReportes}</span>
-                    </div>
-                    <div className="media-bias">
-                        <div className="bias-label"> Presencia de lenguaje ofensivo </div>
+                    <div className="media-bias c1-3" >
+                        <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem'}}> Presencia de lenguaje ofensivo </div>
                         <StackedBar data={data.sesgoLenguajeOfensivo} />
                     </div>
-                    <div className="report fakenews">
-                        <span>Nº de veces analizada por usuarios</span>
-                        <span className='number'>{data.cantidadSesgosReportados}</span>
-                    </div>
-                    <div className="media-bias">
-                        <div className="bias-label"> ¿Es una noticia sensacionalista? </div>
+                    <div className="media-bias c3-5">
+                        <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem'}}> ¿Es una noticia sensacionalista? </div>
                         <StackedBar data={data.sesgoSensacionalismo} />
                     </div>
-                    <div className="report fakenews">
-                        <span>Nº de veces resportada como noticia falsa</span>
-                        <span className='number'>{data.reportesFalsedad}</span>
-                    </div>
-                    <div className="media-bias">
-                        <div className="bias-label"> Sesgo Conservador o Progresista </div>
+                    <div className="media-bias c1-3">
+                        <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem'}}> Sesgo Conservador o Progresista </div>
                         <StackedBar data={data.sesgoConservadorProgresista} />
                     </div>   
-                    <div className="media-bias">
-                        <div className="bias-label"> Sesgo en libertad económica </div>
+                    <div className="media-bias c3-5">
+                        <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem'}}> Sesgo en libertad económica </div>
                         <StackedBar data={data.sesgoLibertadEconomica} />
                     </div>  
                 </Analysis>
+                <div className="title" style={{fontSize:'1.3rem'}}>
+                    <NewspaperIcon/>
+                    Actividades                                     
+                </div>
+                <ActivityContainer>
+                    <AlignItemsList data={lista}/>
+                </ActivityContainer>
                 <div className="title">
                     <NewspaperIcon/>
                     Comentarios                                     
@@ -196,6 +211,11 @@ function DetailsPage(props) {
 }
 
 export default DetailsPage;
+
+const ActivityContainer = styled.div`
+
+
+`
 
 const CommentSection = styled.div`
 height:500px;
@@ -221,15 +241,23 @@ gap:1rem;
 .report .number{
     font-size:2rem;
 }
-
+.c1-3{
+    grid-column:1/3;
+}
+.c3-5{
+    grid-column:3/5;
+}
+.c1-5{
+    grid-column:1/5;
+}
 .media-bias .bias-label{
     font-size:1.1rem;
     color:#284b63c7;
 }
 .media-bias{
-    grid-column: 1/4;
     padding: 0.8rem;     
     background-color:white;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;  
     
 }
 

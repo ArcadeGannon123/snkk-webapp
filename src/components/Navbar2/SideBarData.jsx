@@ -8,7 +8,6 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import PeopleIcon from '@mui/icons-material/People';
 import TvIcon from '@mui/icons-material/Tv';
 import HelpIcon from '@mui/icons-material/Help';
-import TopicIcon from '@mui/icons-material/Topic';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 
 export const SidebarDataPages = [
@@ -31,13 +30,6 @@ export const SidebarDataPages = [
     title2: 'Medios',
     path: '/medios',
     icon: <TvIcon />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Tópicos',
-    title2: 'Tópicos',
-    path: '/topicos',
-    icon: <TopicIcon />,
     cName: 'nav-text'
   },
   {

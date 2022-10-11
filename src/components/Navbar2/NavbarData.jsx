@@ -11,14 +11,8 @@ export const NavbarDataNav = [
   },
   {
     title: 'Análisis',
-    path: '/reliability',
+    path: '/recientes',
     icon: <FaHandHoldingHeart />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Metodología',
-    path: '/periodistas',
-    icon: <FaJournalWhills />,
     cName: 'nav-text'
   }
   

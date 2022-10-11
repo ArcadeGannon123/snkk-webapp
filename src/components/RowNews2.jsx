@@ -44,7 +44,6 @@ function RowNews2({data}) {
 
     return (
         <FeedMainBase>
-            
             <div className="main-image">
                 <img src={data.urlToImage} alt='' />
             </div>
@@ -65,7 +64,7 @@ function RowNews2({data}) {
                 <Button   href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
                     Ir a la noticia
                 </Button> 
-                <FormDialog/>
+                <FormDialog id={data.id}/>
             </div>
         </FeedMainBase>
     );
