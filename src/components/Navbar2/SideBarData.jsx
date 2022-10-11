@@ -9,6 +9,7 @@ import PeopleIcon from '@mui/icons-material/People';
 import TvIcon from '@mui/icons-material/Tv';
 import HelpIcon from '@mui/icons-material/Help';
 import TopicIcon from '@mui/icons-material/Topic';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 
 export const SidebarDataPages = [
   {
@@ -59,8 +60,15 @@ export const SidebarDataDash = [
   {
     title: 'Noticias analizadas',
     title2: 'Noticias',
-    path: '/reliability',
+    path: '/analizados',
     icon: <AnalyticsIcon />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Trabajos disponibles',
+    title2: 'Trabajos',
+    path: '/trabajos',
+    icon: <QueryStatsIcon />,
     cName: 'nav-text'
   }
   
