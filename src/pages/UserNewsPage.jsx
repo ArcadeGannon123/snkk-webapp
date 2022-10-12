@@ -22,55 +22,29 @@ function UserNewsPage(props) {
     const cookies = new Cookies();
 
     const [data,setData]= useState([]);
-    const [topics,setTopics]= useState(['Todos']);
-    const [value, setValue] = useState(0);
 
-    const getData = async (topic) => {    
-        var url = '';
-        if (topic === 'Todos'){
-            url ='https://api-news-feria-2022.herokuapp.com/noticia/listado-noticias'
-        }else{
-            url ='https://api-news-feria-2022.herokuapp.com/noticia/topico?topico='+topic;
-        }
+    const getData = async () => {    
+        const url ='https://api-news-feria-2022.herokuapp.com/usuario/noticias-analizadas';
+        const token = cookies.get('userData').token;
         
-        console.log(url)
-        await axios.get(url)
-        .then(res => {                                
-            setData(res.data)
-        
+        await axios.get(url,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }})
+        .then(res => {    
+            console.log(res.data)                            
+            setData(res.data)        
         })
         .catch(err => {
             console.log(err)
         })
     }
-    const getTopics = async () => {        
-        const url='https://api-news-feria-2022.herokuapp.com/noticia/topicos'
-        await axios.get(url)
-        .then(res => {  
-            setTopics(['Todos']);                        
-            setTopics(topics.concat(res.data));
-        
-        })
-        .catch(err => {
-            console.log(err)
-        })
-    }
+    
     useEffect(() => {
-        cookies.set('lastpage','/recientes',{path:'/'});         
-        getData('Todos');
-        getTopics();
+        cookies.set('lastpage','/analizados',{path:'/'});         
+        getData();
     }, []);
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-        setData([]);
-        getData(topics[newValue]);
-    };
-
-    const handleClick = () =>{
-        cookies.set('topico',topics[value],{path:'/'});
-        window.location.href = './detalles/topico/'+data.title;
-    }
 
   
     return (

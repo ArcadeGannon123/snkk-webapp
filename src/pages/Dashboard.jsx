@@ -112,8 +112,11 @@ function ProfilePage(props) {
                     <div className="username">
                         {userdata.name}
                     </div>  
-                    <div className="extras">                    
+                    <div className="extras"> 
+                        {cookies.get('userData').premium ? 
                         <Chip label="Suscriptor" color="success" variant="outlined" />
+                        :
+                        <></>}                 
                     </div>                  
                 </ProfileHeader>
                 <div className="title" style={{fontSize:'1.5rem'}}>

@@ -34,7 +34,6 @@ function LoginPage(props) {
             ...datos,
             [event.target.name] : event.target.value,
         })
-        console.log(datos);
     }
 
     const enviarDatos = async (event) =>{
@@ -50,11 +49,11 @@ function LoginPage(props) {
                     'Authorization': `Basic ${code}`
                 },
             }).then(res => {
-                console.log(res)
+                
                 setToken(res.data.token)
                 setUser(res.data.nombre)
                 setPoint(res.data.puntuacionUsuario)                
-                cookies.set('userData',{token:res.data.token,nombre:res.data.nombre,score:res.data.puntuacionUsuario},{path:'/'});
+                cookies.set('userData',{token:res.data.token,nombre:res.data.nombre,score:res.data.puntuacionUsuario,premium:res.data.premium},{path:'/'});
                 setSuccess(2)
             
             }).catch(err => {
@@ -74,8 +73,7 @@ function LoginPage(props) {
 
     return (
         <Base>
-            <LoginContainer data-aos="zoom-in" data-aos-delay="100">
-                
+            <LoginContainer data-aos="zoom-in" data-aos-delay="100">                
                 <NavLink className="logo-link" to='/'>
                     <div className="logo">
                         <img src={logo} alt=''/>

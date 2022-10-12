@@ -108,8 +108,11 @@ const Navbar = () => {
 
         <UserContainer>
           {cookies.get('userData') ? 
-          <>          
-          <Button component={Link} to="/suscripcion" variant="outlined" >Suscribirse</Button>   
+          <>  
+          {!cookies.get('userData').premium ?
+          <Button component={Link} to="/suscripcion" variant="outlined" >Suscribirse</Button>  
+          :
+          <></>} 
           <div style={{  borderLeft: '1px solid #ffffff37',height: '100%'}}></div>         
           <User />
           </>
