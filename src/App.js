@@ -1,4 +1,6 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Cookies from 'universal-cookie';
+
 import NewsPage from './pages/NewsPage'
 import HomePage from './pages/HomePage'
 import ExtenPage from './pages/ExtenPage'
@@ -21,9 +23,8 @@ import SuscribePage from './pages/SuscribePage';
 import UserNewsPage from './pages/UserNewsPage';
 import DetailsMediaPage from './pages/DetailsMediaPage';
 import WorkPage from './pages/WorkPage';
-import Cookies from 'universal-cookie';
+import PublicProfilePage from "./pages/PublicProfilePage";
 import HelpPage from "./pages/HelpPage";
-
 
 function App() {
   useEffect( () => {
@@ -63,6 +64,7 @@ function App() {
             <Route  path='/medios' element={<MediaAnalysis/>}/>
             <Route  path='/suscripcion' element={<SuscribePage/>}/>
             <Route path='/ayuda' element={<HelpPage/>}/>
+            <Route path='/perfil/:id' element={<PublicProfilePage/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>

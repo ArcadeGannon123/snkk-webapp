@@ -19,8 +19,11 @@ function User() {
     };
     const handleSesion = () => {
         cookies.remove('userData', { path: '/' });        
-        window.location.href = './';
+        window.location.href = '/';
     };
+    const handleProfile = () => {
+        window.location.href = '/perfil/' + cookies.get('userData').id;
+    }
     return (
         <Base>
             <div className="user-container" onClick={handleClick}>              
@@ -50,8 +53,7 @@ function User() {
                 'aria-labelledby': 'basic-button',
                 }}
             >
-                <MenuItem onClick={handleClose}>Perfil</MenuItem>
-                <MenuItem onClick={handleClose}>Mi cuenta</MenuItem>
+                <MenuItem onClick={handleProfile}>Perfil</MenuItem>
                 <MenuItem onClick={handleSesion}>Cerrar sesión</MenuItem>
             </Menu>
         </Base>

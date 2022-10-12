@@ -53,7 +53,7 @@ function LoginPage(props) {
                 setToken(res.data.token)
                 setUser(res.data.nombre)
                 setPoint(res.data.puntuacionUsuario)                
-                cookies.set('userData',{token:res.data.token,nombre:res.data.nombre,score:res.data.puntuacionUsuario,premium:res.data.premium},{path:'/'});
+                cookies.set('userData',{token:res.data.token,nombre:res.data.nombre,score:res.data.puntuacionUsuario,premium:res.data.premium,id:res.data.idUsuario},{path:'/'});
                 setSuccess(2)
             
             }).catch(err => {
