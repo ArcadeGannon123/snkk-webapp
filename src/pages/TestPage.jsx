@@ -4,7 +4,6 @@ import Navbar from '../components/Navbar2/Navbar';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import StackedBar from '../components/StackedBar';
 import Button from '@mui/material/Button';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import FacebookIcon from '@mui/icons-material/Facebook';

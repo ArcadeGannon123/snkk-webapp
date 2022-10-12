@@ -6,7 +6,6 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextRating from '../components/Rating';
-import StackedBar from '../components/StackedBar';
 import Cookies from 'universal-cookie';
 
 const data={
@@ -49,8 +48,8 @@ export default function MediaCard({data}) {
     const cookies = new Cookies();
 
     const handleClick = () =>{
-        cookies.set('data',data,{path:'/'});
-        window.location.href = './detalles/medio/'+data.medio.nombre;
+        cookies.set('medioData',data,{path:'/'});
+        window.location.href = './detalles/medio/'+data.medio.replaceAll('.','');
     }
 
   return (
@@ -58,25 +57,21 @@ export default function MediaCard({data}) {
       <CardMedia
         component="img"
         height="140"
-        image={`https://logo.clearbit.com/${data.medio.nombre}`}
+        image={`https://logo.clearbit.com/${data.medio}`}
         alt="media"
         sx={{backgroundColor:'#353535'}}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {data.medio.nombre.replace('www.','')}
+          {data.medio.replace('www.','')}
         </Typography>
         <Typography variant="body2" color="text.secondary">
             Rating:
         </Typography>
-        <TextRating/>
-        <Typography variant="body2" color="text.secondary">
-            sesgo:
-        </Typography>
-        <StackedBar data={data.sesgoIzquierdaDerecha} />
+        <TextRating rating={data.confiabilidad}/>
       </CardContent>
       <CardActions>
-        <Button href={data.url} target="_blank" rel="noreferrer noopener"  size="small">Ir al sítio</Button>
+        <Button href={data.medio} target="_blank" rel="noreferrer noopener"  size="small">Ir al sítio</Button>
         <Button onClick={handleClick} size="small">Detalles</Button>
       </CardActions>
     </Card>

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
-import StackedBar from '../components/StackedBar';
 import BarChart from '../components/BarChart';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Cookies from 'universal-cookie';

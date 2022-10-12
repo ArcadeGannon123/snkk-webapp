@@ -1,14 +1,10 @@
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import Cookies from 'universal-cookie';
-
 import NewsPage from './pages/NewsPage'
 import HomePage from './pages/HomePage'
 import ExtenPage from './pages/ExtenPage'
-import ReliPage from './pages/ReliPage'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import PopularPage from './pages/PopularPage'
-import Topics from './pages/Topics'
 import Periodistas from './pages/Periodistas'
 import ProfilePage from './pages/Dashboard'
 import Aos from 'aos';
@@ -23,8 +19,9 @@ import SuscribePage from './pages/SuscribePage';
 import UserNewsPage from './pages/UserNewsPage';
 import DetailsMediaPage from './pages/DetailsMediaPage';
 import WorkPage from './pages/WorkPage';
-import PublicProfilePage from "./pages/PublicProfilePage";
 import HelpPage from "./pages/HelpPage";
+import PublicProfilePage from "./pages/PublicProfilePage";
+
 
 function App() {
   useEffect( () => {

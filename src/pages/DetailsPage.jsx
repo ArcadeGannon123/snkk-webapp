@@ -1,5 +1,4 @@
-import React, {useEffect, useContext} from 'react';
-import { UserContext } from '../components/UserContext';
+import React, {useEffect} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
@@ -106,7 +105,7 @@ function DetailsPage(props) {
     }, []);
 
     return (
-        <>   
+        <>  {console.log(data)}
             <Navbar />            
             <FrontPage>
                 <div className="title" style={{fontSize:'1.3rem'}}>
@@ -161,13 +160,13 @@ function DetailsPage(props) {
                 </div>
                 <Analysis>
                     <div className="c1-3">
-                        <DashScore data={{title:'Nº de visitas',score:data.numeroReportes}}/>
+                        <DashScore data={{title:'Nº de visitas',score:data.visualizaciones}}/>
                     </div>
                     <div>
-                        <DashScore data={{title:'Nº de veces analizada por usuarios',score:data.numeroReportes}}/>
+                        <DashScore data={{title:'Nº de veces analizada por usuarios',score:data.numeroAnalisis}}/>
                     </div>
                     <div>
-                        <DashScore data={{title:'Nº de veces resportada como noticia falsa',score:data.numeroReportes}}/>
+                        <DashScore data={{title:'Nº de veces resportada como noticia falsa',score:data.reportesFalsedad}}/>
                     </div>
                     <div className="media-bias c1-5" >
                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem'}}> Sesgo de Izquierda o Derecha </div>
@@ -195,7 +194,7 @@ function DetailsPage(props) {
                     Actividades                                     
                 </div>
                 <ActivityContainer>
-                    <AlignItemsList data={lista}/>
+                    <AlignItemsList data={data.eventos}/>
                 </ActivityContainer>
                 <div className="title">
                     <NewspaperIcon/>

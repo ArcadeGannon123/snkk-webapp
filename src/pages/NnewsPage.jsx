@@ -1,17 +1,15 @@
-import React,{useState, useEffect, useContext} from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
 import FeedMain from '../components/FeedMain';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import RowNews from '../components/RowNews';
 import axios from 'axios';
-import { UserContext } from '../components/UserContext';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import Cookies from 'universal-cookie';
 import Button from '@mui/material/Button';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import {Adsense} from '@ctrl/react-adsense';
 
@@ -38,6 +36,7 @@ function NnewsPage(props) {
         await axios.get(url)
         .then(res => {                                
             setData(res.data)
+            console.log(res.data)
         
         })
         .catch(err => {
@@ -78,7 +77,6 @@ function NnewsPage(props) {
         <>  
             <Navbar />            
             <FrontPage>
-
                 <div className="title">
                     <span>
                         <NewspaperIcon/>
@@ -87,7 +85,7 @@ function NnewsPage(props) {
                     <Button onClick={handleClick} variant="outlined" startIcon={<BarChartIcon />}>
                         Detalles del tópico
                     </Button>                                       
-                </div>
+                </div>                 
                 <Box sx={{ maxWidth: '100%', bgcolor: 'background.paper', padding:'0 1rem'}}>
                     <Tabs
                         value={value}
@@ -100,7 +98,7 @@ function NnewsPage(props) {
                             <Tab label={topico} />
                         ))}
                     </Tabs>
-                </Box>
+                </Box>    
                 <div className="news-container">
                     <div>
                         <Adsense client="ca-pub-2909524242328894" slot=""/>
@@ -121,6 +119,7 @@ function NnewsPage(props) {
                     </>:<></>}
                 </div>
                 
+
             </FrontPage>
         </>
     );

@@ -1,7 +1,6 @@
 import React,{useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
-import FeedMain from '../components/FeedMain';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import RowNews2 from '../components/RowNews2';
 import axios from 'axios';

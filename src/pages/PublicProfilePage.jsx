@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import { useHistory, useParams } from 'react-router-dom';
-
 import Navbar from '../components/Navbar2/Navbar';
 import BarChart from '../components/BarChart';
 import DashScore from '../components/DashScore';

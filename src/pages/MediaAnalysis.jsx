@@ -18,14 +18,11 @@ function MediaAnalysis(props) {
 
     const getData = async () => {    
         const __url ='https://api-news-feria-2022.herokuapp.com/medio/listado-medios';
-        const _url ='https://api-news-feria-2022.herokuapp.com/medio/confiabilidad-medios';        
-        const url ='https://api-news-feria-2022.herokuapp.com/noticia/listado-noticias';
+        const url ='https://api-news-feria-2022.herokuapp.com/medio/confiabilidad-medios';        
+        const _url ='https://api-news-feria-2022.herokuapp.com/noticia/listado-noticias';
         
         console.log(url)
-        await axios.get(url,{
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }})
+        await axios.get(url)
         .then(res => {                                
             setData(res.data)
             setLoaded(true)
@@ -50,9 +47,9 @@ function MediaAnalysis(props) {
                 </div>
                 <div className="media-container">
                     {loaded ? 
-                    data.map((news,i) =>(
+                    data.map((medio,i) =>(
                         <div className='media-wrapper' key={i} >
-                            <RowMedia data={news}/>
+                            <RowMedia data={medio}/>
                             <hr/>
                         </div>
                     ))

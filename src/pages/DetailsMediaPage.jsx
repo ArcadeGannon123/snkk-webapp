@@ -1,21 +1,14 @@
-import React, {useEffect, useContext} from 'react';
-import { UserContext } from '../components/UserContext';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import StackedBar from '../components/StackedBar';
 import BiasSelector from '../components/BiasSelector';
 import Button from '@mui/material/Button';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import FacebookIcon from '@mui/icons-material/Facebook';
-import TwitterIcon from '@mui/icons-material/Twitter';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
-import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import TextRating from '../components/Rating';
 
@@ -81,26 +74,55 @@ const data={
 function DetailsMediaPage(props) {
 
     const cookies = new Cookies();
-    const data = cookies.get('data');    
-    const user = cookies.get('userData');
+    const medioData = cookies.get('medioData');
     const lastpage = cookies.get('lastpage');
 
-    const visita = async () =>{
-        const url = 'https://api-news-feria-2022.herokuapp.com/noticia/visualizacion';
-        const body = {"url":data.url};
-        await axios.post(url,body,{
-            headers: {
-                'Authorization': `Bearer ${user.token}`
-            }}).then(console.log('ooo'))
-        .catch(err => console.log(err))
+    
+    const [loaded,setLoaded]= useState(false);
+    const [data,setData]= useState(null);
+    const [periodistas,setPeriodistas]= useState(null);
+
+
+    const getData = async () => {    
+        const url ='https://api-news-feria-2022.herokuapp.com/medio/sesgo'; 
+        const body={url:medioData.medio};        
+        console.log(body)
+        await axios.post(url,body)
+        .then(res => {                                
+            setData(res.data)
+            setLoaded(true)
+            console.log('aaaaaaaaaaaaaaaaaasa')
+            console.log(res.data)
+        
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
-    useEffect(() => {        
-        visita(); 
+    const getPeriodista = async () => {    
+        const url ='https://api-news-feria-2022.herokuapp.com/periodista/medio'; 
+        const body={url:medioData.medio};        
+        console.log(body)
+        await axios.post(url,body)
+        .then(res => {                                
+            setPeriodistas(res.data)
+            console.log(res.data)        
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+    
+    useEffect(() => {  
+        getData();
+        getPeriodista();
     }, []);
 
     return (
         <>   
-            <Navbar />            
+            <Navbar /> 
+            {data ?         
             <FrontPage>
                 <div className="title" style={{fontSize:'1.3rem'}}>
                     <a style={{textDecoration: 'none'}} href={lastpage}>
@@ -109,23 +131,24 @@ function DetailsMediaPage(props) {
                     </a>                                                          
                 </div>
                 <div className="news-container">
+                    
                     <FeedMainBase>
                         <div className="main-image">
-                            <img src={`https://logo.clearbit.com/${data.medio.nombre}`} alt='' />
+                            <img src={`https://logo.clearbit.com/${medioData.medio}`} alt='' />
                         </div>
                         <div className="main-data">
                             <Typography gutterBottom variant="h5" component="div">
-                                {data.medio.nombre.replace('www.','')}
+                                {medioData.medio.replace('www.','')}
                             </Typography>
                             <Typography variant="body2" color="text.secondary">
                                 Rating:
                             </Typography>
-                            <TextRating/>
+                            <TextRating rating={medioData.confiabilidad}/>
                             <div className="main-buttom">
-                                <Button href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
+                                <Button href={medioData.medio} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
                                     Ir al sítio
                                 </Button>    
-                            </div>                     
+                            </div>                   
                                         
                         </div>
                         
@@ -138,28 +161,36 @@ function DetailsMediaPage(props) {
                 <Analysis>
                     <div className="media-bias" style={{gridColumn:'1/3'}}>
                         <div className="bias-label"> Sesgo de Izquierda o Derecha </div>
-                        <StackedBar data={data.sesgoIzquierdaDerecha} />
+                        <StackedBar data={data.sesgos.izquierdaDerecha} />
                     </div>
+                    
                     <div className="media-bias">
                         <div className="bias-label"> Presencia de lenguaje ofensivo </div>
-                        <StackedBar data={data.sesgoLenguajeOfensivo} />
+                        <StackedBar data={data.sesgos.lenguajeOfensivo} />
                     </div>
+                    
                     <div className="media-bias">
                         <div className="bias-label"> ¿Es una noticia sensacionalista? </div>
-                        <StackedBar data={data.sesgoSensacionalismo} />
+                        <StackedBar data={data.sesgos.sensacionalismo} />
                     </div>
+                    
                     <div className="media-bias">
                         <div className="bias-label"> Sesgo Conservador o Progresista </div>
-                        <StackedBar data={data.sesgoConservadorProgresista} />
-                    </div>   
+                        <StackedBar data={data.sesgos.conservadorProgresista} />
+                    </div>  
+                    
                     <div className="media-bias">
                         <div className="bias-label"> Sesgo en libertad económica </div>
-                        <StackedBar data={data.sesgoLibertadEconomica} />
+                        <StackedBar data={data.sesgos.libertadEconomica} />
                     </div>  
                 </Analysis>
-                <BiasSelector titulo='Periodistas'/>
-                
-            </FrontPage>  
+                {periodistas ?
+                <BiasSelector titulo='Periodistas' datos={periodistas.periodista}/>
+                :
+                <></>}      
+            </FrontPage>
+            :
+            <></>}  
         </>
         
     );

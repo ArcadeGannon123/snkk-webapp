@@ -11,30 +11,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-function DetailsMediaPage({titulo}) {
+function DetailsMediaPage({titulo,datos}) {
 
-    const cookies = new Cookies();
-    const data = cookies.get('data');    
-    const user = cookies.get('userData');
-    const lastpage = cookies.get('lastpage');
-
-    const visita = async () =>{
-        const url = 'https://api-news-feria-2022.herokuapp.com/noticia/visualizacion';
-        const body = {"url":data.url};
-        await axios.post(url,body,{
-            headers: {
-                'Authorization': `Bearer ${user.token}`
-            }}).then(console.log('ooo'))
-        .catch(err => console.log(err))
-    }
-    useEffect(() => {        
-        visita(); 
-    }, []);
-
-    const [periodista, setPeriodista] = useState('');
+    const [periodista, setPeriodista] = useState(null);
 
     const handleChange = (event) => {
         setPeriodista(event.target.value);
+        {console.log(datos)}
     };
 
     return (
@@ -54,35 +37,22 @@ function DetailsMediaPage({titulo}) {
                             label="Periodista"
                             onChange={handleChange}
                         >
-                        <MenuItem value={10}>Rubith Morales Painepi</MenuItem>
-                        <MenuItem value={20}>Rubith Morales Painepi</MenuItem>
-                        <MenuItem value={30}>Rubith Morales Painepi</MenuItem>
+                        {Object.keys(datos).map((_periodista)=>(
+                            <MenuItem value={_periodista}>{_periodista}</MenuItem>
+                        ))}
                         </Select>
                     </FormControl>
                 </Box>                                    
             </Titulo>
+            {periodista ? <div>{periodista}</div> :<></>
+            /*
             <Analysis>
                 <div className="media-bias" style={{gridColumn:'1/3'}}>
                     <div className="bias-label"> Sesgo de Izquierda o Derecha </div>
-                    <StackedBar data={data.sesgoIzquierdaDerecha} />
+                    <StackedBar data={datos[periodista].izquierdaDerecha} />
                 </div>
-                <div className="media-bias">
-                    <div className="bias-label"> Presencia de lenguaje ofensivo </div>
-                    <StackedBar data={data.sesgoLenguajeOfensivo} />
-                </div>
-                <div className="media-bias">
-                    <div className="bias-label"> ¿Es una noticia sensacionalista? </div>
-                    <StackedBar data={data.sesgoSensacionalismo} />
-                </div>
-                <div className="media-bias">
-                    <div className="bias-label"> Sesgo Conservador o Progresista </div>
-                    <StackedBar data={data.sesgoConservadorProgresista} />
-                </div>   
-                <div className="media-bias">
-                    <div className="bias-label"> Sesgo en libertad económica </div>
-                    <StackedBar data={data.sesgoLibertadEconomica} />
-                </div>  
-            </Analysis>  
+            </Analysis>
+            :<></>*/}
         </>
         
     );

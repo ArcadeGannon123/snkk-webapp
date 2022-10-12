@@ -16,8 +16,7 @@ const labels = {
   5: 'Excellent+',
 };
 
-export default function TextRating() {
-  const value = 3.5;
+export default function TextRating({rating}) {
 
   return (
     <Box
@@ -29,12 +28,12 @@ export default function TextRating() {
     >
       <Rating
         name="text-feedback"
-        value={value}
+        value={Math.round(rating*2)/2}
         readOnly
         precision={0.5}
         emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
       />
-      <Box sx={{ ml: 2 }}>{labels[value]}</Box>
+      <Box sx={{ ml: 2 }}>{labels[Math.round(rating*2)/2]}</Box>
     </Box>
   );
 }

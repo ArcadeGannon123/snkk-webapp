@@ -19,7 +19,7 @@ function User() {
     };
     const handleSesion = () => {
         cookies.remove('userData', { path: '/' });        
-        window.location.href = '/';
+        window.location.href = './';
     };
     const handleProfile = () => {
         window.location.href = '/perfil/' + cookies.get('userData').id;
@@ -32,7 +32,7 @@ function User() {
                     aria-controls={open ? 'basic-menu' : undefined}
                     aria-haspopup="true"
                     aria-expanded={open ? 'true' : undefined}
-                    alt="Remy Sharp" src="/static/images/avatar/1.jpg" 
+                    alt={cookies.get('userData').nombre} src="/static/images/avatar/1.jpg" 
                     sx={{
                         cursor: 'pointer',
                         '&hover':{

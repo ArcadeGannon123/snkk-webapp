@@ -1,4 +1,4 @@
-import React, {useState, useContext} from 'react';
+import React from 'react';
 import StackedBar from './StackedBar';
 import styled from 'styled-components';
 import Button from '@mui/material/Button';
@@ -7,9 +7,6 @@ import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import { UserContext } from './UserContext';
-import {NavLink} from 'react-router-dom';
-import { WindowSharp } from '@mui/icons-material';
 import Cookies from 'universal-cookie';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 

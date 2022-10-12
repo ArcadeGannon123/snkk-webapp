@@ -1,11 +1,8 @@
-import React,{useState, useEffect, useContext} from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
-import StackedBar from '../components/StackedBar';
-import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import axios from 'axios';
-import FeedMain from '../components/FeedMain';
 import NewsCard from '../components/NewsCard';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';

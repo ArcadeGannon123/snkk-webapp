@@ -5,14 +5,7 @@ import FeedMain from '../components/FeedMain';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import RowNews from '../components/RowNews';
 import axios from 'axios';
-import { UserContext } from '../components/UserContext';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Box from '@mui/material/Box';
 import Cookies from 'universal-cookie';
-import Button from '@mui/material/Button';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
-import BarChartIcon from '@mui/icons-material/BarChart';
 
 //const Topicos = ['Todos','topico2','topico3','hello','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3']
 

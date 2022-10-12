@@ -14,10 +14,10 @@ export default function AlignItemsList({data}) {
             <>  
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
-                <Avatar alt={usuario.nombre} src="/static/images/avatar/1.jpg" />
+                <Avatar alt={usuario.nombreUsuario} src="/static/images/avatar/1.jpg" />
                 </ListItemAvatar>
                 <ListItemText
-                primary={usuario.nombre}
+                primary={usuario.nombreUsuario}
                 secondary={
                     <React.Fragment>
                     <Typography
@@ -26,7 +26,7 @@ export default function AlignItemsList({data}) {
                         variant="body2"
                         color="text.primary"
                     >
-                        {usuario.actividad}
+                        {usuario.descripcion}
                     </Typography>
                     {'  |  '+usuario.fecha}
                     </React.Fragment>
