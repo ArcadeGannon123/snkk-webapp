@@ -12,6 +12,7 @@ import Cookies from 'universal-cookie';
 import Button from '@mui/material/Button';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import {Adsense} from '@ctrl/react-adsense';
+import LinearProgress from '@mui/material/LinearProgress';
 
 //const Topicos = ['Todos','topico2','topico3','hello','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3']
 
@@ -20,7 +21,7 @@ function NnewsPage(props) {
     
     const cookies = new Cookies();
 
-    const [data,setData]= useState([]);
+    const [data,setData]= useState(null);
     const [topics,setTopics]= useState(['Todos']);
     const [value, setValue] = useState(0);
 
@@ -36,7 +37,6 @@ function NnewsPage(props) {
         await axios.get(url)
         .then(res => {                                
             setData(res.data)
-            console.log(res.data)
         
         })
         .catch(err => {
@@ -63,13 +63,13 @@ function NnewsPage(props) {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        setData([]);
+        setData(null);
         getData(topics[newValue]);
     };
 
     const handleClick = () =>{
         cookies.set('topico',topics[value],{path:'/'});
-        window.location.href = './detalles/topico/'+data.title;
+        window.location.href = './detalles/topico/'+topics[value];
     }
 
   
@@ -77,6 +77,7 @@ function NnewsPage(props) {
         <>  
             <Navbar />            
             <FrontPage>
+                <div className='fp-container'>
                 <div className="title">
                     <span>
                         <NewspaperIcon/>
@@ -103,7 +104,7 @@ function NnewsPage(props) {
                     <div>
                         <Adsense client="ca-pub-2909524242328894" slot=""/>
                     </div>
-                    {data[0] ? <>
+                    {data ? <>
                     <FeedMain data={data[0]}/>
                     <hr/>
                     <div className="feed-rest-news">
@@ -116,9 +117,12 @@ function NnewsPage(props) {
                             ))}
                         </div>
                     </div>
-                    </>:<></>}
+                    </>:  
+                    <Box sx={{ width: '100%' }}>
+                        <LinearProgress />
+                    </Box>}
                 </div>
-                
+                </div>
 
             </FrontPage>
         </>
@@ -135,6 +139,20 @@ grid-template-columns: 60%;
 align-items:center;
 justify-content:center;
 background-color: #f4f4f9;
+@media screen and (max-width: 1250px) {
+grid-template-columns: 1fr 4fr;
+.fp-container{
+    grid-column:2/6;
+    margin: 0 1rem;
+}
+}
+@media screen and (max-width: 700px) {
+    grid-template-columns: 100%;
+.fp-container{
+    grid-column:1/2;
+}
+}
+
 
 .topics{
     background-color:white;
@@ -144,6 +162,10 @@ background-color: #f4f4f9;
 .feed-rest-news{    
     display:grid;
     grid-template-columns: 3fr 1fr;
+@media screen and (max-width: 1600px) {
+    grid-template-columns: 1fr;
+}
+
 }
 
 .news-container{

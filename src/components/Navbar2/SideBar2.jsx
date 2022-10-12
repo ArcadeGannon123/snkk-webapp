@@ -82,6 +82,8 @@ flex-direction:column;
 width:80px;
 gap:1rem;
 padding: 10px 0;
+
+
 .category{
   color:white;
   font-size:0.7rem;

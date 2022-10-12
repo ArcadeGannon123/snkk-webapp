@@ -1,11 +1,11 @@
-import React,{useState, useEffect, useContext} from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
 import FeedMain from '../components/FeedMain';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
 import RowNews from '../components/RowNews';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
+import AnalyticsIcon from '@mui/icons-material/Analytics';
 
 //const Topicos = ['Todos','topico2','topico3','hello','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3']
 
@@ -46,7 +46,7 @@ function UserNewsPage(props) {
             <FrontPage>
                 <div className="title">
                     <span>
-                        <NewspaperIcon/>
+                        <AnalyticsIcon/>
                         Noticias analizadas  
                     </span>                                      
                 </div>   

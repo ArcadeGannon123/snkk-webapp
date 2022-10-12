@@ -1,11 +1,8 @@
 import React from 'react';
-import {FaHandHoldingHeart,FaJournalWhills} from 'react-icons/fa';
-import {BiNews} from 'react-icons/bi';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-import PeopleIcon from '@mui/icons-material/People';
 import TvIcon from '@mui/icons-material/Tv';
 import HelpIcon from '@mui/icons-material/Help';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
@@ -31,14 +28,8 @@ export const SidebarDataPages = [
     path: '/medios',
     icon: <TvIcon />,
     cName: 'nav-text'
-  },
-  {
-    title: 'Periodistas',
-    title2: 'Periodistas',
-    path: '/periodistas',
-    icon: <PeopleIcon />,
-    cName: 'nav-text'
   }
+
   
 ];
 export const SidebarDataDash = [

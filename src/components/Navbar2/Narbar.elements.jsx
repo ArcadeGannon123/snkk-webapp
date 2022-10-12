@@ -18,6 +18,10 @@ export const SideBarContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   background-color: #353535;
+  z-index:10;
+  @media screen and (max-width: 700px) {
+    width:100%;
+  }
 `;
 export const SideBarContainer2 = styled.div`
 
@@ -28,6 +32,10 @@ export const SideBarContainer2 = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   background-color: #353535;
+  z-index:10;
+  @media screen and (max-width: 700px) {
+    display:none;
+  }
 `;
 
 export const FaBarsContainer = styled.div`
@@ -89,7 +97,8 @@ export const Menu = styled.ul`
   align-items: center;
   list-style: none;
   margin:0 auto 0 0;
-  @media screen and (max-width: 1160px) {
+  @media screen and (max-width: 700px) {
+    display:none;
     color: black;
     background-color: #F7F9F4;
     position: absolute;
@@ -107,13 +116,13 @@ export const Menu = styled.ul`
   .icon-login{
     display:none;    
     text-decoration:none;
-    @media screen and (max-width: 1160px) {
+    @media screen and (max-width: 700px) {
       display:flex;
     }
   }
   .user-bar{
     text-decoration:none;
-    @media screen and (max-width: 1160px) {
+    @media screen and (max-width: 700px) {
       display:none;
     }
   }
@@ -123,7 +132,7 @@ export const Menu = styled.ul`
 export const MenuItem = styled.li`
   display: flex;
   justify-content: space-between;
-  @media screen and (max-width: 1160px) {
+  @media screen and (max-width: 700px) {
     width: 70%;
     display: flex;
     align-items: center;
@@ -147,7 +156,7 @@ export const MenuItemLink = styled(NavLink)`
     transition: 0.2s all ease;
 
   }
-  @media screen and (max-width: 1160px) {
+  @media screen and (max-width: 700px) {
     color:black;
     width: 100%;
     padding:0;
@@ -174,7 +183,7 @@ export const MenuItemLink = styled(NavLink)`
 
 export const MobileIcon = styled.div`
   display: none;
-  @media screen and (max-width: 1160px) {
+  @media screen and (max-width: 700px) {
     display: flex;
     align-items: center;
     cursor: pointer;

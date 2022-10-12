@@ -56,7 +56,10 @@ const Navbar = () => {
 
   const [sidebar, setSidebar] = useState(false);
 
-  const showSidebar = () => setSidebar(!sidebar);
+  const showSidebar = () => {
+    setSidebar(!sidebar);
+    _setShowMobileMenu(showMobileMenu)
+  };
 
 
 
@@ -67,7 +70,7 @@ const Navbar = () => {
       <SideBar sidebar={sidebar} />
     </SideBarContainer>   
     :
-    <SideBarContainer2>
+    <SideBarContainer2 >
       <SideBar2 sidebar={sidebar} />
     </SideBarContainer2> 
     
@@ -101,10 +104,10 @@ const Navbar = () => {
             );
           })}    
         </Menu>
-
-        <MobileIcon variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)}>
+          
+        {/*<MobileIcon variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)}>
           {showMobileMenu ? <FaTimes /> : <FaBars />}
-        </MobileIcon>
+        </MobileIcon>*/}
 
         <UserContainer>
           {cookies.get('userData') ? 

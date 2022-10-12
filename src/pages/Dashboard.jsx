@@ -10,6 +10,8 @@ import Cookies from 'universal-cookie';
 import Chip from '@mui/material/Chip';
 import PublicIcon from '@mui/icons-material/Public';
 import axios from 'axios';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import DashboardIcon from '@mui/icons-material/Dashboard';
 
 const dataActivity ={
     1:0.5,
@@ -101,7 +103,7 @@ function ProfilePage(props) {
             <Navbar />
             <FrontPage>
                 <div className="title">
-                    <NewspaperIcon/>
+                    <DashboardIcon/>
                     Resumen de actividades                                        
                 </div>
                 {isloaded1&&isloaded2&&isloaded3 ?<>
@@ -129,11 +131,17 @@ function ProfilePage(props) {
                     <div className="db score s2" style={{gridRow:'2/3',gridColumn:'1/2'}}><DashScore data={{title:'Noticias analizadas',score:datos.noticiasAnalizadas}}/> </div>
                     <div className="db score s3" style={{gridRow:'2/3',gridColumn:'2/3'}}><DashScore data={{title:'Análisis contribuidos',score:datos.sesgosReportados}}/> </div> 
                     <div className="db chart c1" style={{gridRow:'1/3',gridColumn:'3/5'}}><BarChart datos={datos.interaccionesDiarias} title='Actividad de los últimos 5 días' label='cantidad'/></div>
-                    <div className="db donut d1" style={{gridRow:'4/6',gridColumn:'1/3'}}><Donut datos={datos.distribucionSesgos.izquierdaDerecha} title='Sesgo de Izquierda o Derecha' label='cantidad' /> </div> 
-                    <div className="db donut d2" style={{gridRow:'5/6',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.lenguajeOfensivo} title='Presencia de lenguaje ofensivo' label='cantidad'/> </div> 
-                    <div className="db donut d3" style={{gridRow:'4/5',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.sensacionalismo} title='¿Es una noticia sensacionalista?' label='cantidad'/> </div> 
-                    <div className="db donut d4" style={{gridRow:'4/5',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo Conservador o Progresista' label='cantidad'/> </div> 
-                    <div className="db donut d4" style={{gridRow:'5/6',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo en libertad económica' label='cantidad'/> </div> 
+                </Dashboard>
+                <div className="title" style={{fontSize:'1.5rem', zIndex:'100'}}>
+                    <QueryStatsIcon/>
+                    Sesgos enviados                                      
+                </div>
+                <Dashboard>
+                    <div className="db donut d1" style={{gridRow:'1/3',gridColumn:'1/3'}}><Donut datos={datos.distribucionSesgos.izquierdaDerecha} title='Sesgo de Izquierda o Derecha' label='cantidad' /> </div> 
+                    <div className="db donut d2" style={{gridRow:'2/3',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.lenguajeOfensivo} title='Presencia de lenguaje ofensivo' label='cantidad'/> </div> 
+                    <div className="db donut d3" style={{gridRow:'1/2',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.sensacionalismo} title='¿Es una noticia sensacionalista?' label='cantidad'/> </div> 
+                    <div className="db donut d4" style={{gridRow:'1/2',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo Conservador o Progresista' label='cantidad'/> </div> 
+                    <div className="db donut d4" style={{gridRow:'2/3',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo en libertad económica' label='cantidad'/> </div> 
                 </Dashboard>
                 </>:<></>}
                     {/*

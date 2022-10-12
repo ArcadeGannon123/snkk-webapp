@@ -59,7 +59,7 @@ export default function MediaCard({data}) {
         height="140"
         image={`https://logo.clearbit.com/${data.medio}`}
         alt="media"
-        sx={{backgroundColor:'#353535'}}
+        sx={{objectFit:'contain'}}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -71,7 +71,7 @@ export default function MediaCard({data}) {
         <TextRating rating={data.confiabilidad}/>
       </CardContent>
       <CardActions>
-        <Button href={data.medio} target="_blank" rel="noreferrer noopener"  size="small">Ir al sítio</Button>
+        <Button href={'https://'+data.medio} target="_blank" rel="noreferrer noopener"  size="small">Ir al sítio</Button>
         <Button onClick={handleClick} size="small">Detalles</Button>
       </CardActions>
     </Card>

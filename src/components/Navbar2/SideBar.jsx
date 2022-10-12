@@ -90,6 +90,11 @@ export default SideBar;
 const BaseSideBar = styled.div`
 width:300px;
 padding: 10px 0;
+@media screen and (max-width: 700px) {
+    width:100%;
+  }
+
+
 .category{
   padding: 5px 20px;
   color: white;

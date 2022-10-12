@@ -73,8 +73,7 @@ function TopicDetails(props) {
     const topico = cookies.get('topico');
     const lastpage = cookies.get('lastpage');
 
-    const [dataTopico,setDataTopico]= useState({});
-    const [loaded,setLoaded]= useState(false);
+    const [dataTopico,setDataTopico]= useState(null);
 
     const getDataTopico = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/noticia/sesgo-topico?topico='+topico;
@@ -83,7 +82,6 @@ function TopicDetails(props) {
         await axios.get(url)
         .then(res => {                                
             setDataTopico(res.data)
-            setLoaded(true)
         
         })
         .catch(err => {
@@ -101,6 +99,7 @@ function TopicDetails(props) {
         <>   
             <Navbar />            
             <FrontPage>
+            {dataTopico ?<>
                 <div className="title" style={{fontSize:'1.3rem'}}>
                     <a style={{textDecoration: 'none'}} href={lastpage}>
                         <ArrowBackIcon/>
@@ -109,7 +108,7 @@ function TopicDetails(props) {
                 </div>
                 <div className="news-container">
                     <FeedMainBase>
-                        <div className="title">
+                        <div className="title" style={{fontSize:'2.5rem'}}>
                             {topico}
                         </div> 
                         <DashScore data={{title:'Noticias totales',score:dataTopico.total}}/>                               
@@ -119,29 +118,27 @@ function TopicDetails(props) {
                     <NewspaperIcon/>
                     Sesgo del tópico                                     
                 </div>
-                <Analysis> 
-                {loaded ?<>
+                <Analysis>                 
                     <div className="media-bias">
-                        <div className="bias-label"> Sesgo de Izquierda o Derecha </div>                        
-                        <BarChart datos={dataTopico.sesgos.izquierdaDerecha} title='Porcentaje de noticias' />                                              
+                        <div className="bias-label" > Sesgo de Izquierda o Derecha </div>                        
+                        <BarChart datos={dataTopico.sesgos.izquierdaDerecha} title='' label='Cantidad de noticias' />                                              
                     </div>
                     <div className="media-bias">
                         <div className="bias-label"> Presencia de lenguaje ofensivo </div>
-                        <BarChart datos={dataTopico.sesgos.lenguajeOfensivo} title='Porcentaje de noticias' /> 
+                        <BarChart datos={dataTopico.sesgos.lenguajeOfensivo} title='' label='Cantidad de noticias' /> 
                     </div>
                     <div className="media-bias">
                         <div className="bias-label"> ¿Es una noticia sensacionalista? </div>
-                        <BarChart datos={dataTopico.sesgos.izquierdaDerecha} title='Porcentaje de noticias'/> 
+                        <BarChart datos={dataTopico.sesgos.izquierdaDerecha} title='' label='Cantidad de noticias'/> 
                     </div>
                     <div className="media-bias">
                         <div className="bias-label"> Sesgo Conservador o Progresista </div>
-                        <BarChart datos={dataTopico.sesgos.conservadorProgresista} title='Porcentaje de noticias' /> 
+                        <BarChart datos={dataTopico.sesgos.conservadorProgresista} title='' label='Cantidad de noticias'/> 
                     </div> 
                     <div className="media-bias" >
                         <div className="bias-label"> Sesgo en libertad económica </div>
-                        <BarChart datos={dataTopico.sesgos.libertadEconomica} title='Porcentaje de noticias' /> 
-                    </div> 
-                </>:<></>}     
+                        <BarChart datos={dataTopico.sesgos.libertadEconomica} title='' label='Cantidad de noticias'/> 
+                    </div>                    
                 </Analysis>
                 <div className="title">
                     <NewspaperIcon/>
@@ -150,7 +147,8 @@ function TopicDetails(props) {
                 <CommentSection>
 
                 </CommentSection>
-            </FrontPage>  
+            </>:<></>}   
+            </FrontPage>             
         </>
         
     );

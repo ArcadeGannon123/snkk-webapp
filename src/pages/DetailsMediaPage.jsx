@@ -77,23 +77,16 @@ function DetailsMediaPage(props) {
     const medioData = cookies.get('medioData');
     const lastpage = cookies.get('lastpage');
 
-    
-    const [loaded,setLoaded]= useState(false);
     const [data,setData]= useState(null);
     const [periodistas,setPeriodistas]= useState(null);
 
 
     const getData = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/medio/sesgo'; 
-        const body={url:medioData.medio};        
-        console.log(body)
+        const body={url:medioData.medio};    
         await axios.post(url,body)
         .then(res => {                                
-            setData(res.data)
-            setLoaded(true)
-            console.log('aaaaaaaaaaaaaaaaaasa')
-            console.log(res.data)
-        
+            setData(res.data)        
         })
         .catch(err => {
             console.log(err)
@@ -101,12 +94,10 @@ function DetailsMediaPage(props) {
     }
     const getPeriodista = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/periodista/medio'; 
-        const body={url:medioData.medio};        
-        console.log(body)
+        const body={url:medioData.medio};     
         await axios.post(url,body)
         .then(res => {                                
-            setPeriodistas(res.data)
-            console.log(res.data)        
+            setPeriodistas(res.data)      
         })
         .catch(err => {
             console.log(err)
@@ -130,11 +121,10 @@ function DetailsMediaPage(props) {
                         Volver 
                     </a>                                                          
                 </div>
-                <div className="news-container">
-                    
+                <div className="news-container">                    
                     <FeedMainBase>
                         <div className="main-image">
-                            <img src={`https://logo.clearbit.com/${medioData.medio}`} alt='' />
+                            <img src={`https://logo.clearbit.com/${medioData.medio}`} alt='medio' />
                         </div>
                         <div className="main-data">
                             <Typography gutterBottom variant="h5" component="div">
@@ -143,14 +133,14 @@ function DetailsMediaPage(props) {
                             <Typography variant="body2" color="text.secondary">
                                 Rating:
                             </Typography>
-                            <TextRating rating={medioData.confiabilidad}/>
-                            <div className="main-buttom">
-                                <Button href={medioData.medio} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
-                                    Ir al sítio
-                                </Button>    
-                            </div>                   
+                            <TextRating rating={medioData.confiabilidad}/>                
                                         
-                        </div>
+                        </div>                        
+                        <div className="main-buttom">
+                            <Button href={'https://'+medioData.medio} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
+                                Ir al sítio
+                            </Button>    
+                        </div>  
                         
                     </FeedMainBase>      
                 </div>
@@ -236,9 +226,8 @@ gap:1rem;
 `
 
 const FeedMainBase = styled.div`
-display:grid;
-grid-template-columns: 1fr 3fr;
-
+display:flex;
+height:120px;
 .main-button{
     display:flex;
     justify-content:flex-end;
@@ -247,8 +236,10 @@ grid-template-columns: 1fr 3fr;
 }
 
 .main-image{
-    position:relative;
     background-color:black;
+    display:grid;
+    align-items:center;
+
     
 }
 
@@ -261,10 +252,7 @@ grid-template-columns: 1fr 3fr;
 }
 
 .main-image img{
-    width:100%;    
-    height:100%;
-    object-fit: cover;   
-    aspect-ratio: 1/1;
+    object-fit: cover; 
 }
 .main-data{
     padding-left:20px;

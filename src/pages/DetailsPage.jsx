@@ -100,12 +100,14 @@ function DetailsPage(props) {
             }}).then(console.log('ooo'))
         .catch(err => console.log(err))
     }
-    useEffect(() => {        
-        visita(); 
+    useEffect(() => {  
+        if (user){     
+            visita();
+        }
     }, []);
 
     return (
-        <>  {console.log(data)}
+        <>
             <Navbar />            
             <FrontPage>
                 <div className="title" style={{fontSize:'1.3rem'}}>
@@ -142,7 +144,7 @@ function DetailsPage(props) {
                                 {data.title}
                             </div>
                             <div className="main-periodista">
-                                {fakenews.periodista.nombre} | {data.published_date.split('T')[0]}
+                                {data.periodista.hasOwnProperty( "0" ) ? data.periodista[0].nombre: ''} | {data.published_date.split('T')[0]}
                             </div>  
                             <div className="main-buttom">
                                 <Button href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>

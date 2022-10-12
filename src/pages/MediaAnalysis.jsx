@@ -4,22 +4,19 @@ import Navbar from '../components/Navbar2/Navbar';
 import axios from 'axios';
 import RowMedia from '../components/RowMedia';
 import Cookies from 'universal-cookie';
-import LanguageIcon from '@mui/icons-material/Language';
+import TvIcon from '@mui/icons-material/Tv';
 
 
 
 function MediaAnalysis(props) {
 
     const cookies = new Cookies();
-    const token = cookies.get('userData').token;
 
     const [data,setData]= useState([]);
     const [loaded,setLoaded]= useState(false);
 
     const getData = async () => {    
-        const __url ='https://api-news-feria-2022.herokuapp.com/medio/listado-medios';
-        const url ='https://api-news-feria-2022.herokuapp.com/medio/confiabilidad-medios';        
-        const _url ='https://api-news-feria-2022.herokuapp.com/noticia/listado-noticias';
+        const url ='https://api-news-feria-2022.herokuapp.com/medio/confiabilidad-medios';  
         
         console.log(url)
         await axios.get(url)
@@ -42,7 +39,7 @@ function MediaAnalysis(props) {
             <Navbar />            
             <FrontPage>   
                 <div className="title">
-                    <LanguageIcon/>
+                    <TvIcon/>
                     Análisis de medios                                   
                 </div>
                 <div className="media-container">

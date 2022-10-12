@@ -47,7 +47,7 @@ function RowNews({data}) {
 
     return (
         <FeedMainBase>
-            
+            {console.log(data)}
             <div className="main-image">
                 <img src={data.urlToImage} alt='' />
             </div>
@@ -60,7 +60,7 @@ function RowNews({data}) {
                     {data.title}
                 </div>
                 <div className="main-periodista">
-                    {fakenews.periodista.nombre} | {data.published_date.split('T')[0]}
+                    {data.periodista.hasOwnProperty( "0" ) ? data.periodista[0].nombre: ''} | {data.published_date.split('T')[0]}
                 </div>
                 <div className="media-bias">
                     <StackedBar data={data.sesgoIzquierdaDerecha}/>

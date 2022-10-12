@@ -1,7 +1,6 @@
 import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
 import axios from 'axios';
 import NewsCard from '../components/NewsCard';
 import Tabs from '@mui/material/Tabs';
@@ -11,6 +10,8 @@ import RowNews from '../components/RowNews';
 import Cookies from 'universal-cookie';
 import Button from '@mui/material/Button';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import LinearProgress from '@mui/material/LinearProgress';
+import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 
 const Topicos = ['Todos','topico2','topico3','hello','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3']
 
@@ -19,7 +20,7 @@ function PopularPage(props) {
 
     const cookies = new Cookies();
 
-    const [data,setData]= useState([]);
+    const [data,setData]= useState(null);
     const [topics,setTopics]= useState(['Todos']);
     const [value, setValue] = useState(0);
 
@@ -61,7 +62,7 @@ function PopularPage(props) {
 
     const handleChange = (event, newValue) => {
         setValue(newValue);
-        setData([]);
+        setData(null);
         getData(topics[newValue]);
     };
 
@@ -76,7 +77,7 @@ function PopularPage(props) {
             <FrontPage>   
                 <div className="title">
                     <span>
-                        <NewspaperIcon/>
+                        <TrendingUpIcon/>
                         Populares  
                     </span>
                     <Button onClick={handleClick} variant="outlined" startIcon={<BarChartIcon />}>
@@ -96,7 +97,7 @@ function PopularPage(props) {
                         ))}
                     </Tabs>
                 </Box>
-                {data[0] ? 
+                {data ? 
                 <div className="news-container">
                     <div className="header"> 
                         {data.slice(0, 6).map((news => (
@@ -115,8 +116,10 @@ function PopularPage(props) {
                         </div>
                     </div>
                 </div>
-                :
-                <></>}
+                :                  
+                <Box sx={{ width: '100%', margin:'1rem 0'}}>
+                    <LinearProgress />
+                </Box>}
                 
             </FrontPage>
         </>
@@ -172,41 +175,3 @@ background-color: #f4f4f9;
 
 
 `
-const NewsData = [
-    {
-      img: 'https://images.unsplash.com/photo-1551963831-b3b1ca40c98e',
-      title: '“No aceptaré más incomodidades”: Marlene de la Fuente arremetió en contra de la nueva pareja de Iván Núñez',
-      author: '@bkristastucchio',
-      media: 'La Cuarta',
-      gridC: '1/3',
-      gridR: '1/3',
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d',
-      title: '“No aceptaré más incomodidades”: Marlene de la Fuente arremetió en contra de la nueva pareja de Iván Núñez',
-      author: '@rollelflex_graphy726',
-      media: 'La Cuarta',
-      grid: 1/3,
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1522770179533-24471fcdba45',
-      title: '“No aceptaré más incomodidades”: Marlene de la Fuente arremetió en contra de la nueva pareja de Iván Núñez',
-      author: '@helloimnik',
-      media: 'La Cuarta',
-      grid: 1/3,
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1444418776041-9c7e33cc5a9c',
-      title: '“No aceptaré más incomodidades”: Marlene de la Fuente arremetió en contra de la nueva pareja de Iván Núñez',
-      author: '@nolanissac',
-      media: 'La Cuarta',
-      grid: 1/3,
-    },
-    {
-      img: 'https://images.unsplash.com/photo-1533827432537-70133748f5c8',
-      title: '“No aceptaré más incomodidades”: Marlene de la Fuente arremetió en contra de la nueva pareja de Iván Núñez',
-      author: '@hjrc33',
-      media: 'La Cuarta',
-      grid: 1/3,
-    },
-  ];
