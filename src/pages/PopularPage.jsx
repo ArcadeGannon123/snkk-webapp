@@ -31,7 +31,7 @@ function PopularPage(props) {
         if (topic === 'Todos'){
             url ='https://api-news-feria-2022.herokuapp.com/noticia/populares?dias=2'
         }else{
-            url ='https://api-news-feria-2022.herokuapp.com/noticia/topico?topico='+topic;
+            url ='https://api-news-feria-2022.herokuapp.com/noticia/populares?dias=2&topico='+topic;
         }
         
         console.log(url)

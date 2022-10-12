@@ -12,11 +12,11 @@ import PublicIcon from '@mui/icons-material/Public';
 import axios from 'axios';
 
 const dataActivity ={
-    1:20,
-    2:13,
-    3:4,
-    4:5,
-    5:18,
+    1:0.5,
+    2:0.2,
+    3:0,
+    4:0.3,
+    5:0,
 }
 
 
@@ -26,6 +26,32 @@ function ProfilePage(props) {
     const userdata = cookies.get('userData');
 
     const [ingresos,setIngresos]= useState('');
+    const [datos,setDatos]= useState('');
+    const [bp,setBP]= useState(0);
+
+    const [isloaded1,setIsloaded1]= useState(false);
+    const [isloaded2,setIsloaded2]= useState(false);
+    const [isloaded3,setIsloaded3]= useState(false);
+
+    const getBP = async () => {    
+        const url ='https://api-news-feria-2022.herokuapp.com/usuario/recompensa';
+        const token = cookies.get('userData').token;
+        
+        console.log(url)
+        await axios.get(url,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }})
+        .then(res => { 
+            console.log(res.data)                               
+            setBP(res.data)    
+            setIsloaded3(true)          
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
 
     const getIngresos = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/incentivos/usuario';
@@ -36,16 +62,38 @@ function ProfilePage(props) {
             headers: {
                 'Authorization': `Bearer ${token}`
             }})
-        .then(res => { 
-            console.log(res.data)                               
-            setIngresos(res.data.pago)        
+        .then(res => {                             
+            setIngresos(res.data.pago)    
+            setIsloaded2(true)        
         })
         .catch(err => {
             console.log(err)
         })
     }
+    const getDatos = async () => {    
+        const url ='https://api-news-feria-2022.herokuapp.com/perfil/personal';
+        const token = cookies.get('userData').token;
+        
+        console.log(url)
+        await axios.get(url,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }})
+        .then(res => {     
+            console.log(res.data)                           
+            setDatos(res.data)   
+            setIsloaded1(true)     
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
+
     useEffect(() => {
         getIngresos();
+        getDatos();
+        getBP();
     }, []);
 
     return (
@@ -56,6 +104,7 @@ function ProfilePage(props) {
                     <NewspaperIcon/>
                     Resumen de actividades                                        
                 </div>
+                {isloaded1&&isloaded2&&isloaded3 ?<>
                 <ProfileHeader>
                     <div className="profile-picture">
                         <User />
@@ -72,20 +121,18 @@ function ProfilePage(props) {
                     Global                                      
                 </div>
                 <Dashboard>
-                    <div className="db score s1" style={{gridRow:'1/2',gridColumn:'1/2'}}><DashScore data={{title:'Puntaje BlankPoint',score:'153'}}/> </div>
-                    <div className="db score s1" style={{gridRow:'1/2',gridColumn:'2/3'}}><DashScore data={{title:'Ingresos estimados',score:`${ingresos} CLP`}}/> </div>
-                    <div className="db score s2" style={{gridRow:'2/3',gridColumn:'1/2'}}><DashScore data={{title:'Noticias analizadas',score:'153'}}/> </div>
-                    <div className="db score s3" style={{gridRow:'2/3',gridColumn:'2/3'}}><DashScore data={{title:'Análisis contribuidos',score:'153'}}/> </div> 
-                    <div className="db chart c1" style={{gridRow:'1/3',gridColumn:'3/5'}}><BarChart datos={dataActivity} title='Actividad de los últimos 5 días' label='cantidad'/></div>
-                    <div className="db donut d1" style={{gridRow:'4/6',gridColumn:'1/3'}}><Donut datos={dataActivity} title='Sesgo de Izquierda o Derecha' label='cantidad' /> </div> 
-                    <div className="db donut d2" style={{gridRow:'5/6',gridColumn:'3/4'}}><Donut datos={dataActivity} title='Presencia de lenguaje ofensivo' label='cantidad'/> </div> 
-                    <div className="db donut d3" style={{gridRow:'4/5',gridColumn:'3/4'}}><Donut datos={dataActivity} title='¿Es una noticia sensacionalista?' label='cantidad'/> </div> 
-                    <div className="db donut d4" style={{gridRow:'4/5',gridColumn:'4/5'}}><Donut datos={dataActivity} title='Sesgo Conservador o Progresista' label='cantidad'/> </div> 
-                    <div className="db donut d4" style={{gridRow:'5/6',gridColumn:'4/5'}}><Donut datos={dataActivity} title='Sesgo en libertad económica' label='cantidad'/> </div> 
-                </Dashboard>  
-                <Dashboard>
-                   
+                    <div className="db score s1" style={{gridRow:'1/2',gridColumn:'1/2'}}><DashScore data={{title:'Puntaje BlankPoint',score:bp.toFixed(2)}}/> </div>
+                    <div className="db score s1" style={{gridRow:'1/2',gridColumn:'2/3'}}><DashScore data={{title:'Ingresos estimados',score:`${ingresos.toFixed(2)} CLP`}}/> </div>
+                    <div className="db score s2" style={{gridRow:'2/3',gridColumn:'1/2'}}><DashScore data={{title:'Noticias analizadas',score:datos.noticiasAnalizadas}}/> </div>
+                    <div className="db score s3" style={{gridRow:'2/3',gridColumn:'2/3'}}><DashScore data={{title:'Análisis contribuidos',score:datos.sesgosReportados}}/> </div> 
+                    <div className="db chart c1" style={{gridRow:'1/3',gridColumn:'3/5'}}><BarChart datos={datos.interaccionesDiarias} title='Actividad de los últimos 5 días' label='cantidad'/></div>
+                    <div className="db donut d1" style={{gridRow:'4/6',gridColumn:'1/3'}}><Donut datos={datos.distribucionSesgos.izquierdaDerecha} title='Sesgo de Izquierda o Derecha' label='cantidad' /> </div> 
+                    <div className="db donut d2" style={{gridRow:'5/6',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.lenguajeOfensivo} title='Presencia de lenguaje ofensivo' label='cantidad'/> </div> 
+                    <div className="db donut d3" style={{gridRow:'4/5',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.sensacionalismo} title='¿Es una noticia sensacionalista?' label='cantidad'/> </div> 
+                    <div className="db donut d4" style={{gridRow:'4/5',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo Conservador o Progresista' label='cantidad'/> </div> 
+                    <div className="db donut d4" style={{gridRow:'5/6',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo en libertad económica' label='cantidad'/> </div> 
                 </Dashboard>
+                </>:<></>}
                     {/*
                     
                     <div className="db line-chart">

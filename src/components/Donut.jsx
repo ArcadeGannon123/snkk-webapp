@@ -11,6 +11,7 @@ function Donut({datos,title, label}) {
 
     const [labels,setLabels] = useState([]);
     const [values,setValues] = useState([]);
+    const [nulo,setNulo] = useState(false);
 
     const data = {
         labels: labels,
@@ -44,7 +45,7 @@ function Donut({datos,title, label}) {
         plugins: {
             legend: {
             display: true,
-            position: "left"
+            position: "top"
             },
             title: {
               display: true,
@@ -56,14 +57,35 @@ function Donut({datos,title, label}) {
     useEffect(() => {    
         const keys = Object.keys(datos);
         const values= [];
-        keys.map((key)=> values.push(datos[key])); 
-        setLabels(keys)
-        setValues(values)
+        var count=0;
+        keys.map(function(key) {         
+            if (datos[key] !== 0){
+                values.push(datos[key]);
+            }else{
+                values.push(datos[key]); 
+                count = count+1;
+            }
+        }); 
+        if (count === keys.length){
+            setNulo(true)
+        }else{
+            setLabels(keys)
+            setValues(values)
+        }
+
     }, []);
 
     return (
         <div style={{height:'100%',boxShadow: 'rgba(100, 100, 111, 0.2) 0px 7px 29px 0px'}}>
-            <Doughnut options={options}  data={data}/>
+            {!nulo?
+                <Doughnut options={options}  data={data}/>
+                :
+                <div style={{display:'grid',justifyContent:'center',alignItems:'center',height:'100%',padding:'1rem'}}>
+                <div style={{color:'#284b63c7',fontSize:'1rem',fontWeight:'300',textAlign:'center'}}>{title}</div>
+                <div style={{color:'#284b63c7',fontSize:'1.3rem',fontWeight:'300',textAlign:'center'}}>Sin Datos.</div>
+                </div>
+            }
+            
         </div>
     );
 }
