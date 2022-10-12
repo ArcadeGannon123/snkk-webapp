@@ -10,6 +10,7 @@ import Cookies from 'universal-cookie';
 import Chip from '@mui/material/Chip';
 import axios from "axios";
 import Avatar from "@mui/material/Avatar";
+import {Adsense} from "@ctrl/react-adsense";
 
 const dataActivity ={
     1:20,
@@ -79,7 +80,9 @@ function PublicProfilePage(props) {
                 </Dashboard>
                 </> : <></>}
                 <Dashboard>
-                   
+                    <div>
+                        <Adsense client="ca-pub-2909524242328894" slot=""/>
+                    </div>
                 </Dashboard>
             </FrontPage>
         </>

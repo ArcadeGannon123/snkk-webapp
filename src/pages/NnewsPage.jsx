@@ -13,6 +13,7 @@ import Cookies from 'universal-cookie';
 import Button from '@mui/material/Button';
 import AnalyticsIcon from '@mui/icons-material/Analytics';
 import BarChartIcon from '@mui/icons-material/BarChart';
+import {Adsense} from '@ctrl/react-adsense';
 
 //const Topicos = ['Todos','topico2','topico3','hello','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3']
 
@@ -77,6 +78,7 @@ function NnewsPage(props) {
         <>  
             <Navbar />            
             <FrontPage>
+
                 <div className="title">
                     <span>
                         <NewspaperIcon/>
@@ -85,7 +87,7 @@ function NnewsPage(props) {
                     <Button onClick={handleClick} variant="outlined" startIcon={<BarChartIcon />}>
                         Detalles del tópico
                     </Button>                                       
-                </div>                 
+                </div>
                 <Box sx={{ maxWidth: '100%', bgcolor: 'background.paper', padding:'0 1rem'}}>
                     <Tabs
                         value={value}
@@ -98,8 +100,11 @@ function NnewsPage(props) {
                             <Tab label={topico} />
                         ))}
                     </Tabs>
-                </Box>    
+                </Box>
                 <div className="news-container">
+                    <div>
+                        <Adsense client="ca-pub-2909524242328894" slot=""/>
+                    </div>
                     {data[0] ? <>
                     <FeedMain data={data[0]}/>
                     <hr/>
@@ -116,7 +121,6 @@ function NnewsPage(props) {
                     </>:<></>}
                 </div>
                 
-
             </FrontPage>
         </>
     );
