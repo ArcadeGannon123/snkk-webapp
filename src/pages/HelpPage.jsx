@@ -89,6 +89,31 @@ function HelpPage(props) {
                     <br/>
                     Precisión Modelo: 74%
                 </div>
+                <div className="title">
+                    <HelpCenterIcon/>
+                        Preguntas Frecuentes
+                </div>
+                <div className="text-container">
+                    <div className="secondary-title">¿Cómo se obtiene el sesgo?</div>
+                    Nuestro proyecto cuenta con modelos basados en aprendizaje automatizado clásico y aprendizaje profundo.
+                    Estos modelos están en constante desarrollo alimentándose por la data obtenida mediante la aplicación.
+                </div>
+                <div className="text-container">
+                    <div className="secondary-title">¿Cómo obtengo la extensión?</div>
+                    Actualmente estamos en fase de beta cerrada. Si quieres usar la extensión contáctanos a través de
+                    blankpointapp@gmail.com.
+                </div>
+
+                <div className="text-container">
+                    <div className="secondary-title">¿En base a qué métricas se obtiene el sesgo?</div>
+                    Cada etiquetado y las métricas que se usan para el etiquetado está en la sección "Ayuda" arriba.
+                </div>
+
+                <div className="text-container">
+                    <div className="secondary-title">Quiero dar sugerencias/reclamos, donde puedo hacerlo?</div>
+                    Por favor contáctanos a blankpointapp@gmail.com con todas tus dudas, quejas y reclamos,
+                    Estamos felices de poder contactarte!
+                </div>
             </FrontPage>
         </>
     )
