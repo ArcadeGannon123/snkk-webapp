@@ -108,11 +108,16 @@ function Badget() {
             
             
             {trans ?
-            <Button onClick={handleClick} variant="outlined" startIcon={<KeyboardDoubleArrowUpIcon />}>
-                Subir de nivel {'-'+subirNivel[badget]+' Créditos'}
-            </Button> 
+                badget < 4 ?
+                <Button onClick={handleClick} variant="outlined" startIcon={<KeyboardDoubleArrowUpIcon />}>
+                    Subir de nivel {'-'+subirNivel[badget]+' Créditos'}
+                </Button> 
+                :
+                <Button disabled variant="outlined" startIcon={<KeyboardDoubleArrowUpIcon />}>
+                    Nivel Máximo
+                </Button> 
             :
-            <Button onClick={handleClick} color='error' variant="outlined" startIcon={<KeyboardDoubleArrowUpIcon />}>
+            <Button color='error' variant="outlined" startIcon={<KeyboardDoubleArrowUpIcon />}>
                 Créditos insuficientes {'-'+subirNivel[badget]+' Créditos'}
             </Button>        
             }
