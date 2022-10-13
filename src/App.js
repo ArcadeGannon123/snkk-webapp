@@ -63,7 +63,7 @@ function App() {
             <Route  path='/suscripcion' element={<SuscribePage/>}/>
             <Route path='/ayuda' element={<HelpPage/>}/>
             <Route path='/perfil/:id' element={<PublicProfilePage/>}/>
-            <Route path='/validaciones' element={<ValidationPage/>}/>
+            <Route path='/validaciones' element={<ValidationPage/>}/>  
         </Routes>
       </Router>
     </UserContext.Provider>
