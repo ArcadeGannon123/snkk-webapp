@@ -12,20 +12,60 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import Cookies from 'universal-cookie';
+import axios from 'axios';
 
-export default function FormDialog({id}) {
+export default function FormDialog({datos}) {
 
   const cookies = new Cookies();
   
   const [open, setOpen] = useState(false);
   const [disabled, setDisabled] = useState(false);
+  
+  const [sesgo1, setSesgo1] = useState(null);
+  const [sesgo2, setSesgo2] = useState(null);
+  const [sesgo3, setSesgo3] = useState(null);
+  const [sesgo4, setSesgo4] = useState(null);
+
+  const [pro, setPro] = useState(null);
+  const [econo, setEcono] = useState(null);
+  const [sensa, setSensa] = useState(null);
+  const [izqder, setIzqder] = useState(null);
+
+  const handlePercibido = () => {    
+    const token = cookies.get('userData').token;
+    function sendBias(urltab, token) {
+        let url = 'https://api-news-feria-2022.herokuapp.com/noticia/sesgo-percibido-usuario';
+        axios.post(
+            url,
+            {
+                url: urltab,
+                pro: pro,
+                econo: econo,
+                sensa: sensa,
+                izqder: izqder
+            },
+            {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            },
+        })
+        .then(result => {
+            console.log(result.data);
+            alert("Sesgos enviados correctamente!");
+        })
+        .catch(error => {
+            console.log(error);
+            alert("No se pudieron enviar los sesgos. Intente nuevamente");
+        })
+    }
+    sendBias(datos.url, token);
+  } 
 
   const sesgos={
     sesgo1:['izquierda','Centro','Derecha'],
-    sesgo2:['No ofensivo','Ofensivo'],
-    sesgo3:['No sensacionalista','Sensacionalista'],
-    sesgo4:['Conservador','Neutral','Progresista'],
-    sesgo5:['Libertad','Neutral','Igualdad']
+    sesgo2:['No sensacionalista','Sensacionalista'],
+    sesgo3:['Conservador','Neutral','Progresista'],
+    sesgo4:['Libertad','Neutral','Igualdad']
   };
 
   const handleClickOpen = () => {
@@ -37,41 +77,54 @@ export default function FormDialog({id}) {
   };
 
   const handleSend= () => {
-    const send={
-      sesgo1:sesgo1,
-      sesgo2:sesgo2,
-      sesgo3:sesgo3,
-      sesgo4:sesgo4,
-      sesgo5:sesgo5,
-    }
-    console.log(send);
+    handlePercibido()
     setOpen(false);  
     setDisabled(true);
-    cookies.set(id,{flag:true},{path:'/'});
+    cookies.set(datos.id,{flag:true},{path:'/'});
   };
 
-  const [sesgo1, setSesgo1] = useState('');
-  const [sesgo2, setSesgo2] = useState('');
-  const [sesgo3, setSesgo3] = useState('');
-  const [sesgo4, setSesgo4] = useState('');
-  const [sesgo5, setSesgo5] = useState('');
-
   function Selection(index,sesgos,value){
+
     const select = (event) =>{
+
+      const value = event.target.value;
       if (index === 1){
-        setSesgo1(event.target.value)
+        setSesgo1(value)
+        if (value === 'izquierda'){
+          setIzqder(0.25)
+        }else if (value === 'Centro'){
+          setIzqder(0.5)
+        }if (value === 'Derecha'){
+          setIzqder(0.75)
+        }          
       }
       else if (index === 2){
-        setSesgo2(event.target.value)
+        setSesgo2(value)
+        if (value === 'No sensacionalista'){
+          setSensa(1.0)
+        }else{
+          setSensa(0.0)
+        }
       }
       else if (index === 3){
-        setSesgo3(event.target.value)
-      }
-      else if (index === 4){
-        setSesgo4(event.target.value)
+        setSesgo3(value)
+        if (value === 'Conservador'){
+          setPro(1.0)
+        }else if (value === 'Neutral'){
+          setPro(0.5)
+        }else{
+          setPro(0.0)
+        } 
       }
       else{
-        setSesgo5(event.target.value)
+        setSesgo4(value)
+        if (value === 'Libertad'){
+          setEcono(1.0)
+        }else if (value === 'Neutral'){
+          setEcono(0.5)
+        }else{
+          setEcono(0.0)
+        } 
       }
     }
 
@@ -100,7 +153,7 @@ export default function FormDialog({id}) {
 
   return (
     <div>
-      {!cookies.get(id) ?
+      {!cookies.get(datos.id)|| true ?
       <Button variant="outlined" onClick={handleClickOpen} startIcon={<QueryStatsIcon/>}>        
         Evaluar
       </Button>
@@ -121,21 +174,17 @@ export default function FormDialog({id}) {
           </DialogContentText>
           {Selection(1,sesgos.sesgo1,sesgo1)}
           <DialogContentText >
-            Presencia de lenguaje ofensivo:
+            ¿Es una noticia sensacionalista?:
           </DialogContentText>
           {Selection(2,sesgos.sesgo2,sesgo2)}
           <DialogContentText >
-            ¿Es una noticia sensacionalista?:
+            Sesgo conservador o progresista:
           </DialogContentText>
           {Selection(3,sesgos.sesgo3,sesgo3)}
           <DialogContentText >
-            Sesgo conservador o progresista:
-          </DialogContentText>
-          {Selection(4,sesgos.sesgo4,sesgo4)}
-          <DialogContentText >
             Sesgo en libertad económica:
           </DialogContentText>
-          {Selection(5,sesgos.sesgo5,sesgo5)}
+          {Selection(4,sesgos.sesgo4,sesgo4)}
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>

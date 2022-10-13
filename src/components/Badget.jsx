@@ -17,7 +17,8 @@ const Color=[
     'white',
     '#FFEBCD',
     '#C0C0C0',
-    '#FFD700'
+    '#FFD700',
+    '#AFDDFF'
 ]
 
 const subirNivel = [
@@ -110,7 +111,7 @@ function Badget() {
             }
                 
              
-            <span style={{color:'#284b63c7'}}>{creditos} Créditos totales</span>
+            <span style={{color:'#284b63c7'}}>{creditos} Créditos disponibles</span>
         </div>
     );
 }

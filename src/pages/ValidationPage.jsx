@@ -66,7 +66,7 @@ const data=[{
 */
 
 
-function WorkPage(props) {
+function ValidationPage(props) {
     
     const cookies = new Cookies();
     const token = cookies.get('userData').token;
@@ -124,7 +124,7 @@ function WorkPage(props) {
     );
 }
 
-export default WorkPage;
+export default ValidationPage;
 
 
 const FrontPage = styled.div`

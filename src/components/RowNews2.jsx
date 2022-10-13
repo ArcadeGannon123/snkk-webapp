@@ -5,29 +5,6 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Cookies from 'universal-cookie';
 import FormDialog from '../components/DragDialog';
 
-const fakenews={
-    fecha: '06 agosto 2022',
-    fechaAnalisis: '06 agosto 2022',
-    url:"https://www.lacuarta.com/cronica/noticia/daniela-vega-mando-un-mensaje-de-apoyo-a-emilia-schneider-tras-los-polemicos-comentarios-que-emitio-gonzalo-de-la-carrera/LAUHC75MORFQPECWMHFCUGWHEI/",
-    title:"Daniela Vega mandó un mensaje de apoyo a Emilia Schneider tras los polémicos comentarios que emitió Gonzalo de la Carrera",
-    urlToImage:"https://www.latercera.com/resizer/yZvHXuAKiacRx4yJ-9ikIXq8Zdk=/168x0:1428x840/1023x682/cloudfront-us-east-1.images.arcpublishing.com/copesa/WCIJ6VU4HBFTTF4YY7FFJFAPK4.jpeg",
-    topic: '',
-    sesgoIA:{
-      archia:"0.5",
-      sesgo:"0.5"
-    },
-    periodista:{
-      nombre:"Rubith Morales Painepi",
-      bias:"0.5"
-    },
-    medio:{
-      url:"lacuarta.com",
-      nombre:"La Cuarta",
-      metricas:{
-        sesgo:"0.5",
-        confiabilidad:"0.5"
-      }
-    }}
 
 
 
@@ -62,7 +39,7 @@ function RowNews2({data}) {
                 <Button   href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
                     Ir a la noticia
                 </Button> 
-                <FormDialog id={data.id}/>
+                <FormDialog datos={data}/>
             </div>
         </FeedMainBase>
     );

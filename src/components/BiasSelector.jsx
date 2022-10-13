@@ -17,7 +17,7 @@ function DetailsMediaPage({titulo,datos}) {
 
     const handleChange = (event) => {
         setPeriodista(event.target.value);
-        {console.log(datos)}
+        
     };
 
     return (
@@ -44,15 +44,34 @@ function DetailsMediaPage({titulo,datos}) {
                     </FormControl>
                 </Box>                                    
             </Titulo>
-            {periodista ? <div>{periodista}</div> :<></>
-            /*
+            {periodista !== null ?
             <Analysis>
                 <div className="media-bias" style={{gridColumn:'1/3'}}>
                     <div className="bias-label"> Sesgo de Izquierda o Derecha </div>
-                    <StackedBar data={datos[periodista].izquierdaDerecha} />
+                    <StackedBar data={datos[periodista].sesgos.izquierdaDerecha} />
+                </div>
+                
+                <div className="media-bias">
+                    <div className="bias-label"> Presencia de lenguaje ofensivo </div>
+                    <StackedBar data={datos[periodista].sesgos.lenguajeOfensivo} />
+                </div>
+                
+                <div className="media-bias">
+                    <div className="bias-label"> ¿Es una noticia sensacionalista? </div>
+                    <StackedBar data={datos[periodista].sesgos.sensacionalismo} />
+                </div>
+                
+                <div className="media-bias">
+                    <div className="bias-label"> Sesgo Conservador o Progresista </div>
+                    <StackedBar data={datos[periodista].sesgos.conservadorProgresista} />
+                </div>  
+                
+                <div className="media-bias">
+                    <div className="bias-label"> Sesgo en libertad económica </div>
+                    <StackedBar data={datos[periodista].sesgos.libertadEconomica} />
                 </div>
             </Analysis>
-            :<></>*/}
+            :<></>}
         </>
         
     );

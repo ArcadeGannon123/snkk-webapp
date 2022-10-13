@@ -14,7 +14,7 @@ function UserNewsPage(props) {
     
     const cookies = new Cookies();
 
-    const [data,setData]= useState([]);
+    const [data,setData]= useState(null);
 
     const getData = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/usuario/noticias-analizadas';
@@ -51,7 +51,7 @@ function UserNewsPage(props) {
                     </span>                                      
                 </div>   
                 <div className="news-container">
-                    {data[0] ? <>
+                    {data !== null ? <>
                     <FeedMain data={data[0]}/>
                     <hr/>
                     <div className="feed-rest-news">

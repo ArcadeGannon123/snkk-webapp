@@ -17,6 +17,7 @@ import MediaAnalysis from './pages/MediaAnalysis';
 import TopicsAnalysis from './pages/TopicsAnalysis';
 import SuscribePage from './pages/SuscribePage';
 import UserNewsPage from './pages/UserNewsPage';
+import ValidationPage from './pages/ValidationPage';
 import DetailsMediaPage from './pages/DetailsMediaPage';
 import WorkPage from './pages/WorkPage';
 import HelpPage from "./pages/HelpPage";
@@ -62,6 +63,7 @@ function App() {
             <Route  path='/suscripcion' element={<SuscribePage/>}/>
             <Route path='/ayuda' element={<HelpPage/>}/>
             <Route path='/perfil/:id' element={<PublicProfilePage/>}/>
+            <Route path='/validacion' element={<ValidationPage/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>
