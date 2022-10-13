@@ -25,7 +25,7 @@ function UserNewsPage(props) {
                 'Authorization': `Bearer ${token}`
             }})
         .then(res => {    
-            console.log(res.data)                            
+            console.log(res.data)                           
             setData(res.data)        
         })
         .catch(err => {
@@ -51,7 +51,7 @@ function UserNewsPage(props) {
                     </span>                                      
                 </div>   
                 <div className="news-container">
-                    {data !== null ? <>
+                    {data !== null && data.length !== 0 ? <>
                     <FeedMain data={data[0]}/>
                     <hr/>
                     <div className="feed-rest-news">

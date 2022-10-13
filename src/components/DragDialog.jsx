@@ -153,7 +153,7 @@ export default function FormDialog({datos}) {
 
   return (
     <div>
-      {!cookies.get(datos.id)|| true ?
+      {!cookies.get(datos.id) ?
       <Button variant="outlined" onClick={handleClickOpen} startIcon={<QueryStatsIcon/>}>        
         Evaluar
       </Button>

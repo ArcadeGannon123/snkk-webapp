@@ -74,14 +74,14 @@ function ValidationPage(props) {
     const [data,setData]= useState(null);
 
     const getData = async () => {    
-        const _url ='https://api-news-feria-2022.herokuapp.com/reporte/usuario';
-        const url ='https://api-news-feria-2022.herokuapp.com/noticia/listado-noticias'
+        const url ='https://api-news-feria-2022.herokuapp.com/validar/obtener';
 
         await axios.get(url,{
             headers: {
                 'Authorization': `Bearer ${token}`
             }})
-        .then(res => {                              
+        .then(res => {   
+            console.log(res.data)                           
             setData(res.data)
         
         })
@@ -90,8 +90,7 @@ function ValidationPage(props) {
         })
     }
 
-    useEffect(() => {
-        cookies.set('lastpage','/validaciones',{path:'/'});         
+    useEffect(() => {   
         getData();
     }, []);
   
@@ -106,17 +105,19 @@ function ValidationPage(props) {
                     </span>                                      
                 </div>   
                 <div className="news-container">
-                    {data !== null ?
-                    <div className="feed-rest-news">
-                        <div className="news">
-                            {data.map((news,i) =>(
-                                <div key={i} >
-                                    <RowNews3 data={news}/>
-                                    <hr/>
-                                </div>
-                            ))}
+                    {data !== null?
+                     data !=='' ?
+                        <div className="feed-rest-news">
+                            <div className="news">
+                                {data.map((news,i) =>(
+                                    <div key={i} >
+                                        <RowNews3 data={news}/>
+                                        <hr/>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    :<div style={{display:'flex', justifyContent:'center'}}>Sin noticias</div>
                     :<></>}
                 </div> 
             </FrontPage>

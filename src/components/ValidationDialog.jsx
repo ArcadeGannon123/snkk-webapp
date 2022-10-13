@@ -10,6 +10,7 @@ import Cookies from 'universal-cookie';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 import Badget2 from '../components/Badget2';
+import axios from 'axios';
 
 export default function ValidationDialog({data}) {
 
@@ -61,23 +62,49 @@ export default function ValidationDialog({data}) {
     setOpen(false);
   };
 
-  const handleSend= () => {
-    setOpen(false);  
-    setDisabled(true);
-    cookies.set(data.id,{flag:true},{path:'/'});
+  const sendValidation = async (validacion) => {
+    const token = cookies.get('userData').token;
+    const url ='https://api-news-feria-2022.herokuapp.com/validar/reporte' ;
+
+    await axios.post(
+      url,
+      {
+          url: data.url,
+          validacion: validacion,
+          idUsuario: data.idUsuario
+      },
+      {
+      headers: {
+          'Authorization': `Bearer ${token}`
+      },
+      })
+      .then(result => {
+          console.log(result.data);
+          alert("Validación enviada correctamente!");
+      })
+      .catch(error => {
+          console.log(error);
+          alert("No se pudo enviar la validación. Intente nuevamente");
+      })
+
+
+  };
+  const handleValidar = () => {
+    sendValidation(1)
+
+
+  };
+  const handleRechazar = () => {
+    sendValidation(0)
+
+
   };
 
   return (
     <div>
-      {!cookies.get(data.id)|| true ?
       <Button variant="outlined" onClick={handleClickOpen} startIcon={<QueryStatsIcon/>}>        
         Validar
       </Button>
-      :
-      <Button disabled variant="outlined" startIcon={<QueryStatsIcon/>}>        
-        Validar
-      </Button>
-      }
       
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>           
@@ -119,8 +146,8 @@ export default function ValidationDialog({data}) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleSend}>Rechazar</Button>          
-          <Button onClick={handleSend}>Validar</Button>
+          <Button onClick={handleRechazar}>Rechazar</Button>          
+          <Button onClick={handleValidar}>Validar</Button>
         </DialogActions>
       </Dialog>
     </div>
