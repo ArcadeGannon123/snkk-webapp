@@ -8,7 +8,12 @@ function StackedBar({data,font}) {
     useEffect(() => {
         const keys = Object.keys(data);
         const values= [];
-        keys.map((key)=> values.push(( Math.round(data[key]*100) ).toString()+'%') );
+        keys.map((key)=> {
+            const _value=Math.round(data[key]*100);
+            if (_value !==0){
+                values.push(( _value).toString()+'%')
+            }
+        } );
         
         setGrid(values.join(' '))
     }, []);
@@ -52,6 +57,7 @@ function StackedBar({data,font}) {
 export default StackedBar;
 
 const BarContainer = styled.div`
+width:100%;
 margin:1.2rem 0;
 .bar{
     display:grid;

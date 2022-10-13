@@ -6,6 +6,7 @@ import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import TvIcon from '@mui/icons-material/Tv';
 import HelpIcon from '@mui/icons-material/Help';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
+import RuleIcon from '@mui/icons-material/Rule';
 
 export const SidebarDataPages = [
   {
@@ -52,6 +53,13 @@ export const SidebarDataDash = [
     title2: 'Trabajos',
     path: '/trabajos',
     icon: <QueryStatsIcon />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Validaciones disponibles',
+    title2: 'Validaciones',
+    path: '/validaciones',
+    icon: <RuleIcon />,
     cName: 'nav-text'
   }
   

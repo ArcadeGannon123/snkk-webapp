@@ -52,12 +52,12 @@ function DetailsMediaPage({titulo,datos}) {
                 </div>
                 
                 <div className="media-bias">
-                    <div className="bias-label"> Presencia de lenguaje ofensivo </div>
+                    <div className="bias-label"> Uso de lenguaje ofensivo </div>
                     <StackedBar data={datos[periodista].sesgos.lenguajeOfensivo} />
                 </div>
                 
                 <div className="media-bias">
-                    <div className="bias-label"> ¿Es una noticia sensacionalista? </div>
+                    <div className="bias-label"> ¿Es sensacionalista? </div>
                     <StackedBar data={datos[periodista].sesgos.sensacionalismo} />
                 </div>
                 
