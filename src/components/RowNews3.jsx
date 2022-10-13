@@ -23,7 +23,7 @@ const data={
 
 
 
-function RowNews3({_data}) {
+function RowNews3({data}) {
  
 
     return (

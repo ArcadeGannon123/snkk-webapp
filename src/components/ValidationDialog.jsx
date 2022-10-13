@@ -90,12 +90,14 @@ export default function ValidationDialog({data}) {
 
   };
   const handleValidar = () => {
-    sendValidation(1)
+    console.log(data.url);
+    console.log(data.idUsuario);
+    sendValidation(true);
 
 
   };
   const handleRechazar = () => {
-    sendValidation(0)
+    sendValidation(false)
 
 
   };
