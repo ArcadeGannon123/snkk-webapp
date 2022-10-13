@@ -47,7 +47,7 @@ function UserNewsPage(props) {
                 <div className="title">
                     <span>
                         <AnalyticsIcon/>
-                        Noticias analizadas  
+                        Historial del usuario 
                     </span>                                      
                 </div>   
                 <div className="news-container">

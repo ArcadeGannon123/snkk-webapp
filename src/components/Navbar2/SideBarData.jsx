@@ -41,8 +41,8 @@ export const SidebarDataDash = [
     cName: 'nav-text'
   },
   {
-    title: 'Noticias analizadas',
-    title2: 'Noticias',
+    title: 'Historial del usuario',
+    title2: 'Historial',
     path: '/analizados',
     icon: <AnalyticsIcon />,
     cName: 'nav-text'

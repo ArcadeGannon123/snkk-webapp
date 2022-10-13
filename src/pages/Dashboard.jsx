@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
 import Donut from '../components/Donut';
 import BarChart from '../components/BarChart';
+import Badget from '../components/Badget';
 import DashScore from '../components/DashScore';
-import NewspaperIcon from '@mui/icons-material/Newspaper';
 import User from '../components/User';
 import Cookies from 'universal-cookie';
 import Chip from '@mui/material/Chip';
@@ -27,13 +27,9 @@ function ProfilePage(props) {
     const cookies = new Cookies();
     const userdata = cookies.get('userData');
 
-    const [ingresos,setIngresos]= useState('');
-    const [datos,setDatos]= useState('');
+    const [ingresos,setIngresos]= useState(null);
+    const [datos,setDatos]= useState(null);
     const [bp,setBP]= useState(0);
-
-    const [isloaded1,setIsloaded1]= useState(false);
-    const [isloaded2,setIsloaded2]= useState(false);
-    const [isloaded3,setIsloaded3]= useState(false);
 
     const getBP = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/usuario/recompensa';
@@ -44,10 +40,8 @@ function ProfilePage(props) {
             headers: {
                 'Authorization': `Bearer ${token}`
             }})
-        .then(res => { 
-            console.log(res.data)                               
-            setBP(res.data)    
-            setIsloaded3(true)          
+        .then(res => {                               
+            setBP(res.data)              
         })
         .catch(err => {
             console.log(err)
@@ -64,9 +58,8 @@ function ProfilePage(props) {
             headers: {
                 'Authorization': `Bearer ${token}`
             }})
-        .then(res => {                             
-            setIngresos(res.data.pago)    
-            setIsloaded2(true)        
+        .then(res => {                    
+            setIngresos(res.data.pago)          
         })
         .catch(err => {
             console.log(err)
@@ -81,15 +74,15 @@ function ProfilePage(props) {
             headers: {
                 'Authorization': `Bearer ${token}`
             }})
-        .then(res => {     
-            console.log(res.data)                           
-            setDatos(res.data)   
-            setIsloaded1(true)     
+        .then(res => {                            
+            setDatos(res.data)     
         })
         .catch(err => {
             console.log(err)
         })
     }
+
+
 
 
     useEffect(() => {
@@ -106,7 +99,7 @@ function ProfilePage(props) {
                     <DashboardIcon/>
                     Resumen de actividades                                        
                 </div>
-                {isloaded1&&isloaded2&&isloaded3 ?<>
+                {ingresos !== null && datos !== null?<>
                 <ProfileHeader>
                     <div className="profile-picture">
                         <User />
@@ -118,7 +111,8 @@ function ProfilePage(props) {
                         {cookies.get('userData').premium ? 
                         <Chip label="Suscriptor" color="success" variant="outlined" />
                         :
-                        <></>}                 
+                        <></>} 
+                        <Badget/>               
                     </div>                  
                 </ProfileHeader>
                 <div className="title" style={{fontSize:'1.5rem'}}>
@@ -180,6 +174,7 @@ padding: 1rem 0;
 .extras{
     display:flex;
     align-items:center;
+    gap:10px;
 
 }
 `

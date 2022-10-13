@@ -129,7 +129,7 @@ function TopicDetails(props) {
                     </div>
                     <div className="media-bias">
                         <div className="bias-label"> ¿Es una noticia sensacionalista? </div>
-                        <BarChart datos={dataTopico.sesgos.izquierdaDerecha} title='' label='Cantidad de noticias'/> 
+                        <BarChart datos={dataTopico.sesgos.sensacionalismo} title='' label='Cantidad de noticias'/> 
                     </div>
                     <div className="media-bias">
                         <div className="bias-label"> Sesgo Conservador o Progresista </div>
