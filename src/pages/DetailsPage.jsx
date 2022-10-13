@@ -90,22 +90,7 @@ function DetailsPage(props) {
     const data = cookies.get('data');    
     const user = cookies.get('userData');
     const lastpage = cookies.get('lastpage');
-
-    const visita = async () =>{
-        const url = 'https://api-news-feria-2022.herokuapp.com/noticia/visualizacion';
-        const body = {"url":data.url};
-        await axios.post(url,body,{
-            headers: {
-                'Authorization': `Bearer ${user.token}`
-            }}).then(console.log('ooo'))
-        .catch(err => console.log(err))
-    }
-    useEffect(() => {  
-        if (user){     
-            visita();
-        }
-    }, []);
-
+    
     return (
         <>
             <Navbar />            
