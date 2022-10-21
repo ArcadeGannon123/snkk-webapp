@@ -84,13 +84,28 @@ const lista =[
     {nombre:'o_O',actividad:'analizo noticia',fecha:'10/10/10'}
 ]
 
-function DetailsPage(props) {
+function DetailsValidationPage(props) {
 
     const cookies = new Cookies();
     const data = cookies.get('data');    
     const user = cookies.get('userData');
     const lastpage = cookies.get('lastpage');
-    
+
+    const visita = async () =>{
+        const url = 'https://api-news-feria-2022.herokuapp.com/noticia/visualizacion';
+        const body = {"url":data.url};
+        await axios.post(url,body,{
+            headers: {
+                'Authorization': `Bearer ${user.token}`
+            }}).then(console.log('ooo'))
+        .catch(err => console.log(err))
+    }
+    useEffect(() => {  
+        if (user){     
+            visita();
+        }
+    }, []);
+
     return (
         <>
             <Navbar />            
@@ -134,6 +149,9 @@ function DetailsPage(props) {
                             <div className="main-buttom">
                                 <Button href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
                                     Ir a la noticia
+                                </Button> 
+                                <Button href={data.url} target="_blank" rel="noreferrer noopener" variant="outlined" startIcon={<ArrowForwardIcon />}>
+                                    Validar
                                 </Button>    
                             </div>                     
                                         
@@ -146,15 +164,6 @@ function DetailsPage(props) {
                     Análisis                                     
                 </div>
                 <Analysis>
-                    <div className="c1-3">
-                        <DashScore data={{title:'Nº de visitas',score:data.visualizaciones}}/>
-                    </div>
-                    <div>
-                        <DashScore data={{title:'Nº de veces analizada por usuarios',score:data.numeroAnalisis}}/>
-                    </div>
-                    <div>
-                        <DashScore data={{title:'Nº de veces resportada como noticia falsa',score:data.reportesFalsedad}}/>
-                    </div>
                     <div className="media-bias c1-5" >
                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem'}}> Sesgo de Izquierda o Derecha </div>
                         <StackedBar data={data.sesgoIzquierdaDerecha} />
@@ -183,20 +192,13 @@ function DetailsPage(props) {
                 <ActivityContainer>
                     <AlignItemsList data={data.eventos}/>
                 </ActivityContainer>
-                <div className="title">
-                    <NewspaperIcon/>
-                    Comentarios                                     
-                </div>
-                <CommentSection>
-
-                </CommentSection>
             </FrontPage>  
         </>
         
     );
 }
 
-export default DetailsPage;
+export default DetailsValidationPage;
 
 const ActivityContainer = styled.div`
 

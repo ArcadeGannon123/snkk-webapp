@@ -1,7 +1,7 @@
 import React,{useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
-import RowNews2 from '../components/RowNews2';
+import RowNews3 from '../components/RowNews3';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
@@ -74,14 +74,14 @@ function ValidationPage(props) {
     const [data,setData]= useState(null);
 
     const getData = async () => {    
-        const url ='https://api-news-feria-2022.herokuapp.com/reporte/usuario';
+        const url ='https://api-news-feria-2022.herokuapp.com/validar/obtener';
 
         await axios.get(url,{
             headers: {
                 'Authorization': `Bearer ${token}`
             }})
-        .then(res => { 
-            console.log(res.data)                               
+        .then(res => {   
+            console.log(res.data)                           
             setData(res.data)
         
         })
@@ -90,8 +90,7 @@ function ValidationPage(props) {
         })
     }
 
-    useEffect(() => {
-        cookies.set('lastpage','/recientes',{path:'/'});         
+    useEffect(() => {   
         getData();
     }, []);
   
@@ -102,21 +101,23 @@ function ValidationPage(props) {
                 <div className="title">
                     <span>
                         <QueryStatsIcon/>
-                        Trabajos disponibles
+                        Validaciones disponibles
                     </span>                                      
                 </div>   
                 <div className="news-container">
-                    {data !== null ?
-                    <div className="feed-rest-news">
-                        <div className="news">
-                            {data.map((news,i) =>(
-                                <div key={i} >
-                                    <RowNews2 data={news}/>
-                                    <hr/>
-                                </div>
-                            ))}
+                    {data !== null?
+                     data !=='' ?
+                        <div className="feed-rest-news">
+                            <div className="news">
+                                {data.map((news,i) =>(
+                                    <div key={i} >
+                                        <RowNews3 data={news}/>
+                                        <hr/>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    :<div style={{display:'flex', justifyContent:'center'}}>Sin noticias</div>
                     :<></>}
                 </div> 
             </FrontPage>

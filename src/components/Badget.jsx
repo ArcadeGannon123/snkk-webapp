@@ -31,22 +31,24 @@ function Badget() {
     
     const [badget,setBadget]= useState(null);
     const [creditos,setCreditos]= useState(null);
-    const [trans,setTrans]= useState(false);
+    const [trans,setTrans]= useState(true);
 
     const buyBadget = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/usuario/comprar';
         const token = cookies.get('userData').token;
         
         console.log(url)
-        await axios.get(url,{},{
+        await axios.post(url,{},{
             headers: {
                 'Authorization': `Bearer ${token}`
             }})
-        .then(res => {                               
+        .then(res => {    
+            actualizar();   
+            setTrans(res.data)                        
             console.log(res.data)           
         })
         .catch(err => {
-            setTrans(true)
+            setTrans(false)
             console.log(err)
         })
     }
@@ -91,6 +93,11 @@ function Badget() {
         getCreditos();
     }, []);
 
+    const actualizar = () =>{
+        getBadget();
+        getCreditos();
+    }
+
     const handleClick = () => {
         buyBadget();
     }
@@ -100,12 +107,17 @@ function Badget() {
             <Chip icon={<MilitaryTechIcon />} sx={{backgroundColor:Color[badget]}} label={Nivel[badget]} variant="outlined" />
             
             
-            {!trans ?
-            <Button onClick={handleClick} variant="outlined" startIcon={<KeyboardDoubleArrowUpIcon />}>
-                Subir de nivel {'-'+subirNivel[badget]+' Créditos'}
-            </Button> 
+            {trans ?
+                badget < 4 ?
+                <Button onClick={handleClick} variant="outlined" startIcon={<KeyboardDoubleArrowUpIcon />}>
+                    Subir de nivel {'-'+subirNivel[badget]+' Créditos'}
+                </Button> 
+                :
+                <Button disabled variant="outlined" startIcon={<KeyboardDoubleArrowUpIcon />}>
+                    Nivel Máximo
+                </Button> 
             :
-            <Button onClick={handleClick} color='error' variant="outlined" startIcon={<KeyboardDoubleArrowUpIcon />}>
+            <Button color='error' variant="outlined" startIcon={<KeyboardDoubleArrowUpIcon />}>
                 Créditos insuficientes {'-'+subirNivel[badget]+' Créditos'}
             </Button>        
             }

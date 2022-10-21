@@ -80,8 +80,8 @@ function WorkPage(props) {
             headers: {
                 'Authorization': `Bearer ${token}`
             }})
-        .then(res => { 
-            console.log(res.data)                               
+        .then(res => {       
+            console.log(res.data)                         
             setData(res.data)
         
         })
@@ -107,16 +107,18 @@ function WorkPage(props) {
                 </div>   
                 <div className="news-container">
                     {data !== null ?
-                    <div className="feed-rest-news">
-                        <div className="news">
-                            {data.map((news,i) =>(
-                                <div key={i} >
-                                    <RowNews2 data={news}/>
-                                    <hr/>
-                                </div>
-                            ))}
+                    data.length !== 0 ?
+                        <div className="feed-rest-news">
+                            <div className="news">
+                                {data.map((news,i) =>(
+                                    <div key={i} >
+                                        <RowNews2 data={news}/>
+                                        <hr/>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
-                    </div>
+                    :<div style={{display:'flex', justifyContent:'center'}}>Sin noticias</div>
                     :<></>}
                 </div> 
             </FrontPage>

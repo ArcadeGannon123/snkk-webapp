@@ -20,10 +20,12 @@ import LinearProgress from '@mui/material/LinearProgress';
 function NnewsPage(props) {
     
     const cookies = new Cookies();
+    const userData = cookies.get('userData');
 
     const [data,setData]= useState(null);
     const [topics,setTopics]= useState(['Todos']);
     const [value, setValue] = useState(0);
+
 
     const getData = async (topic) => {    
         var url = '';
@@ -86,7 +88,11 @@ function NnewsPage(props) {
                     <Button onClick={handleClick} variant="outlined" startIcon={<BarChartIcon />}>
                         Detalles del tópico
                     </Button>                                       
-                </div>                 
+                </div>    
+                <div style={{display: userData ? userData.premium ? 'none' : 'flex' : 'flex', justifyContent:'center'}}>
+                    <img src='https://www.plerdy.com/wp-content/uploads/2020/01/3.jpg' alt='publicidad' />
+                    <Adsense client="ca-pub-2909524242328894" slot=""/>
+                </div>              
                 <Box sx={{ maxWidth: '100%', bgcolor: 'background.paper', padding:'0 1rem'}}>
                     <Tabs
                         value={value}
@@ -99,11 +105,9 @@ function NnewsPage(props) {
                             <Tab label={topico} />
                         ))}
                     </Tabs>
-                </Box>    
+                </Box>                   
                 <div className="news-container">
-                    <div>
-                        <Adsense client="ca-pub-2909524242328894" slot=""/>
-                    </div>
+                    
                     {data ? <>
                     <FeedMain data={data[0]}/>
                     <hr/>
