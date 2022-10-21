@@ -50,7 +50,7 @@ function HomePage(props) {
                         <a className='rrss' href='https://www.facebook.com/BlankPointFS' target="_blank" rel="noreferrer noopener" data-aos="zoom-in" data-aos-delay="100" >
                             <AiOutlineFacebook />
                         </a>
-                        <a className='rrss' href='https://www.instagram.com/blankpoint.fs/' target="_blank" rel="noreferrer noopener" data-aos="zoom-in" data-aos-delay="150" >
+                        <a className='rrss' href='https://www.instagram.com/puntovacio.fs/' target="_blank" rel="noreferrer noopener" data-aos="zoom-in" data-aos-delay="150" >
                             <AiOutlineInstagram data-aos="zoom-in" />
                         </a>
                         <a className='rrss' href='https://www.linkedin.com/company/blankpoint/' target="_blank" rel="noreferrer noopener" data-aos="zoom-in" data-aos-delay="200" >
