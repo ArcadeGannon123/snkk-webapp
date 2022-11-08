@@ -28,8 +28,8 @@ const labels = [
 ]
 
 function DynamicChartPage(props) {
-    const [xaxis, setXaxis] = React.useState(null);
-    const [yaxis, setYaxis] = React.useState(null);
+    const [xaxis, setXaxis] = React.useState('');
+    const [yaxis, setYaxis] = React.useState('');
     const [selectedmedia, setSelectedmedia] = React.useState([]);
     const [media, setMedia] = React.useState([]);
 
