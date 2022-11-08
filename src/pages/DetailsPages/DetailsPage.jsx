@@ -1,11 +1,10 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import Navbar from '../components/Navbar2/Navbar';
+import Navbar from '../../components/Navbar2/Navbar';
 import NewspaperIcon from '@mui/icons-material/Newspaper';
-import StackedBar from '../components/StackedBar';
-import DashScore from '../components/DashScore'
+import StackedBar from '../../components/StackedBar';
+import DashScore from '../../components/DashScore'
 import Button from '@mui/material/Button';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import FacebookIcon from '@mui/icons-material/Facebook';
@@ -13,8 +12,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import Cookies from 'universal-cookie';
-import axios from 'axios';
-import AlignItemsList from '../components/ActivityList';
+import AlignItemsList from '../../components/ActivityList';
+import Comentarios from '../../components/comments/Comentarios';
 
 /*
 const data={
@@ -180,16 +179,16 @@ function DetailsPage(props) {
                     <NewspaperIcon/>
                     Actividades                                     
                 </div>
-                <ActivityContainer>
+                <div className="activity-container">
                     <AlignItemsList data={data.eventos}/>
-                </ActivityContainer>
+                </div>
                 <div className="title">
                     <NewspaperIcon/>
                     Comentarios                                     
                 </div>
-                <CommentSection>
-
-                </CommentSection>
+                <div className="comments-section">
+                    <Comentarios />
+                </div>
             </FrontPage>  
         </>
         
@@ -197,16 +196,6 @@ function DetailsPage(props) {
 }
 
 export default DetailsPage;
-
-const ActivityContainer = styled.div`
-
-
-`
-
-const CommentSection = styled.div`
-height:500px;
-background-color:white;
-`
 
 const Analysis = styled.div`
 

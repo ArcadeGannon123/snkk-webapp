@@ -7,21 +7,35 @@ import LoginPage from './pages/LoginPage'
 import PopularPage from './pages/PopularPage'
 import Periodistas from './pages/Periodistas'
 import ProfilePage from './pages/Dashboard'
+import SearchPage from './pages/searchpage/SearchPage';
 import Aos from 'aos';
 import {useEffect, useState} from 'react';
 import {UserContext} from "./components/UserContext"
 import TestPage from './pages/TestPage';
 import NnewsPage from './pages/NnewsPage';
-import DetailsPage from './pages/DetailsPage';
-import MediaAnalysis from './pages/MediaAnalysis';
+import MediaAnalysis from './pages/mainpages/MediaAnalysis';
 import TopicsAnalysis from './pages/TopicsAnalysis';
 import SuscribePage from './pages/SuscribePage';
 import UserNewsPage from './pages/UserNewsPage';
 import ValidationPage from './pages/ValidationPage';
-import DetailsMediaPage from './pages/DetailsMediaPage';
+import DetailsMediaPage from './pages/DetailsPages/DetailsMediaPage';
+import DetailsPage from './pages/DetailsPages/DetailsPage';
 import WorkPage from './pages/WorkPage';
 import HelpPage from "./pages/HelpPage";
 import PublicProfilePage from "./pages/PublicProfilePage";
+import FeedbackPage from "./pages/premium/FeedbackPage";
+import OpinionsPage from './pages/mainpages/OpinionsPage';
+import OpinionsPageDetails from './pages/mainpages/OpinionsPage.details';
+import DynamicChartPage from './pages/generalanalysis/DynamicChartPage';
+import './GlobalStyles/GlobalStyles.css';
+import './GlobalStyles/DetailsStyles.css';
+import './GlobalStyles/BiasPerDays.css';
+import './GlobalStyles/Feedback.css';
+import './GlobalStyles/StackedBar.css';
+import './GlobalStyles/BiasSelector.css';
+import './GlobalStyles/Opinions.css';
+import './GlobalStyles/MediaAnalysis.css';
+import './GlobalStyles/MediaAnalysisPage.css';
 
 
 function App() {
@@ -64,6 +78,11 @@ function App() {
             <Route path='/ayuda' element={<HelpPage/>}/>
             <Route path='/perfil/:id' element={<PublicProfilePage/>}/>
             <Route path='/validaciones' element={<ValidationPage/>}/>  
+            <Route path='/feedback' element={<FeedbackPage/>}/>  
+            <Route path='/opiniones' element={<OpinionsPage/>}/>  
+            <Route path='/opiniones/:detalles' element={<OpinionsPageDetails/>}/>  
+            <Route path='/medios/analisis' element={<DynamicChartPage/>}/>  
+            <Route path='/search' element={<SearchPage/>}/>  
         </Routes>
       </Router>
     </UserContext.Provider>

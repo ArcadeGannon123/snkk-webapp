@@ -1,0 +1,22 @@
+.text-area-container{
+    width: 100%;
+    margin: 10px 0;
+}
+.text-area-wrapper{
+    display: flex;
+}
+.text-area-space{
+    flex-grow: 1;   
+}
+.text-area-actions{
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.ta-action{
+    margin-bottom: 5px ;
+}
+.send-actions{
+
+}

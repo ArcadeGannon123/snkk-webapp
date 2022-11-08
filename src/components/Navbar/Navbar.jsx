@@ -15,7 +15,7 @@ import {
 } from "react-icons/fa";
 import {NavLink} from 'react-router-dom';
 import { UserContext } from '../UserContext';
-import User from '../User';
+import User from '../user/User';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
 

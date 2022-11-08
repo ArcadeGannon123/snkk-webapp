@@ -1,0 +1,19 @@
+.stacked-bar-container{
+    width:100%;
+}
+.stacked-bar-wrapper{    
+    border:1px solid #284b6338;
+    padding: 1px 0;
+}
+.sb-bias{
+    text-align: center;
+    margin: 0 1px;
+    font-weight: 500;
+}
+.sb-labels{
+    display:flex;
+    justify-content: space-around;
+    margin: 10px 0;
+}
+.sb-label{
+}

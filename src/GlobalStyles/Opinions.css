@@ -1,0 +1,40 @@
+.column-wrapper{
+    display: flex;
+    align-items: center;
+    gap:10px;
+}
+.column-data{
+    background-color: white;
+    margin-bottom: 10px;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+    border-radius: 50px;
+    padding: 10px 30px;
+}
+.column-info{
+    display: flex;
+    gap:20px;
+    color:#284b63;
+
+}
+.column-title{
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    font-family: "Times New Roman", Times, serif;
+    color:#284b63c7;
+    transition: 0.05s all ease;
+
+}
+.title-hover:hover{
+    color:#74c7ffc7;
+}
+
+.c-date{
+    display: flex;
+    align-items: center;
+    gap:3px;
+}
+
+.column-body{
+    margin: 20px 0;
+}

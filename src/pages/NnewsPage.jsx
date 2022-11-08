@@ -80,52 +80,52 @@ function NnewsPage(props) {
             <Navbar />            
             <FrontPage>
                 <div className='fp-container'>
-                <div className="title">
-                    <span>
-                        <NewspaperIcon/>
-                        Noticias recientes  
-                    </span>
-                    <Button onClick={handleClick} variant="outlined" startIcon={<BarChartIcon />}>
-                        Detalles del tópico
-                    </Button>                                       
-                </div>    
-                <div style={{display: userData ? userData.premium ? 'none' : 'flex' : 'flex', justifyContent:'center'}}>
-                    <img src='https://www.plerdy.com/wp-content/uploads/2020/01/3.jpg' alt='publicidad' />
-                    <Adsense client="ca-pub-2909524242328894" slot=""/>
-                </div>              
-                <Box sx={{ maxWidth: '100%', bgcolor: 'background.paper', padding:'0 1rem'}}>
-                    <Tabs
-                        value={value}
-                        onChange={handleChange}
-                        variant="scrollable"
-                        scrollButtons="auto"
-                        aria-label="scrollable auto tabs example"
-                    >
-                        {topics.map((topico) => (                     
-                            <Tab label={topico} />
-                        ))}
-                    </Tabs>
-                </Box>                   
-                <div className="news-container">
-                    
-                    {data ? <>
-                    <FeedMain data={data[0]}/>
-                    <hr/>
-                    <div className="feed-rest-news">
-                        <div className="news">
-                            {data.slice(1).map((news,i) =>(
-                                <div key={i} >
-                                    <RowNews data={news}/>
-                                    <hr/>
-                                </div>
+                    <div className="title">
+                        <span>
+                            <NewspaperIcon/>
+                            Noticias recientes  
+                        </span>
+                        <Button onClick={handleClick} variant="outlined" startIcon={<BarChartIcon />}>
+                            Detalles del tópico
+                        </Button>                                       
+                    </div>    
+                    <div style={{display: userData ? userData.premium ? 'none' : 'flex' : 'flex', justifyContent:'center'}}>
+                        <img src='https://www.plerdy.com/wp-content/uploads/2020/01/3.jpg' alt='publicidad' />
+                        <Adsense client="ca-pub-2909524242328894" slot=""/>
+                    </div>              
+                    <Box sx={{ maxWidth: '100%', bgcolor: 'background.paper', padding:'0 1rem'}}>
+                        <Tabs
+                            value={value}
+                            onChange={handleChange}
+                            variant="scrollable"
+                            scrollButtons="auto"
+                            aria-label="scrollable auto tabs example"
+                        >
+                            {topics.map((topico) => (                     
+                                <Tab label={topico} />
                             ))}
+                        </Tabs>
+                    </Box>                   
+                    <div className="news-container">
+                        
+                        {data ? <>
+                        <FeedMain data={data[0]}/>
+                        <hr/>
+                        <div className="feed-rest-news">
+                            <div className="news">
+                                {data.slice(1).map((news,i) =>(
+                                    <div key={i} >
+                                        <RowNews data={news}/>
+                                        <hr/>
+                                    </div>
+                                ))}
+                            </div>
                         </div>
+                        </>:  
+                        <Box sx={{ width: '100%' }}>
+                            <LinearProgress />
+                        </Box>}
                     </div>
-                    </>:  
-                    <Box sx={{ width: '100%' }}>
-                        <LinearProgress />
-                    </Box>}
-                </div>
                 </div>
 
             </FrontPage>

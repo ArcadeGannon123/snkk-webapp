@@ -19,7 +19,7 @@ import {
 } from "react-icons/fa";
 import {NavLink, Link} from 'react-router-dom';
 import { UserContext } from '../UserContext';
-import User from '../User';
+import User from '../user/User';
 import SideBar from './SideBar';
 import SideBar2 from './SideBar2';
 import { NavbarDataNav } from './NavbarData';
@@ -108,7 +108,6 @@ const Navbar = () => {
         {/*<MobileIcon variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)}>
           {showMobileMenu ? <FaTimes /> : <FaBars />}
         </MobileIcon>*/}
-
         <UserContainer>
           {cookies.get('userData') ? 
           <>  

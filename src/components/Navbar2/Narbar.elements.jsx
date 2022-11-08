@@ -33,6 +33,7 @@ export const SideBarContainer2 = styled.div`
   justify-content: space-between;
   background-color: #353535;
   z-index:10;
+  overflow-y: scroll;
   @media screen and (max-width: 700px) {
     display:none;
   }
@@ -50,7 +51,7 @@ export const FaBarsContainer = styled.div`
 export const Container = styled.div`
   width: 100%;
   height: 50px;
-  background-color:#353535;
+  background-color:#0f0f0f;
   position:fixed;
   z-index:10;
   transition: 0.5s all ease;

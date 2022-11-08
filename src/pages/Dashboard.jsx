@@ -5,7 +5,7 @@ import Donut from '../components/Donut';
 import BarChart from '../components/BarChart';
 import Badget from '../components/Badget';
 import DashScore from '../components/DashScore';
-import User from '../components/User';
+import User from '../components/user/User';
 import Cookies from 'universal-cookie';
 import Chip from '@mui/material/Chip';
 import PublicIcon from '@mui/icons-material/Public';

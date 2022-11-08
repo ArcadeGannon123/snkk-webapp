@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import TextRating from '../components/Rating';
+import TextRating from './Rating';
 import Cookies from 'universal-cookie';
 
 const data={
@@ -45,25 +45,32 @@ const data={
 
 export default function MediaCard({data}) {
 
-    const cookies = new Cookies();
+  const cookies = new Cookies();
 
-    const handleClick = () =>{
-        cookies.set('medioData',data,{path:'/'});
-        window.location.href = './detalles/medio/'+data.medio.replaceAll('.','');
-    }
+  const handleClick = () =>{
+      cookies.set('medioData',data,{path:'/'});
+      window.location.href = './detalles/medio/'+data.medio.replaceAll('.','');
+  }
+  const replaceImage = (error) => {
+    //replacement of broken Image
+    error.target.src = 'https://www.ncenet.com/wp-content/uploads/2020/04/no-image-png-2.png'; 
+  }
 
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: '240px'}}>
       <CardMedia
         component="img"
         height="140"
         image={`https://logo.clearbit.com/${data.medio}`}
         alt="media"
-        sx={{objectFit:'contain'}}
+        sx={{objectFit:'contain',backgroundColor:'#0f0f0f'}}
+        onError={replaceImage}
+        
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {data.medio.replace('www.','')}
+        <Typography gutterBottom variant="h5" component="div" 
+          sx={{textOverflow: 'ellipsis',overflow:'hidden',color: '#3C6E71', fontWeight:'900'}}>
+          {data.medio.replace('www.','').replace(/\.(cl|com|org)/,'')}
         </Typography>
         <Typography variant="body2" color="text.secondary">
             Rating:

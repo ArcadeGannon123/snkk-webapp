@@ -7,8 +7,19 @@ import TvIcon from '@mui/icons-material/Tv';
 import HelpIcon from '@mui/icons-material/Help';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import RuleIcon from '@mui/icons-material/Rule';
+import ThreePIcon from '@mui/icons-material/ThreeP';
+import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
+import SearchIcon from '@mui/icons-material/Search';
+import ScatterPlotIcon from '@mui/icons-material/ScatterPlot';
 
 export const SidebarDataPages = [
+  {
+    title: 'Búsqueda',
+    title2:'Búsqueda',
+    path: '/search',
+    icon: <SearchIcon />,
+    cName: 'nav-text'
+  },
   {
     title: 'Populares',
     title2:'Populares',
@@ -28,6 +39,20 @@ export const SidebarDataPages = [
     title2: 'Medios',
     path: '/medios',
     icon: <TvIcon />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Gráfico de sesgos',
+    title2: 'Gráfico',
+    path: '/medios/analisis',
+    icon: <ScatterPlotIcon />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Columnas de Opinión',
+    title2: 'Columnas',
+    path: '/opiniones',
+    icon: <ThreePIcon />,
     cName: 'nav-text'
   }
 
@@ -60,6 +85,13 @@ export const SidebarDataDash = [
     title2: 'Validaciones',
     path: '/validaciones',
     icon: <RuleIcon />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Feedback',
+    title2: 'Feedback',
+    path: '/feedback',
+    icon: <TroubleshootIcon />,
     cName: 'nav-text'
   }
   

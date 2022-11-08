@@ -1,11 +1,13 @@
 import React,{useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
-import Navbar from '../components/Navbar2/Navbar';
+import Navbar from '../../components/Navbar2/Navbar';
 import axios from 'axios';
-import RowMedia from '../components/RowMedia';
+import MediaCard from '../../components/CardMedia';
 import Cookies from 'universal-cookie';
 import TvIcon from '@mui/icons-material/Tv';
-
+import Button from '@mui/material/Button';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import { Link } from 'react-router-dom';
 
 
 function MediaAnalysis(props) {
@@ -37,23 +39,26 @@ function MediaAnalysis(props) {
     return (
         <>            
             <Navbar />            
-            <FrontPage>   
-                <div className="title">
-                    <TvIcon/>
-                    Análisis de medios                                   
+            <div className='front-page'>   
+                <div className="main-title">
+                    <span>
+                        <TvIcon/>
+                        Análisis de medios     
+                    </span>                        
+                    <Button component={Link} to='/medios/analisis' variant="outlined" startIcon={<BarChartIcon />}>
+                        Gráfico de medios
+                    </Button>                             
                 </div>
                 <div className="media-container">
                     {loaded ? 
                     data.map((medio,i) =>(
                         <div className='media-wrapper' key={i} >
-                            <RowMedia data={medio}/>
-                            <hr/>
+                            <MediaCard data={medio}/>
                         </div>
                     ))
                     :<></>}
-                </div>
-                
-            </FrontPage>
+                </div>                
+            </div>
         </>
     );
 }
