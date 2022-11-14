@@ -6,27 +6,31 @@ import Button from '@mui/material/Button';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import PersonIcon from '@mui/icons-material/Person';
 import IconButton from '@mui/material/IconButton';
+import MessageIcon from '@mui/icons-material/Message';
+import {Link} from 'react-router-dom';
+import './Opinions.css';
 
 function OpinionsPage(props) {
     return (
         <>
             <Navbar /> 
-            <div className='front-page'>
-                <div className="main-title" style={{marginBottom:0}}>
+            <div className='front-page' >
+                <div className="main-title" style={{borderRadius: '0 0 10px 10px'}}>
                     <span>
                         <ThreePIcon fontSize='large' />
                         Lo último en columnas
                     </span>
+                    <div className="page-actions" >
+                        <Button component={Link} to='/opiniones/crear' variant="outlined" color="primary" endIcon={<MessageIcon />}>
+                            Dar una opinión
+                        </Button>                    
+                    </div>  
                 </div>       
-                <div className="page-actions">
-                    <IconButton aria-label="add" size="inherit" sx={{fontSize:'60px'}}><AddCircleIcon/></IconButton>
-                    
-                </div>      
-                <div className="columns-container">
+    
+                <div className="columns-container" >
                     {Columnas.map((columna,i)=>(
                         <ColumnRow key={i} datos = {columna}/>
-                    ))}
-                    
+                    ))}                    
                 </div>
             </div>
         </>

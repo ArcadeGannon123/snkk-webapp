@@ -1,31 +1,32 @@
 import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
-import Navbar from '../components/Navbar2/Navbar';
-import FeedMain from '../components/FeedMain';
-import RowNews from '../components/RowNews';
+import Navbar from '../../components/Navbar2/Navbar';
+import FirstNews from '../../components/NewsComponents/FirstNews';
+import RowNews from '../../components/NewsComponents/RowNews';
 import axios from 'axios';
 import Cookies from 'universal-cookie';
-import AnalyticsIcon from '@mui/icons-material/Analytics';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import EmptyArea from '../../components/UtilsComponents/EmptyArea';
+import LoadingArea from '../../components/UtilsComponents/LoadingArea';
 
 //const Topicos = ['Todos','topico2','topico3','hello','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3']
 
 
-function UserNewsPage(props) {
+function UserFavPage(props) {
     
     const cookies = new Cookies();
 
     const [data,setData]= useState(null);
 
     const getData = async () => {    
-        const url ='https://api-news-feria-2022.herokuapp.com/usuario/noticias-analizadas';
+        const url ='https://api-news-feria-2022.herokuapp.com/favorito/lista';
         const token = cookies.get('userData').token;
         
         await axios.get(url,{
             headers: {
                 'Authorization': `Bearer ${token}`
             }})
-        .then(res => {    
-            console.log(res.data)                           
+        .then(res => {                              
             setData(res.data)        
         })
         .catch(err => {
@@ -41,39 +42,44 @@ function UserNewsPage(props) {
 
   
     return (
+        
         <>  
             <Navbar />            
-            <FrontPage>
-                <div className="title">
+            <div className='front-page'>
+                <div className="main-title">
                     <span>
-                        <AnalyticsIcon/>
-                        Historial del usuario 
+                        <FavoriteIcon/>
+                        Favoritos
                     </span>                                      
-                </div>   
-                <div className="news-container">
-                    {data !== null && data.length !== 0 ? <>
-                    <FeedMain data={data[0]}/>
+                </div>                
+                <div className="body-container">                    
+                {data ?                     
+                data.length !== 0 ?
+                <>
+                    <FirstNews data={data[0]}/>
                     <hr/>
-                    <div className="feed-rest-news">
-                        <div className="news">
-                            {data.slice(1).map((news,i) =>(
-                                <div key={i} >
-                                    <RowNews data={news}/>
-                                    <hr/>
-                                </div>
-                            ))}
-                        </div>
+                    <div className="list-row-news">
+                        {data.slice(1,10).map((news,i) =>(
+                            <div key={i} >
+                                <RowNews data={news}/>
+                                <hr/>
+                            </div>
+                        ))}
                     </div>
-                    </>:<></>}
+                </>
+                :
+                <EmptyArea />
+                :
+                <LoadingArea />
+                }
                 </div>
-                
 
-            </FrontPage>
+            </div>
         </>
     );
 }
 
-export default UserNewsPage;
+export default UserFavPage;
 
 
 const FrontPage = styled.div`

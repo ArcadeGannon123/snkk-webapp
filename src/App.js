@@ -12,11 +12,13 @@ import Aos from 'aos';
 import {useEffect, useState} from 'react';
 import {UserContext} from "./components/UserContext"
 import TestPage from './pages/TestPage';
-import NnewsPage from './pages/NnewsPage';
-import MediaAnalysis from './pages/mainpages/MediaAnalysis';
+import NnewsPage from './pages/RecentNewsPages/NnewsPage';
+import MediaAnalysis from './pages/mediapages/MediaAnalysis';
 import TopicsAnalysis from './pages/TopicsAnalysis';
 import SuscribePage from './pages/SuscribePage';
-import UserNewsPage from './pages/UserNewsPage';
+import UserNewsPage from './pages/UserListPages/UserNewsPage';
+import UserFavPage from './pages/UserListPages/UserFavPage';
+import UserLaterPage from './pages/UserListPages/UserLaterPage';
 import ValidationPage from './pages/ValidationPage';
 import DetailsMediaPage from './pages/DetailsPages/DetailsMediaPage';
 import DetailsPage from './pages/DetailsPages/DetailsPage';
@@ -24,16 +26,15 @@ import WorkPage from './pages/WorkPage';
 import HelpPage from "./pages/HelpPage";
 import PublicProfilePage from "./pages/PublicProfilePage";
 import FeedbackPage from "./pages/premium/FeedbackPage";
-import OpinionsPage from './pages/mainpages/OpinionsPage';
-import OpinionsPageDetails from './pages/mainpages/OpinionsPage.details';
+import OpinionsPage from './pages/opinionpages/OpinionsPage';
+import OpinionsPageDetails from './pages/opinionpages/OpinionsPage.details';
+import OpinionsPageCreation from './pages/opinionpages/OpinionsPage.creation';
 import DynamicChartPage from './pages/generalanalysis/DynamicChartPage';
 import './GlobalStyles/GlobalStyles.css';
-import './GlobalStyles/DetailsStyles.css';
 import './GlobalStyles/BiasPerDays.css';
 import './GlobalStyles/Feedback.css';
 import './GlobalStyles/StackedBar.css';
 import './GlobalStyles/BiasSelector.css';
-import './GlobalStyles/Opinions.css';
 import './GlobalStyles/MediaAnalysis.css';
 import './GlobalStyles/MediaAnalysisPage.css';
 
@@ -61,7 +62,9 @@ function App() {
             <Route  path='/' element={<HomePage/>}/>
             <Route  path='/noticias' element={<NewsPage/>}/>
             <Route  path='/extension' element={<ExtenPage/>}/>
-            <Route  path='/analizados' element={<UserNewsPage/>}/>            
+            <Route  path='/historial' element={<UserNewsPage/>}/>   
+            <Route  path='/favoritos' element={<UserFavPage/>}/>   
+            <Route  path='/pendientes' element={<UserLaterPage/>}/>            
             <Route  path='/trabajos' element={<WorkPage/>}/>
             <Route  path='/register' element={<RegisterPage/>}/>
             <Route  path='/login' element={<LoginPage/>}/>
@@ -81,6 +84,7 @@ function App() {
             <Route path='/feedback' element={<FeedbackPage/>}/>  
             <Route path='/opiniones' element={<OpinionsPage/>}/>  
             <Route path='/opiniones/:detalles' element={<OpinionsPageDetails/>}/>  
+            <Route path='/opiniones/crear' element={<OpinionsPageCreation/>}/>  
             <Route path='/medios/analisis' element={<DynamicChartPage/>}/>  
             <Route path='/search' element={<SearchPage/>}/>  
         </Routes>

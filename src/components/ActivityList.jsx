@@ -28,7 +28,7 @@ export default function AlignItemsList({data}) {
                     >
                         {usuario.descripcion}
                     </Typography>
-                    {'  |  '+usuario.fecha}
+                    {'  |  '+usuario.fecha.split('T')[0]}
                     </React.Fragment>
                 }
                 />

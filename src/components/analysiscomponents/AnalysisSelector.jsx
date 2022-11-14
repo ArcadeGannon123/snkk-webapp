@@ -11,7 +11,6 @@ function AnalysisSelector({medio}) {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event, newValue) => {
-        console.log(newValue);
       setValue(newValue);
     };
 
@@ -66,7 +65,7 @@ function AnalysisSelector({medio}) {
     const selectedTab = (tab) =>{
         switch(tab){
             case 0:
-                return data ? <AnalysisReport data={data}/>: <></>;
+                return data ? <AnalysisReport data={data.sesgos}/>: <></>;
             case 1:
                 return bpd ? <BiasPerDays data={bpd}/>:<></>;
             default:
@@ -76,7 +75,6 @@ function AnalysisSelector({medio}) {
 
     return (
         <>
-            {console.log(data)}
             <Box sx={{ width: '100%', bgcolor: 'background.paper'}}>
                 <Tabs value={value} onChange={handleChange}>
                     <Tab label="Sesgo promedio" />

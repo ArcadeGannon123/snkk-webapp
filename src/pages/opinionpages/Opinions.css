@@ -7,7 +7,7 @@
     background-color: white;
     margin-bottom: 10px;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
-    border-radius: 50px;
+    border-radius: 0 50px 50px 50px;
     padding: 10px 30px;
 }
 .column-info{
@@ -29,12 +29,14 @@
     color:#74c7ffc7;
 }
 
-.c-date{
+.c-icon-text{
     display: flex;
     align-items: center;
     gap:3px;
 }
 
+
 .column-body{
     margin: 20px 0;
 }
+

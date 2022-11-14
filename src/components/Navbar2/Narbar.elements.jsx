@@ -19,6 +19,7 @@ export const SideBarContainer = styled.div`
   justify-content: space-between;
   background-color: #353535;
   z-index:10;
+  padding-bottom:10vh;
   @media screen and (max-width: 700px) {
     width:100%;
   }
@@ -34,6 +35,7 @@ export const SideBarContainer2 = styled.div`
   background-color: #353535;
   z-index:10;
   overflow-y: scroll;
+  padding-bottom:10vh;
   @media screen and (max-width: 700px) {
     display:none;
   }

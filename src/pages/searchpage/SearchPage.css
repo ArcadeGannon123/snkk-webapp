@@ -1,0 +1,7 @@
+.search-options{
+    width:30%;
+}
+.search-actions{
+    display:flex;
+    justify-content: center;
+}

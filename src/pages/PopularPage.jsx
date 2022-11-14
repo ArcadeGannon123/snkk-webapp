@@ -6,7 +6,7 @@ import NewsCard from '../components/NewsCard';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import RowNews from '../components/RowNews';
+import RowNews from '../components/NewsComponents/RowNews';
 import Cookies from 'universal-cookie';
 import Button from '@mui/material/Button';
 import BarChartIcon from '@mui/icons-material/BarChart';

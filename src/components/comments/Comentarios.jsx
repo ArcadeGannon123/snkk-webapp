@@ -7,6 +7,7 @@ import Cookies from 'universal-cookie';
 import TextField from '@mui/material/TextField';
 import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
+import './Comentarios.css';
 
 const comentarios = 
 [
@@ -39,7 +40,7 @@ const comentarios =
 function Comentarios(props) {
     const cookies = new Cookies();
     return (
-        <CommentsContainer>
+        <div className='comments-container'>
             {cookies.get('userData') ?           
             <div className="user-comment">
                 <div className="user-text">
@@ -51,7 +52,7 @@ function Comentarios(props) {
                             id="standard-multiline-static"
                             label="Agregue un comentario..."
                             multiline
-                            rows={2}
+                            rows={1}
                             variant="standard"
                             style={{width:'50%'}}
                         />                                            
@@ -66,7 +67,7 @@ function Comentarios(props) {
             {comentarios.map((comentario) => (
                 <Comentario datos = {comentario} />
             ))}
-        </CommentsContainer>
+        </div>
     );
 }
 

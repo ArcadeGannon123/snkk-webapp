@@ -6,7 +6,6 @@ import {Link} from 'react-router-dom';
 function ColumnRow({datos}) {
     return (            
         <div className='column-wrapper'>
-            <PersonIcon fontSize='large'/>
             <div className="column-data">
                 <Link style={{textDecoration: 'none'}}
                     to={'/opiniones/detalles'}
@@ -17,10 +16,11 @@ function ColumnRow({datos}) {
                     </div>
                 </Link>
                 <div className="column-info">
-                    <div className="c-pseudo">
+                    <div className="c-icon-text">                        
+                        <PersonIcon />
                         {datos.pseudo}
                     </div>
-                    <div className="c-date">
+                    <div className="c-icon-text">
                         <AccessTimeFilledIcon />
                         {datos.fecha}
                     </div>

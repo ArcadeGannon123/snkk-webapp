@@ -11,6 +11,8 @@ import ThreePIcon from '@mui/icons-material/ThreeP';
 import TroubleshootIcon from '@mui/icons-material/Troubleshoot';
 import SearchIcon from '@mui/icons-material/Search';
 import ScatterPlotIcon from '@mui/icons-material/ScatterPlot';
+import WatchLaterIcon from '@mui/icons-material/WatchLater';
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 export const SidebarDataPages = [
   {
@@ -69,8 +71,22 @@ export const SidebarDataDash = [
   {
     title: 'Historial del usuario',
     title2: 'Historial',
-    path: '/analizados',
+    path: '/historial',
     icon: <AnalyticsIcon />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Noticias Favoritas',
+    title2: 'Favoritos',
+    path: '/favoritos',
+    icon: <FavoriteIcon />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Ver más tarde',
+    title2: 'Pendientes',
+    path: '/pendientes',
+    icon: <WatchLaterIcon />,
     cName: 'nav-text'
   },
   {

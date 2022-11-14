@@ -1,11 +1,18 @@
 import React from 'react';
 import Navbar from '../../components/Navbar2/Navbar';
 import SearchIcon from '@mui/icons-material/Search';
-import MultipleSelectChip from '../../components/searchcomponents/MultipleSelectChip';
 import SearchBar from  '../../components/searchcomponents/SearchBar';
-import MultipleSelectPlaceholder from '../../components/searchcomponents/MultipleSelectPlaceholder';
+import MultipleSelectCheckmarks from '../../components/searchcomponents/MultipleSelectCheckmarks';
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
+import './SearchPage.css'
+import Button from '@mui/material/Button';
 
 function SearchPage(props) {
+    
+    const [selectedmedia, setSelectedmedia] = React.useState([]);
+    const [selectedbias, setSelectedbias] = React.useState([]);
+    const [selectedjour, setSelectedjour] = React.useState([]);
+
     return (
         <>   
             <Navbar />                
@@ -20,17 +27,17 @@ function SearchPage(props) {
                     <div className="search-input">
                         <SearchBar />
                     </div>
-                    <div className="subtitle-bar" style={{fontSize:'1.2rem'}}>
-                        <SearchIcon fontSize='small' />
-                        Avanzado
+                    <div className="subtitle-bar" style={{padding:0,margin:'30px 0 0',fontSize:'1.2rem'}}>
+                        <FilterAltIcon fontSize='small' />
+                        Filtros
                     </div>
-                    <div className="search-options">    
-                        <div className="sub-text">Sesgos</div>                    
-                        <MultipleSelectChip/>
-                        <div className="sub-text">Medio de comunicación</div>  
-                        <MultipleSelectChip/>
-                        <div className="sub-text">Periodistas</div>  
-                        <MultipleSelectPlaceholder/>
+                    <div className="search-options">                
+                        <MultipleSelectCheckmarks label='Sesgos' options={bias} selection={selectedbias} setSelection={setSelectedbias}/>
+                        <MultipleSelectCheckmarks label='Medios de comunicación' options={media} selection={selectedmedia} setSelection={setSelectedmedia}/>
+                        <MultipleSelectCheckmarks label='Periodistas' options={periodistas} selection={selectedjour} setSelection={setSelectedjour}/>
+                    </div>
+                    <div className="search-actions">
+                        <Button variant='outlined' size="medium" startIcon={<SearchIcon/>}>Buscar</Button>
                     </div>
 
                 </div>
@@ -40,3 +47,19 @@ function SearchPage(props) {
 }
 
 export default SearchPage;
+
+const media = [
+    'La cuarta',
+    'La tercera',
+    'El mercurio'
+]
+const bias = [
+    'Izquierda Derecha',
+    'Progresista conservador',
+    'sensacionalistmo'
+]
+const periodistas = [
+    'juanito',
+    'marcela cabezas',
+    'merluciano'
+]

@@ -1,0 +1,19 @@
+.comments-container{
+    min-height: 50vh;
+    background-color: white;
+    padding: 10px 0;
+}
+.user-comment{
+    min-height: 10vh;
+    margin: 0 10px 20px 10px;
+
+}
+.user-text{    
+    display: grid;
+    grid-template-columns: auto 9fr;
+    gap:10px;
+}
+.user-avatar{
+    display:grid;
+    align-items:center;
+}
