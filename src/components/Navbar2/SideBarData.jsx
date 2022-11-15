@@ -13,6 +13,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ScatterPlotIcon from '@mui/icons-material/ScatterPlot';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import TwitterIcon from '@mui/icons-material/Twitter';
 
 export const SidebarDataPages = [
   {
@@ -41,6 +42,13 @@ export const SidebarDataPages = [
     title2: 'Medios',
     path: '/medios',
     icon: <TvIcon />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Análisis de twitter',
+    title2: 'Twitter',
+    path: '/twitter',
+    icon: <TwitterIcon />,
     cName: 'nav-text'
   },
   {

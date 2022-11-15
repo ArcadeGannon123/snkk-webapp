@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useContext} from 'react';
+import React,{useState, useEffect} from 'react';
 import styled from 'styled-components';
 import Navbar from '../../components/Navbar2/Navbar';
 import axios from 'axios';
@@ -20,7 +20,6 @@ function MediaAnalysis(props) {
     const getData = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/medio/confiabilidad-medios';  
         
-        console.log(url)
         await axios.get(url)
         .then(res => {                                
             setData(res.data)

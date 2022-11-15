@@ -9,16 +9,11 @@ import PersonIcon from '@mui/icons-material/Person';
 import StackedBarUltraDeluxe from '../biascomponents/StackedBarUltraDeluxe';
 import './RowNews.css';
 import Addto from './Addto';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import {Link} from 'react-router-dom';
 
 function RowNews({data}) {
 
     const cookies = new Cookies();
-
-    const handleClick = () =>{
-        cookies.set('data',data,{path:'/'});
-        window.location.href = './detalles/'+data.title;
-    }
 
     return (
         <div className='row-news-wrapper'>
@@ -57,9 +52,14 @@ function RowNews({data}) {
             <div className="row-actions-buttons">
                 {cookies.get('userData') && <Addto urlNoticia={data.url}/>}
                 <span>
-                    <Button variant='outlined' sx={{width:'100%'}} onClick={handleClick} startIcon={<AnalyticsIcon />}>
-                        Detalles
-                    </Button>    
+                    <Link                            
+                        to={'/detalles/'+data.fechaAnalisis.replaceAll('.','').replaceAll(':','')}
+                        state= {data}
+                    >   
+                        <Button variant='outlined' sx={{width:'100%'}} startIcon={<AnalyticsIcon />}>                                                    
+                                Detalles
+                        </Button>                    
+                    </Link>
                     <Button  variant='outlined' href={data.url} target="_blank" rel="noreferrer noopener" endIcon={<ArrowForwardIcon />}>
                         Ir a la noticia
                     </Button>  

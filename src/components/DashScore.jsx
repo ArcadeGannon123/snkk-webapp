@@ -22,7 +22,7 @@ justify-content:center;
 align-items:center; 
 background-color:white;
 position:relative;
-box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
 height:100%;
 width:100%;
 .d-text{

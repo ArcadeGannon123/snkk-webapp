@@ -1,0 +1,12 @@
+
+.report-scores{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap:10px;
+    margin-bottom: 10px;
+}
+.report-list-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
+}

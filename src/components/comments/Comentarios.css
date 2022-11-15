@@ -17,3 +17,12 @@
     display:grid;
     align-items:center;
 }
+.comment-username > #c-username{
+    font-size: 0.9rem;
+    font-weight: 500;
+    color:#284b63; 
+}
+.comment-username > #c-date{
+    font-size: 0.7rem;
+    color:#284b63c7; 
+}

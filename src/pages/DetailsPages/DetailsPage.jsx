@@ -1,42 +1,63 @@
 import React from 'react';
 import Navbar from '../../components/Navbar2/Navbar';
-import DashScore from '../../components/DashScore'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import Cookies from 'universal-cookie';
-import AlignItemsList from '../../components/ActivityList';
 import Comentarios from '../../components/comments/Comentarios';
-import {Link} from 'react-router-dom';
+import {Link,useNavigate,useLocation} from 'react-router-dom';
 import NewsHeader from '../../components/NewsComponents/NewsHeader';
 import './DetailsStyles.css';
 import AnalysisReport from '../../components/analysiscomponents/AnalysisReport';
 import ForumIcon from '@mui/icons-material/Forum';
-import ListAltIcon from '@mui/icons-material/ListAlt';
+import NewsReport from '../../components/analysiscomponents/NewsReport';
+import Chip from '@mui/material/Chip';
+
+const keywords = [
+    'key',
+    'key',
+    'key',
+    'key',
+    'key',
+    'key',
+    'key',
+    'key',
+    'key'
+]
 
 function DetailsPage(props) {
 
-    const cookies = new Cookies();
-    const data = cookies.get('data');    
-    const user = cookies.get('userData');
-    const lastpage = cookies.get('lastpage');
+    const data = useLocation().state;
+
+    const navigate = useNavigate();
+
+    const goBack = () => {
+        navigate(-1);
+      };
+
+    React.useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     
     return (
         <>
-            <Navbar />       
-            {console.log(data)}     
+            <Navbar />      
             <div className='front-page'>
-                <div className="return-bar" style={{fontSize:'1.3rem'}}>
-                    <Link style={{textDecoration: 'none'}} to={lastpage}>
+                <div className="return-bar" style={{fontSize:'1.3rem',pointer:'cursor'}} onClick={goBack}>
+                    <span>
                         <ArrowBackIcon/>
-                        Volver 
-                    </Link>                                                          
+                        Volver   
+                    </span>                                              
                 </div> 
                 <div className="body-container">                
                     <NewsHeader data={data}/>
                 </div>
-                <div className='dash-score'>
-                    <DashScore data={{title:'Nº de visitas',score:data.visualizaciones}}/>
-                    <DashScore data={{title:'Nº de veces analizada por usuarios',score:data.numeroAnalisis}}/>
-                    <DashScore data={{title:'Nº de veces resportada como noticia falsa',score:data.reportesFalsedad}}/>
+                <div className="news-keywords">
+                    <div className="sub-text">Palabras clave:</div>
+                    <div className='list-keywords'>
+                        {keywords.map((key,i)=> <Chip key={i} label={key} />)}
+                    </div>
+                </div>
+                <div className="news-summary">
+                    <div className="sub-text">Resumen:</div>
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
                 </div>
                 <AnalysisReport 
                     data={{
@@ -75,19 +96,13 @@ function DetailsPage(props) {
                         }
                     }}
                 />
-                <div className="subtitle-bar" style={{fontSize:'1.3rem'}}>
-                    <ListAltIcon/>
-                    Actividades                                     
-                </div>
-                <div className="activity-container">
-                    <AlignItemsList data={data.eventos}/>
-                </div>
+                <NewsReport data={data}/>
                 <div className="subtitle-bar" style={{fontSize:'1.3rem'}}>
                     <ForumIcon/>
                     Comentarios                                     
                 </div>
                 <div className="comments-section">
-                    <Comentarios />
+                    <Comentarios urlNoticia={data.url}/>
                 </div>
             </div>  
         </>

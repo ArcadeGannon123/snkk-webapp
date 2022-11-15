@@ -1,0 +1,22 @@
+
+.comment-wrapper{
+    margin: 20px 10px ;
+    display: grid;
+    grid-template-columns: auto 9fr;
+    gap:10px;
+}
+.comment-body{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.icon{
+    display:grid;
+    justify-content:center;
+    margin: 10px;
+}
+.likes{
+    display:flex;
+    gap:5px;
+}

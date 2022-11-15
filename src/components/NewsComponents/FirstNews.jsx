@@ -8,16 +8,12 @@ import './FirstNews.css';
 import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import PersonIcon from '@mui/icons-material/Person';
 import Addto from './Addto';
+import {Link} from 'react-router-dom';
 
 
 function FirstNews({data}) {
     
     const cookies = new Cookies();
-
-    const handleClick = () =>{
-        cookies.set('data',data,{path:'/'});
-        window.location.href = './detalles/'+data.title;
-    }
 
     return (
         <div className='first-news-wrapper'>
@@ -54,9 +50,14 @@ function FirstNews({data}) {
                     />
                 </div>
                 <div className="fn-actions-buttons"> 
-                    <Button disableElevation variant="outlined" onClick={handleClick} startIcon={<AnalyticsIcon />}>
-                        Detalles
-                    </Button>    
+                    <Link                            
+                        to={'/detalles/'+data.fechaAnalisis.replaceAll('.','').replaceAll(':','')}
+                        state= {data}
+                    >   
+                        <Button variant='outlined' sx={{width:'100%'}} startIcon={<AnalyticsIcon />}>                                                    
+                                Detalles
+                        </Button>                    
+                    </Link>   
                     <Button disableElevation variant="outlined" href={data.url} target="_blank" rel="noreferrer noopener" endIcon={<ArrowForwardIcon />}>
                         Ir a la noticia
                     </Button> 
