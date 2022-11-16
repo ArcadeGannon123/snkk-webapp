@@ -4,6 +4,8 @@ import ScatterPlotIcon from '@mui/icons-material/ScatterPlot';
 import Navbar from '../../components/Navbar2/Navbar';
 import MultipleSelectCheckmarks from '../../components/searchcomponents/MultipleSelectCheckmarks';
 import BasicSelect from '../../components/searchcomponents/BasicSelect';
+import axios from 'axios';
+import MissField from '../../components/UtilsComponents/MissField';
 
 const sesgos = [
     'Conservador Progresista',
@@ -33,10 +35,25 @@ function DynamicChartPage(props) {
     const [selectedmedia, setSelectedmedia] = React.useState([]);
     const [media, setMedia] = React.useState([]);
 
+    const [medios, setMedios] = React.useState(null); 
+
+    const getBiases = async () => {        
+        const url='https://api-news-feria-2022.herokuapp.com/medio/sesgo-todos'
+        await axios.get(url)
+        .then(res => {  
+            const _medios = res.data.map((medio)=>(medio.nombre));
+            setMedia(_medios)
+            setMedios(res.data);
+        
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
 
     React.useEffect(() => {  
-        const _medios = medios.map((medio)=>(medio.nombre));
-        setMedia(_medios);
+        getBiases();
     }, []);
 
     const getSelectedBias = (media,axis,label) => {
@@ -79,11 +96,11 @@ function DynamicChartPage(props) {
                     <div className="bias-chart-options">
                         <div className="bias-chart-axis">
                             <span>
-                                <div className="sub-text">Eje Y</div>
+                                <div className="sub-text">Eje X</div>
                                 <BasicSelect label='sesgo' options={sesgos} selection={xaxis} setSelection={setXaxis}/>
                             </span>
                             <span>
-                                <div className="sub-text">Eje X</div>
+                                <div className="sub-text">Eje Y</div>
                                 <BasicSelect label='sesgo' options={sesgos} selection={yaxis} setSelection={setYaxis}/>
                             </span>
                         </div>
@@ -93,7 +110,7 @@ function DynamicChartPage(props) {
                         </div>
                     </div>
                     <div className="dynamic-bias-chart">
-                        {xaxis !== '' && yaxis !== '' && selectedmedia.length !== 0 && (
+                        {xaxis !== '' && yaxis !== '' && selectedmedia.length !== 0 ? (
                         <QuadrantChart
                             medios={selectedmedia}
                             selectedbias = {
@@ -107,7 +124,9 @@ function DynamicChartPage(props) {
                             xlabels= {labels[xaxis]}
                             ylabels= {labels[yaxis]}
                         />
-                        )}
+                        ):
+                        <MissField />
+                        }
                     </div>
 
                     
