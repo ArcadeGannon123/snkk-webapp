@@ -5,7 +5,9 @@ import InputLabel from '@mui/material/InputLabel';
 import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 
-function SearchBar(props) {
+function SearchBar({setInput}) {
+    
+    const onChangeHandlerInput= event => setInput(event.target.value);
     return (
       <FormControl variant="standard" sx={{width:'100%'}}>
           <InputLabel htmlFor="input-with-icon-adornment">
@@ -18,6 +20,7 @@ function SearchBar(props) {
                       <SearchIcon />
                   </InputAdornment>
               }
+              onChange={onChangeHandlerInput}
           />
       </FormControl>
     );

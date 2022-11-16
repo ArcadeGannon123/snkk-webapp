@@ -75,7 +75,7 @@ function NnewsPage(props) {
   
     return (
         <>  
-            <Navbar />            
+            <Navbar />           
             <div className='front-page'>
                 <div className="main-title">
                     <span>
