@@ -34,13 +34,14 @@ const fakedata=[
 },
 ]
 
-function BiasSelector(props) {
+function BiasSelector({data}) {
     const [state, setState] = React.useState({
-        IzDe: true,
-        PrCo: true,
-        LbEc: true,
-        Sens: true,
-        Ofen: true,
+        IzDe: false,
+        PrCo: false,
+        LbEc: false,
+        Sens: false,
+        Ofen: false,
+        Gene: false
     });
 
     const handleChange = (event) => {
@@ -86,6 +87,12 @@ function BiasSelector(props) {
                             }
                             label="Lenguaje ofensivo"
                         />
+                        <FormControlLabel
+                            control={
+                                <Switch checked={state.Gene} onChange={handleChange} name="Gene" />
+                            }
+                            label="Sesgo de género"
+                        />
                     </FormGroup>
                     <FormHelperText></FormHelperText>
                 </FormControl>
@@ -95,36 +102,49 @@ function BiasSelector(props) {
                 <div className="bias-block" style={{display: state.IzDe ? 'block':'none'}}>
                     <div className="bias-label" > Sesgo de Izquierda o Derecha </div>
                     <StackedBarUltraDeluxe 
+                        color={0}
                         labels={['Izquierda','Centro','Derecha']} 
-                        bias={[fakedata[0].izquierda,fakedata[0].centro,fakedata[0].derecha]}
+                        bias={[data.sesgoIzquierdaDerecha.izquierda,data.sesgoIzquierdaDerecha.neutral,data.sesgoIzquierdaDerecha.derecha]}
                     />
                 </div>
                 <div className="bias-block" style={{display: state.PrCo ? 'block':'none'}}>
                     <div className="bias-label"> Sesgo Conservador-Progresista </div>
                     <StackedBarUltraDeluxe 
+                        color={1}
                         labels={['Progresista','Neutral','Conservador']} 
-                        bias={[fakedata[1].conservador,fakedata[1].neutral,fakedata[1].liberal]}
-                    />
-                </div>
-                <div className="bias-block" style={{display: state.Ofen ? 'block':'none'}}>
-                    <div className="bias-label"> Lenguaje Ofensivo </div>
-                    <StackedBarUltraDeluxe 
-                        labels={['No Ofensivo','Ofensivo']} 
-                        bias={[fakedata[2].noOfensivo,fakedata[2].ofensivo]}
+                        bias={[data.sesgoConservadorProgresista.conservador,data.sesgoConservadorProgresista.neutral,data.sesgoConservadorProgresista.liberal]}
                     />
                 </div>
                 <div className="bias-block" style={{display: state.LbEc ? 'block':'none'}}>
                     <div className="bias-label"> Libertad Ecónomica </div>
                     <StackedBarUltraDeluxe 
+                        color={2}
                         labels={['Igualdad','Neutral','Libertad']} 
-                        bias={[fakedata[3].igualdad,fakedata[3].neutral,fakedata[3].libertad]}
+                        bias={[data.sesgoLibertadEconomica.igualdad,data.sesgoLibertadEconomica.neutral,data.sesgoLibertadEconomica.libertad]}
                     />
                 </div>
                 <div className="bias-block" style={{display: state.Sens ? 'block':'none'}}>
                     <div className="bias-label"> Lenguaje sensacionalista </div>
                     <StackedBarUltraDeluxe 
+                        color={4}
                         labels={['No Sensacionalista','Sensacionalista']} 
-                        bias={[fakedata[4].noSensacionalista,fakedata[4].sensacionalista]}
+                        bias={[data.sesgoSensacionalismo.noSensacionalista,data.sesgoSensacionalismo.sensacionalista]}
+                    />
+                </div>
+                <div className="bias-block" style={{display: state.Gene ? 'block':'none'}}>
+                    <div className="bias-label"> Sesgo de género </div>
+                    <StackedBarUltraDeluxe 
+                        color={5}
+                        labels={['Masculino','Desconocido','Femenino']} 
+                        bias={[data.sesgoGenero.masculino,data.sesgoGenero.desconocido,data.sesgoGenero.femenino]}
+                    />
+                </div>
+                <div className="bias-block" style={{display: state.Ofen ? 'block':'none'}}>
+                    <div className="bias-label"> Lenguaje Ofensivo </div>
+                    <StackedBarUltraDeluxe 
+                        color={6}
+                        labels={['No Ofensivo','Ofensivo']} 
+                        bias={[data.sesgoLenguajeOfensivo.noOfensivo,data.sesgoLenguajeOfensivo.ofensivo]}
                     />
                 </div>
             </div>

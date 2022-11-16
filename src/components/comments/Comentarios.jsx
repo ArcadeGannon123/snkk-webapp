@@ -33,13 +33,13 @@ function Comentarios({urlNoticia}) {
     return (
         <div className='comments-container'>
             {cookies.get('userData') && (<>  
-            <Response getComments={getComments} idParent={urlNoticia} response={false}/>          
+            <Response getComments={getComments} urlNoticia={urlNoticia}/>          
             </>)}
             {comentarios && (
-            comentarios.map((comentario) => (<>
+            comentarios.map((comentario,i) => (<div key={i}>
                 <Comentario getComments={getComments} urlNoticia={urlNoticia}  datos = {comentario} />                
                 <Divider variant="inset" />
-            </>)))}
+            </div>)))}
         </div>
     );
 }

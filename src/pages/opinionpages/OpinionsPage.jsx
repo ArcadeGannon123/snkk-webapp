@@ -33,7 +33,6 @@ function OpinionsPage(props) {
     return (
         <>
             <Navbar /> 
-            {console.log(columnas)}
             <div className='front-page' >
                 <div className="main-title" style={{borderRadius: '0 0 10px 10px'}}>
                     <span>

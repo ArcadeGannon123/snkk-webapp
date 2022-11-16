@@ -4,7 +4,7 @@ import BiasSelector from './BiasSelector';
 
 
 
-function FeedbackReport(props) {
+function FeedbackReport({data}) {
     return (
         <div>
             <div className="subtitle-bar" style={{fontSize:'1.3rem'}}>
@@ -12,7 +12,7 @@ function FeedbackReport(props) {
                 Análisis   
             </div>
             <div className="bias-selector-container">
-                <BiasSelector />
+                <BiasSelector data={data} />
             </div>
         </div>
     );
