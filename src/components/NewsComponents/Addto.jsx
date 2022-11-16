@@ -115,7 +115,7 @@ function Addto({urlNoticia}) {
             >
             {laterstate !== null && favstate !== null &&(<>
                 <Button disabled={click} variant={laterstate ? "contained" :"outlined"} onClick={()=>{laterstate ? handleRemove(0) : handleAddto(0)}}><Tooltip title="Ver más tarde"><WatchLaterIcon/></Tooltip></Button>
-                <Button disabled={click} variant={favstate ? "contained" :"outlined"} onClick={()=>{laterstate ? handleRemove(1) : handleAddto(1)}}><Tooltip title="Añadir a favoritos"><FavoriteIcon/></Tooltip></Button>
+                <Button disabled={click} variant={favstate ? "contained" :"outlined"} onClick={()=>{favstate ? handleRemove(1) : handleAddto(1)}}><Tooltip title="Añadir a favoritos"><FavoriteIcon/></Tooltip></Button>
             </>)}
             </ButtonGroup>
             <SimpleSnackbar open={open} setOpen={setOpen} message={message}/>

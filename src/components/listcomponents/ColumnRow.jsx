@@ -18,11 +18,11 @@ function ColumnRow({datos}) {
                 <div className="column-info">
                     <div className="c-icon-text">                        
                         <PersonIcon />
-                        {datos.pseudo}
+                        {datos.pseudonimo}
                     </div>
                     <div className="c-icon-text">
                         <AccessTimeFilledIcon />
-                        {datos.fecha}
+                        {datos.fecha.split('T')[0]}
                     </div>
                 </div>
             </div>

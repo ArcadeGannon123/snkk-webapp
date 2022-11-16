@@ -6,11 +6,34 @@ import Button from '@mui/material/Button';
 import MessageIcon from '@mui/icons-material/Message';
 import {Link} from 'react-router-dom';
 import './Opinions.css';
+import EmptyArea from '../../components/UtilsComponents/EmptyArea';
+import LoadingArea from '../../components/UtilsComponents/LoadingArea';
+import axios from 'axios';
 
 function OpinionsPage(props) {
+
+    const [columnas,setColumnas]= React.useState(null);
+
+    const getOpiniones = async () => {    
+        const url = 'https://api-news-feria-2022.herokuapp.com/opinion';        
+        
+        await axios.get(url)
+        .then(res => {                               
+            setColumnas(res.data)
+        
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+    React.useEffect(() => {
+        getOpiniones();
+    }, []);
+
     return (
         <>
             <Navbar /> 
+            {console.log(columnas)}
             <div className='front-page' >
                 <div className="main-title" style={{borderRadius: '0 0 10px 10px'}}>
                     <span>
@@ -22,13 +45,19 @@ function OpinionsPage(props) {
                             Dar una opinión
                         </Button>                    
                     </div>  
-                </div>       
-    
-                <div className="columns-container" >
-                    {Columnas.map((columna,i)=>(
-                        <ColumnRow key={i} datos = {columna}/>
-                    ))}                    
                 </div>
+                {columnas ?                     
+                columnas.length !== 0 ?
+                <>
+                    {columnas.map((columna,i)=>(
+                        <ColumnRow key={i} datos = {columna}/>
+                    ))} 
+                </>
+                :
+                <EmptyArea />
+                :
+                <LoadingArea />
+                }
             </div>
         </>
     );

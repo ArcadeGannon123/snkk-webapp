@@ -7,12 +7,49 @@ import Button from '@mui/material/Button';
 import CloseIcon from '@mui/icons-material/Close';
 import SendIcon from '@mui/icons-material/Send';
 import Stack from '@mui/material/Stack';
-import {Link} from 'react-router-dom';
+import {Link,useNavigate,useLocation} from 'react-router-dom';
+import Cookies from 'universal-cookie';
+import axios from 'axios';
 
 function OpinionsPageCreation(props) {
+    
+    const cookies = new Cookies();
+    const navigate = useNavigate();
 
     const [text, setText] = React.useState('');   
+    const [titulo, setTitulo] = React.useState('');   
+    const [seudonimo, setSeudonimo] = React.useState(''); 
     const onChangeHandlerText= event => setText(event.target.value);
+    const onChangeHandlerTitulo= event => setTitulo(event.target.value);
+    const onChangeHandlerseudonimo= event => setSeudonimo(event.target.value);
+
+    const postOpinion = async () => {    
+        const url = 'https://api-news-feria-2022.herokuapp.com/opinion'; 
+        const body = {texto:text,titulo:titulo,pseudonimo:seudonimo !== ''?seudonimo:'Anónimo'}       
+        const token = cookies.get('userData').token;
+
+        await axios.post(url,body,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }})
+        .then(res => {                              
+            console.log(res.data)        
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+    const goBack = () => {
+        navigate(-1);
+      };
+
+    const handleSend = () =>{
+        if (text!== '' && titulo!==''){
+            postOpinion()
+            goBack()
+        }
+    }
+
 
     return (
         <>
@@ -28,7 +65,7 @@ function OpinionsPageCreation(props) {
                     <div className="sub-text" style={{marginBottom:'10px'}}>
                         Ingrese un título para su opinión:
                     </div>
-                    <TextField id="outlined-basic" label="Título" variant="outlined" sx={{width:'100%'}}/>
+                    <TextField id="outlined-basic" label="Título" variant="outlined" sx={{width:'100%'}} onChange={onChangeHandlerTitulo}/>
                     <div className="sub-text" style={{margin:'10px 0'}}>
                         Escriba lo que piensa:
                     </div>
@@ -44,13 +81,13 @@ function OpinionsPageCreation(props) {
                     <div className="sub-text" style={{margin:'10px 0'}}>
                         seudónimo (opcional):
                     </div>
-                    <TextField id="outlined-basic" label="nickname" variant="outlined" />
+                    <TextField id="outlined-basic" label="nickname" variant="outlined" onChange={onChangeHandlerseudonimo}/>
                     <div className="form-actions">
                         <Stack direction="row" spacing={2}>
                             <Button component={Link} to="/opiniones" variant="outlined" startIcon={<CloseIcon />}>
                                 Cancelar
                             </Button>
-                            <Button component={Link} to="/opiniones" variant="contained" endIcon={<SendIcon />}>
+                            <Button onClick={handleSend} variant="contained" endIcon={<SendIcon />}>
                                 Enviar
                             </Button>
                         </Stack>

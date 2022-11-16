@@ -22,15 +22,15 @@ function OpinionsPageDetails(props) {
                     </div>
                     <div className="column-info">
                         <div className="c-pseudo">
-                            {datos.pseudo}
+                            {datos.pseudonimo}
                         </div>
                         <div className="c-date">
                             <AccessTimeFilledIcon />
-                            {datos.fecha}
+                            {datos.fecha.split('T')[0]}
                         </div>
                     </div>
                     <p className="column-body">
-                        {datos.body}
+                        {datos.texto}
                     </p>
                 </div>
             </div>
