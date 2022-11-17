@@ -102,9 +102,9 @@ export default function AnalizePage() {
                                         <StackedBarUltraDeluxe 
                                             labels={['Izquierda','Centro','Derecha']} 
                                             bias={[
-                                                data.sesgoIzquierdaDerecha.izquierda,
-                                                data.sesgoIzquierdaDerecha.neutral,
-                                                data.sesgoIzquierdaDerecha.derecha
+                                                data?.sesgoIzquierdaDerecha?.izquierda,
+                                                data?.sesgoIzquierdaDerecha?.neutral,
+                                                data?.sesgoIzquierdaDerecha?.derecha
                                             ]}
                                         />
                                         
@@ -113,35 +113,35 @@ export default function AnalizePage() {
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'2'}}> ¿Es una noticia sensacionalista? </div>
                                         <StackedBarUltraDeluxe 
                                             labels={['No Sensacionalista','Sensacionalista']} 
-                                            bias={[data.sesgoSensacionalismo.noSensacionalista,data.sesgoSensacionalismo.sensacionalista]}
+                                            bias={[data?.sesgoSensacionalismo?.noSensacionalista,data?.sesgoSensacionalismo?.sensacionalista]}
                                         />
                                     </div>
                                     <div className="media-bias c1-3">
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'3'}}> Sesgo Conservador o Progresista </div>
                                         <StackedBarUltraDeluxe 
                                             labels={['Progresista','Neutral','Conservador']} 
-                                            bias={[data.sesgoConservadorProgresista.liberal,data.sesgoConservadorProgresista.neutral,data.sesgoConservadorProgresista.conservador]}
+                                            bias={[data?.sesgoConservadorProgresista?.liberal,data?.sesgoConservadorProgresista?.neutral,data?.sesgoConservadorProgresista?.conservador]}
                                         />
                                     </div>   
                                     <div className="media-bias c3-5">
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'4'}}> Sesgo en libertad económica </div>
                                         <StackedBarUltraDeluxe 
                                             labels={['Igualdad','Neutral','Libertad']} 
-                                            bias={[data.sesgoLibertadEconomica.igualdad,data.sesgoLibertadEconomica.neutral,data.sesgoLibertadEconomica.libertad]}
+                                            bias={[data?.sesgoLibertadEconomica?.igualdad,data?.sesgoLibertadEconomica?.neutral,data?.sesgoLibertadEconomica?.libertad]}
                                         />
                                     </div>  
                                     <div className="media-bias c1-3">
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'5'}}> Sesgo de género </div>
                                         <StackedBarUltraDeluxe 
                                             labels={['Femenino','Desconocido','Masculino']} 
-                                            bias={[data.sesgoGenero.femenino,data.sesgoGenero.desconocido,data.sesgoGenero.masculino]}
+                                            bias={[data?.sesgoGenero?.femenino,data?.sesgoGenero?.desconocido,data?.sesgoGenero?.masculino]}
                                         />
                                     </div>
                                     <div className="media-bias c3-5">
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'6'}}> Sesgo de sentimiento </div>
                                         <StackedBarUltraDeluxe 
                                             labels={['Negativo','Neutral','Positivo']} 
-                                            bias={[data.sesgoSentimiento.negativo,data.sesgoSentimiento.neutral,data.sesgoSentimiento.positivo]}
+                                            bias={[data?.sesgoSentimiento?.negativo,data?.sesgoSentimiento?.neutral,data?.sesgoSentimiento?.positivo]}
                                         />
                                     </div>
                                 </Analysis>

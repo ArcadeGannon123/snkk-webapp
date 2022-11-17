@@ -95,9 +95,9 @@ const Navbar = () => {
         <Menu open={showMobileMenu} variant = {color ? 'True':'False'}> 
           {NavbarDataNav.map((item, index) => {
             return(
-              <div style={{display: item.title === 'Analizar' || item.title === 'Correo' ?
+              <div key={index} style={{display: item.title === 'Analizar' || item.title === 'Correo' ?
                           cookies.get('userData')?.premium ? 'block' : 'none' : 'block' }}>
-              <MenuItem key={index} >
+              <MenuItem  >
                 <MenuItemLink variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)} to={item.path}>
                     {item.title}
                 </MenuItemLink>

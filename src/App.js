@@ -31,6 +31,8 @@ import OpinionsPageDetails from './pages/opinionpages/OpinionsPage.details';
 import OpinionsPageCreation from './pages/opinionpages/OpinionsPage.creation';
 import DynamicChartPage from './pages/generalanalysis/DynamicChartPage';
 import TwitterPage from './pages/TwitterPage/TwitterPage';
+import AnalizePage from './pages/premium/AnalizePage';
+import SubscribeMailPage from './pages/premium/SubscribeMailPage';
 import './GlobalStyles/GlobalStyles.css';
 import './GlobalStyles/BiasPerDays.css';
 import './GlobalStyles/Feedback.css';
@@ -89,6 +91,8 @@ function App() {
             <Route path='/medios/analisis' element={<DynamicChartPage/>}/>  
             <Route path='/search' element={<SearchPage/>}/>  
             <Route path='/twitter' element={<TwitterPage/>}/>  
+            <Route path='/analize' element={<AnalizePage/>}/>
+            <Route path='/subscribeMail' element={<SubscribeMailPage/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>
