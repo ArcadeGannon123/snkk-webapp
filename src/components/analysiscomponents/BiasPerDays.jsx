@@ -51,9 +51,9 @@ function BiasPerDays({data}) {
                     labels={['Izquierda','Centro','Derecha']}
                     color='izder'
                     bias={[
-                        data.sesgoIquierdaDerecha.map((sesgo)=>( parseFloat(sesgo.izquierda.toFixed(2)) )).slice(0,days),
-                        data.sesgoIquierdaDerecha.map((sesgo)=>( parseFloat(sesgo.neutral.toFixed(2)) )).slice(0,days),
-                        data.sesgoIquierdaDerecha.map((sesgo)=>( parseFloat(sesgo.derecha.toFixed(2)) )).slice(0,days),
+                        data.sesgoIquierdaDerecha.map((sesgo)=>( parseFloat(sesgo.izquierda.toFixed(2)) )).slice(-days),
+                        data.sesgoIquierdaDerecha.map((sesgo)=>( parseFloat(sesgo.neutral.toFixed(2)) )).slice(-days),
+                        data.sesgoIquierdaDerecha.map((sesgo)=>( parseFloat(sesgo.derecha.toFixed(2)) )).slice(-days),
                     ]} />
             </div>
             <div className="stackedbar-chart">
@@ -62,9 +62,9 @@ function BiasPerDays({data}) {
                     labels={['Conservador','Neutral','Progresista']}
                     color='copr'
                     bias={[
-                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.conservador.toFixed(2)) )).slice(0,days),
-                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.neutral.toFixed(2)) )).slice(0,days),
-                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.liberal.toFixed(2)) )).slice(0,days),
+                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.conservador.toFixed(2)) )).slice(-days),
+                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.neutral.toFixed(2)) )).slice(-days),
+                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.liberal.toFixed(2)) )).slice(-days),
                     ]} />
             </div>
             <div className="stackedbar-chart">
@@ -73,9 +73,9 @@ function BiasPerDays({data}) {
                     labels={['Conservador','Neutral','Progresista']}
                     color='libe'
                     bias={[
-                        data.sesgoLibertadEconomica.map((sesgo)=>( parseFloat(sesgo.igualdad.toFixed(2)) )).slice(0,days),
-                        data.sesgoLibertadEconomica.map((sesgo)=>( parseFloat(sesgo.neutral.toFixed(2)) )).slice(0,days),
-                        data.sesgoLibertadEconomica.map((sesgo)=>( parseFloat(sesgo.libertad.toFixed(2)) )).slice(0,days),
+                        data.sesgoLibertadEconomica.map((sesgo)=>( parseFloat(sesgo.igualdad.toFixed(2)) )).slice(-days),
+                        data.sesgoLibertadEconomica.map((sesgo)=>( parseFloat(sesgo.neutral.toFixed(2)) )).slice(-days),
+                        data.sesgoLibertadEconomica.map((sesgo)=>( parseFloat(sesgo.libertad.toFixed(2)) )).slice(-days),
                     ]} />
             </div>
             <div className="stackedbar-chart">
@@ -84,8 +84,8 @@ function BiasPerDays({data}) {
                     labels={['No sensacionalista','sensacionalista']}
                     color='sens'
                     bias={[
-                        data.sesgoSensacionalismo.map((sesgo)=>( parseFloat(sesgo.noSensacionalista.toFixed(2)) )).slice(0,days),
-                        data.sesgoSensacionalismo.map((sesgo)=>( parseFloat(sesgo.sensacionalista.toFixed(2)) )).slice(0,days),
+                        data.sesgoSensacionalismo.map((sesgo)=>( parseFloat(sesgo.noSensacionalista.toFixed(2)) )).slice(-days),
+                        data.sesgoSensacionalismo.map((sesgo)=>( parseFloat(sesgo.sensacionalista.toFixed(2)) )).slice(-days),
                     ]} />
             </div>
             <div className="stackedbar-chart">
@@ -94,8 +94,8 @@ function BiasPerDays({data}) {
                     labels={['No Ofensivo','Ofensivo']}
                     color='ofen'
                     bias={[
-                        data.sesgoLenguajeOfensivo.map((sesgo)=>( parseFloat(sesgo.noOfensivo.toFixed(2)) )).slice(0,days),
-                        data.sesgoLenguajeOfensivo.map((sesgo)=>( parseFloat(sesgo.ofensivo.toFixed(2)) )).slice(0,days),
+                        data.sesgoLenguajeOfensivo.map((sesgo)=>( parseFloat(sesgo.noOfensivo.toFixed(2)) )).slice(-days),
+                        data.sesgoLenguajeOfensivo.map((sesgo)=>( parseFloat(sesgo.ofensivo.toFixed(2)) )).slice(-days),
                     ]} />
             </div>
             

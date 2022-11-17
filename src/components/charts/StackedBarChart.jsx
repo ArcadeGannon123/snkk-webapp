@@ -52,7 +52,7 @@ const options = {
   },
 };
 
-const _labels=bias[0].map((s,i)=>(i.toString()));
+const _labels=bias[0].map((s,i)=>(i.toString())).reverse();
 
 const datasets = labels.map((label,i) => (
   {
