@@ -33,6 +33,8 @@ function SideBar({sidebar}) {
             </li>      
             {SidebarDataDash.map((item, index) => {
               return (
+                item.title === 'Feedback' ?
+                cookies.get('userData').premium &&
                 <li key={index} className={item.cName}>
                   <Link to={item.path}>
                     <div className='side-item-icon'>
@@ -41,7 +43,16 @@ function SideBar({sidebar}) {
                     <span>{item.title}</span>
                   </Link>
                 </li>
-              );
+                :
+                <li key={index} className={item.cName}>
+                  <Link to={item.path}>
+                    <div className='side-item-icon'>
+                      {item.icon}
+                    </div>                   
+                    <span>{item.title}</span>
+                  </Link>
+                </li>
+                );
             })}
 
             </>:<></>}

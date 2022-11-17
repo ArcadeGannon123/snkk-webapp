@@ -13,7 +13,7 @@ export const NavbarDataNav = [
     cName: 'nav-text'
   },
   {
-    title: 'Análisis',
+    title: 'Noticias',
     path: '/recientes',
     icon: <BarChartIcon />,
     cName: 'nav-text'

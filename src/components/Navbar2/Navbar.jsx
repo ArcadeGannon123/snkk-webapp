@@ -95,19 +95,14 @@ const Navbar = () => {
         <Menu open={showMobileMenu} variant = {color ? 'True':'False'}> 
           {NavbarDataNav.map((item, index) => {
             return(
-              <MenuItem key={index}>
+              <div style={{display: item.title === 'Analizar' || item.title === 'Correo' ?
+                          cookies.get('userData')?.premium ? 'block' : 'none' : 'block' }}>
+              <MenuItem key={index} >
                 <MenuItemLink variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)} to={item.path}>
-                  <div>
-                    {
-                      item.title === 'Analizar' || item.title === 'Suscribir'
-                      ? cookies.get('userData')?.premium
-                        ? item.title
-                        : <></>
-                      :item.title
-                    }
-                  </div>
+                    {item.title}
                 </MenuItemLink>
               </MenuItem>
+              </div>
             );
           })}    
         </Menu>
