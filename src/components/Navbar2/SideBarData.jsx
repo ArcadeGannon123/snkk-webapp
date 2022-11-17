@@ -14,6 +14,7 @@ import ScatterPlotIcon from '@mui/icons-material/ScatterPlot';
 import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import TwitterIcon from '@mui/icons-material/Twitter';
+import PublicIcon from '@mui/icons-material/Public';
 
 export const SidebarDataPages = [
   {
@@ -35,6 +36,13 @@ export const SidebarDataPages = [
     title2: 'Recientes',
     path: '/recientes',
     icon: <NewspaperIcon />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Actualidad',
+    title2: 'Actualidad',
+    path: '/actualidad',
+    icon: <PublicIcon />,
     cName: 'nav-text'
   },
   {

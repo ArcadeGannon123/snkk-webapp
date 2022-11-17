@@ -17,6 +17,22 @@ function AnalysisSelector({medio}) {
     const [data,setData]= useState(null);
     const [bpd,setBpd]= useState(null);
     const [periodistas,setPeriodistas]= useState(null);
+    const [sentimiento,setSentimiento]= useState(null);
+
+    const getSentimiento= async () => {    
+        const url ='https://api-news-feria-2022.herokuapp.com/medio/sesgo-por-dia-acumulado'; 
+        const body={
+            url:medio,
+            dias:30
+        };    
+        await axios.post(url,body)
+        .then(res => {                                
+            setSentimiento(res.data)        
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
 
     const getCambioBias= async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/medio/sesgo-por-dia-acumulado'; 
@@ -68,6 +84,8 @@ function AnalysisSelector({medio}) {
                 return data ? <AnalysisReport data={data.sesgos}/>: <></>;
             case 1:
                 return bpd ? <BiasPerDays data={bpd}/>:<></>;
+            case 2:
+                return bpd ? <BiasPerDays data={bpd}/>:<></>;
             default:
                 return <></>;
         }
@@ -79,6 +97,7 @@ function AnalysisSelector({medio}) {
                 <Tabs value={value} onChange={handleChange}>
                     <Tab label="Sesgo promedio" />
                     <Tab label="Sesgo de los ultimos dias" />
+                    <Tab label="Partidos políticos" />
                     <Tab label="Periodistas" />
                 </Tabs>
             </Box> 

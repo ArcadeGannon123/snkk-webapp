@@ -33,6 +33,7 @@ import DynamicChartPage from './pages/generalanalysis/DynamicChartPage';
 import TwitterPage from './pages/TwitterPage/TwitterPage';
 import AnalizePage from './pages/premium/AnalizePage';
 import SubscribeMailPage from './pages/premium/SubscribeMailPage';
+import KeywordsPage from './pages/RecentNewsPages/KeywordsPage';
 import './GlobalStyles/GlobalStyles.css';
 import './GlobalStyles/BiasPerDays.css';
 import './GlobalStyles/Feedback.css';
@@ -93,6 +94,7 @@ function App() {
             <Route path='/twitter' element={<TwitterPage/>}/>  
             <Route path='/analize' element={<AnalizePage/>}/>
             <Route path='/subscribeMail' element={<SubscribeMailPage/>}/>
+            <Route path='/actualidad' element={<KeywordsPage/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>
