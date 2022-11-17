@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar                                     from '../../components/Navbar2/Navbar';
-import { UserContext }                            from '../../components/UserContext';
 import StackedBarUltraDeluxe                      from '../../components/biascomponents/StackedBarUltraDeluxe';
 import Box                                        from '@mui/material/Box';
 import axios                                      from 'axios';
@@ -10,11 +9,14 @@ import Button                                     from '@mui/material/Button';
 import CircularProgress                           from '@mui/material/CircularProgress';
 import AnalyticsIcon                              from '@mui/icons-material/Analytics';
 import ArrowBackIcon                              from '@mui/icons-material/ArrowBack';
+import Cookies from 'universal-cookie';
 
 export default function AnalizePage() {
 
+    const cookies = new Cookies();
+    const token = cookies.get('userData').token;
+
     const [data, setData] = useState(null);
-    const {token, setToken} = useContext(UserContext);
     const [link, setLink] = useState("");
     const [analize, setAnalize] = useState(false);
     const [flag, setFlag] = useState(0);

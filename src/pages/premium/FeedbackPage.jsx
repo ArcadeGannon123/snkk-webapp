@@ -9,7 +9,6 @@ import FeedbackReport from '../../components/analysiscomponents/FeedbackReport';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 import LoadingArea from '../../components/UtilsComponents/LoadingArea';
-import Alert from '@mui/material/Alert';
 
 function FeedbackPage(props) {
 
