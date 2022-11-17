@@ -18,7 +18,8 @@ function OpinionsPage(props) {
         const url = 'https://api-news-feria-2022.herokuapp.com/opinion';        
         
         await axios.get(url)
-        .then(res => {                               
+        .then(res => {       
+            console.log(res.data)                        
             setColumnas(res.data)
         
         })

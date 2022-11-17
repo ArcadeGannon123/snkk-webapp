@@ -51,7 +51,7 @@ function NewsReport({data}) {
                             <GroupsIcon fontSize='small'/>
                             Partidos mencionados                                    
                         </div>  
-                        <AlignItemsListPP data={partidos}/>
+                        <AlignItemsListPP data={data.partidos}/>
                     </div>
                 </div>
             </div>

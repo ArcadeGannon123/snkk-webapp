@@ -206,7 +206,7 @@ gap:1rem;
 
 
 const FrontPage = styled.div`
-padding:50px 0;
+padding:50px 0 100px 0;
 display: grid;
 grid-template-columns: auto repeat(5, 1fr);
 grid-template-rows: auto auto repeat(1, 1fr);

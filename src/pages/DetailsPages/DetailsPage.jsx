@@ -77,7 +77,7 @@ function DetailsPage(props) {
                 <div className="news-keywords">
                     <div className="sub-text">Palabras clave:</div>
                     <div className='list-keywords'>
-                        {keywords.map((key,i)=> <Chip key={i} label={key} />)}
+                        {data.keywords.map((key,i)=> <Chip key={i} label={key} />)}
                     </div>
                 </div>
                 <div className="news-summary">
@@ -87,37 +87,37 @@ function DetailsPage(props) {
                 <AnalysisReport 
                     data={{
                         izquierdaDerecha: {
-                            izquierda:data.sesgoIzquierdaDerecha.izquierda,
-                            neutral:data.sesgoIzquierdaDerecha.neutral,
-                            derecha:data.sesgoIzquierdaDerecha.derecha
+                            izquierda:data?.sesgoIzquierdaDerecha?.izquierda,
+                            neutral:data?.sesgoIzquierdaDerecha?.neutral,
+                            derecha:data?.sesgoIzquierdaDerecha?.derecha
                         },
                         lenguajeOfensivo: {
-                            noOfensivo:data.sesgoLenguajeOfensivo.noOfensivo,
-                            ofensivo:data.sesgoLenguajeOfensivo.ofensivo
+                            noOfensivo:data?.sesgoLenguajeOfensivo?.noOfensivo,
+                            ofensivo:data?.sesgoLenguajeOfensivo?.ofensivo
                         },
                         sensacionalismo: {
-                            noSensacionalista:data.sesgoSensacionalismo.noSensacionalista,
-                            sensacionalista:data.sesgoSensacionalismo.sensacionalista
+                            noSensacionalista:data?.sesgoSensacionalismo?.noSensacionalista,
+                            sensacionalista:data?.sesgoSensacionalismo?.sensacionalista
                         },
                         conservadorProgresista: {
-                            liberal:data.sesgoConservadorProgresista.liberal,
-                            neutral:data.sesgoConservadorProgresista.neutral,
-                            conservador:data.sesgoConservadorProgresista.conservador
+                            liberal:data?.sesgoConservadorProgresista?.liberal,
+                            neutral:data?.sesgoConservadorProgresista?.neutral,
+                            conservador:data?.sesgoConservadorProgresista?.conservador
                         },
                         libertadEconomica: {
-                            igualdad:data.sesgoLibertadEconomica.igualdad,
-                            neutral:data.sesgoLibertadEconomica.neutral,
-                            libertad:data.sesgoLibertadEconomica.libertad
+                            igualdad:data?.sesgoLibertadEconomica?.igualdad,
+                            neutral:data?.sesgoLibertadEconomica?.neutral,
+                            libertad:data?.sesgoLibertadEconomica?.libertad
                         },
                         sentimiento: {
-                            negativo:data.sesgoSentimiento.negativo,
-                            neutral:data.sesgoSentimiento.neutral,
-                            positivo:data.sesgoSentimiento.positivo
+                            negativo:data?.sesgoSentimiento?.negativo,
+                            neutral:data?.sesgoSentimiento?.neutral,
+                            positivo:data?.sesgoSentimiento?.positivo
                         },
                         genero: {
-                            masculino:data.sesgoGenero.masculino,
-                            desconocido:data.sesgoGenero.desconocido,
-                            femenino:data.sesgoGenero.femenino
+                            masculino:data?.sesgoGenero?.masculino,
+                            desconocido:data?.sesgoGenero?.desconocido,
+                            femenino:data?.sesgoGenero?.femenino
                         }
                     }}
                 />
