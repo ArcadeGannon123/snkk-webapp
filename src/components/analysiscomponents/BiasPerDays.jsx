@@ -44,21 +44,12 @@ function BiasPerDays({data}) {
 
                                 
         </div>    
-        <div className='bpd-report'>
-            <div className="stackedbar-chart">
-                <StackedBarChart 
-                    title='Sesgo Conservador Progresista' 
-                    labels={['Conservador','Neutral','Progresista']}
-                    bias={[
-                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.conservador.toFixed(2)) )).slice(0,days),
-                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.neutral.toFixed(2)) )).slice(0,days),
-                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.liberal.toFixed(2)) )).slice(0,days),
-                    ]} />
-            </div>
+        <div className='bpd-report'>            
             <div className="stackedbar-chart">
                 <StackedBarChart 
                     title='Sesgo Izquierda Derecha' 
                     labels={['Izquierda','Centro','Derecha']}
+                    color='izder'
                     bias={[
                         data.sesgoIquierdaDerecha.map((sesgo)=>( parseFloat(sesgo.izquierda.toFixed(2)) )).slice(0,days),
                         data.sesgoIquierdaDerecha.map((sesgo)=>( parseFloat(sesgo.neutral.toFixed(2)) )).slice(0,days),
@@ -67,17 +58,20 @@ function BiasPerDays({data}) {
             </div>
             <div className="stackedbar-chart">
                 <StackedBarChart 
-                    title='Lenguaje ofensivo' 
-                    labels={['No Ofensivo','Ofensivo']}
+                    title='Sesgo Conservador Progresista' 
+                    labels={['Conservador','Neutral','Progresista']}
+                    color='copr'
                     bias={[
-                        data.sesgoLenguajeOfensivo.map((sesgo)=>( parseFloat(sesgo.noOfensivo.toFixed(2)) )).slice(0,days),
-                        data.sesgoLenguajeOfensivo.map((sesgo)=>( parseFloat(sesgo.ofensivo.toFixed(2)) )).slice(0,days),
+                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.conservador.toFixed(2)) )).slice(0,days),
+                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.neutral.toFixed(2)) )).slice(0,days),
+                        data.sesgoConservadorProgresista.map((sesgo)=>( parseFloat(sesgo.liberal.toFixed(2)) )).slice(0,days),
                     ]} />
             </div>
             <div className="stackedbar-chart">
                 <StackedBarChart 
                     title='Sesgo en Libertad Economica' 
                     labels={['Conservador','Neutral','Progresista']}
+                    color='libe'
                     bias={[
                         data.sesgoLibertadEconomica.map((sesgo)=>( parseFloat(sesgo.igualdad.toFixed(2)) )).slice(0,days),
                         data.sesgoLibertadEconomica.map((sesgo)=>( parseFloat(sesgo.neutral.toFixed(2)) )).slice(0,days),
@@ -88,11 +82,23 @@ function BiasPerDays({data}) {
                 <StackedBarChart 
                     title='Sesgo Sensacionalista' 
                     labels={['No sensacionalista','sensacionalista']}
+                    color='sens'
                     bias={[
                         data.sesgoSensacionalismo.map((sesgo)=>( parseFloat(sesgo.noSensacionalista.toFixed(2)) )).slice(0,days),
                         data.sesgoSensacionalismo.map((sesgo)=>( parseFloat(sesgo.sensacionalista.toFixed(2)) )).slice(0,days),
                     ]} />
             </div>
+            <div className="stackedbar-chart">
+                <StackedBarChart 
+                    title='Lenguaje ofensivo' 
+                    labels={['No Ofensivo','Ofensivo']}
+                    color='ofen'
+                    bias={[
+                        data.sesgoLenguajeOfensivo.map((sesgo)=>( parseFloat(sesgo.noOfensivo.toFixed(2)) )).slice(0,days),
+                        data.sesgoLenguajeOfensivo.map((sesgo)=>( parseFloat(sesgo.ofensivo.toFixed(2)) )).slice(0,days),
+                    ]} />
+            </div>
+            
         </div>
         </>
     );

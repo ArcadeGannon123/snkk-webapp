@@ -2,13 +2,17 @@ import React from 'react';
 import Navbar from '../../components/Navbar2/Navbar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Comentarios from '../../components/comments/Comentarios';
-import {Link,useNavigate,useLocation} from 'react-router-dom';
+import {Link,useNavigate,useLocation,useParams} from 'react-router-dom';
 import NewsHeader from '../../components/NewsComponents/NewsHeader';
 import './DetailsStyles.css';
 import AnalysisReport from '../../components/analysiscomponents/AnalysisReport';
 import ForumIcon from '@mui/icons-material/Forum';
 import NewsReport from '../../components/analysiscomponents/NewsReport';
 import Chip from '@mui/material/Chip';
+import EmptyArea from '../../components/UtilsComponents/EmptyArea';
+import LoadingArea from '../../components/UtilsComponents/LoadingArea';
+import axios from 'axios';
+import {decode as base64_decode} from 'base-64';
 
 const keywords = [
     'key',
@@ -24,9 +28,27 @@ const keywords = [
 
 function DetailsPage(props) {
 
-    const data = useLocation().state;
+    //const data = useLocation().state;
 
     const navigate = useNavigate();
+
+    const [data,setData]= React.useState(null);
+    const params = useParams();
+
+    const getDatos = async () => {        
+        const url='https://api-news-feria-2022.herokuapp.com/noticia/obtener-noticia'
+        const body = {url:base64_decode(params.url)}
+        console.log(body)
+        await axios.post(url,body)
+        .then(res => {                      
+            setData(res.data);
+        
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
+
 
     const goBack = () => {
         navigate(-1);
@@ -34,12 +56,16 @@ function DetailsPage(props) {
 
     React.useEffect(() => {
         window.scrollTo(0, 0);
+        getDatos()
     }, []);
     
     return (
         <>
             <Navbar />      
             <div className='front-page'>
+                {data ?                     
+                data.length !== 0 ?
+                <>
                 <div className="return-bar" style={{fontSize:'1.3rem',pointer:'cursor'}} onClick={goBack}>
                     <span>
                         <ArrowBackIcon/>
@@ -57,7 +83,7 @@ function DetailsPage(props) {
                 </div>
                 <div className="news-summary">
                     <div className="sub-text">Resumen:</div>
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                    {data.resumen}
                 </div>
                 <AnalysisReport 
                     data={{
@@ -104,6 +130,13 @@ function DetailsPage(props) {
                 <div className="comments-section">
                     <Comentarios urlNoticia={data.url}/>
                 </div>
+                </>
+                :
+                <EmptyArea />
+                :
+                <LoadingArea />
+                }
+                
             </div>  
         </>
         

@@ -7,7 +7,16 @@ justify-content:center;
 background-color: #f4f4f9;
 padding-bottom: 100px;
 }
-
+@media screen and (max-width: 1200px) {
+.front-page{
+    grid-template-columns: 80%;
+}
+}
+@media screen and (max-width: 950px) {
+.front-page{
+    grid-template-columns: 100%;
+}
+}
 
 .return-bar{
     padding: 5px;    

@@ -1,26 +1,18 @@
 import React,{useState,useEffect} from 'react';
-import styled from 'styled-components';
-import Navbar from '../components/Navbar2/Navbar';
-import Donut from '../components/Donut';
-import BarChart from '../components/BarChart';
-import Badget from '../components/Badget';
-import DashScore from '../components/DashScore';
-import User from '../components/user/User';
+import Navbar from '../../components/Navbar2/Navbar';
+import Donut from '../../components/Donut';
+import BarChart from '../../components/BarChart';
+import Badget from '../../components/Badget';
+import DashScore from '../../components/DashScore';
 import Cookies from 'universal-cookie';
 import Chip from '@mui/material/Chip';
 import PublicIcon from '@mui/icons-material/Public';
 import axios from 'axios';
 import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import DashboardIcon from '@mui/icons-material/Dashboard';
-
-const dataActivity ={
-    1:0.5,
-    2:0.2,
-    3:0,
-    4:0.3,
-    5:0,
-}
-
+import './Dashboard.css';
+import UserAvatar from '../../components/user/UserAvatar';
+import AnalysisReport from '../../components/analysiscomponents/AnalysisReport';
 
 
 function ProfilePage(props) {
@@ -30,6 +22,7 @@ function ProfilePage(props) {
     const [ingresos,setIngresos]= useState(null);
     const [datos,setDatos]= useState(null);
     const [bp,setBP]= useState(0);
+    const [personal,setPersonal]= useState(null);
 
     const getBP = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/usuario/recompensa';
@@ -81,6 +74,23 @@ function ProfilePage(props) {
             console.log(err)
         })
     }
+    const getPersonal = async () => {    
+        const url ='https://api-news-feria-2022.herokuapp.com/favorito/sesgo';
+        const token = cookies.get('userData').token;
+        
+        console.log(url)
+        await axios.get(url,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }})
+        .then(res => {       
+            console.log(res.data)                     
+            setPersonal(res.data)     
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    }
 
 
 
@@ -89,149 +99,94 @@ function ProfilePage(props) {
         getIngresos();
         getDatos();
         getBP();
+        getPersonal();
     }, []);
 
     return (
         <>            
             <Navbar />
-            <FrontPage>
-                <div className="title">
-                    <DashboardIcon/>
-                    Resumen de actividades                                        
+            <div className ='front-page'>
+                <div className="main-title" >
+                    <span>
+                        <DashboardIcon/>
+                        Resumen de actividades       
+                    </span>                               
                 </div>
                 {ingresos !== null && datos !== null?<>
-                <ProfileHeader>
+                <div className='profile-header'>
                     <div className="profile-picture">
-                        <User />
+                        <UserAvatar />
                     </div>
-                    <div className="username">
-                        {userdata.name}
+                    <div className="ph-username">
+                        {userdata.nombre}
                     </div>  
-                    <div className="extras"> 
+                    <div className="ph-extras"> 
                         {cookies.get('userData').premium ? 
                         <Chip label="Suscriptor" color="success" variant="outlined" />
                         :
                         <></>} 
                         <Badget/>               
                     </div>                  
-                </ProfileHeader>
-                <div className="title" style={{fontSize:'1.5rem'}}>
+                </div>
+                <div className="subtitle-bar" style={{fontSize:'1.5rem',marginTop:0}}>
                     <PublicIcon/>
                     Global                                      
                 </div>
-                <Dashboard>
+                <div className='dashboard-score'>
                     <div className="db score s1" style={{gridRow:'1/2',gridColumn:'1/2'}}><DashScore data={{title:'Puntaje BlankPoint',score:bp.toFixed(2)}}/> </div>
                     <div className="db score s1" style={{gridRow:'1/2',gridColumn:'2/3'}}><DashScore data={{title:'Ingresos estimados',score:`${ingresos.toFixed(2)} CLP`}}/> </div>
                     <div className="db score s2" style={{gridRow:'2/3',gridColumn:'1/2'}}><DashScore data={{title:'Noticias analizadas',score:datos.noticiasAnalizadas}}/> </div>
                     <div className="db score s3" style={{gridRow:'2/3',gridColumn:'2/3'}}><DashScore data={{title:'Análisis contribuidos',score:datos.sesgosReportados}}/> </div> 
                     <div className="db chart c1" style={{gridRow:'1/3',gridColumn:'3/5'}}><BarChart datos={datos.interaccionesDiarias} title='Actividad de los últimos 5 días' label='cantidad'/></div>
-                </Dashboard>
-                <div className="title" style={{fontSize:'1.5rem', zIndex:'100'}}>
+                </div>
+                <div className="subtitle-bar" style={{fontSize:'1.5rem',marginTop:0}}>
                     <QueryStatsIcon/>
                     Sesgos enviados                                      
                 </div>
-                <Dashboard>
+                <div className='dashboard-score' style={{marginBottom:0}}>
                     <div className="db donut d1" style={{gridRow:'1/3',gridColumn:'1/3'}}><Donut datos={datos.distribucionSesgos.izquierdaDerecha} title='Sesgo de Izquierda o Derecha' label='cantidad' /> </div> 
                     <div className="db donut d2" style={{gridRow:'2/3',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.lenguajeOfensivo} title='Presencia de lenguaje ofensivo' label='cantidad'/> </div> 
                     <div className="db donut d3" style={{gridRow:'1/2',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.sensacionalismo} title='¿Es una noticia sensacionalista?' label='cantidad'/> </div> 
                     <div className="db donut d4" style={{gridRow:'1/2',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo Conservador o Progresista' label='cantidad'/> </div> 
                     <div className="db donut d4" style={{gridRow:'2/3',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo en libertad económica' label='cantidad'/> </div> 
-                </Dashboard>
-                </>:<></>}
-                    {/*
-                    
-                    <div className="db line-chart">
-                        <BarChart /> 
-                    </div>                    
-                    <DashScore data={{title:'Total de análisis',score:'153'}}/>                    
-                    <DashScore data={{title:'Ingresos estimados',score:'0.01$'}}/>
-                    
-                    <div className="db donut-chart archia"> 
-                        <Donut /> 
-                    </div>
-                        
-                    <div className="db donut-chart con-pro">
-                        <Donut /> 
-                    </div>*/}
+                </div>
+                </>:<></>}  
+                {personal && (
+                <AnalysisReport 
+                    title='Sesgo personal'
+                    data={{
+                        izquierdaDerecha: {
+                            izquierda:personal?.izquierdaDerecha?.izquierda,
+                            neutral:personal?.izquierdaDerecha?.neutral,
+                            derecha:personal?.izquierdaDerecha?.derecha
+                        },
+                        lenguajeOfensivo: {
+                            noOfensivo:personal?.lenguajeOfensivo?.noOfensivo,
+                            ofensivo:personal?.lenguajeOfensivo?.ofensivo
+                        },
+                        sensacionalismo: {
+                            noSensacionalista:personal?.sensacionalismo?.noSensacionalista,
+                            sensacionalista:personal?.sensacionalismo?.sensacionalista
+                        },
+                        conservadorProgresista: {
+                            liberal:personal?.conservadorProgresista?.liberal,
+                            neutral:personal?.conservadorProgresista?.neutral,
+                            conservador:personal?.conservadorProgresista?.conservador
+                        },
+                        libertadEconomica: {
+                            igualdad:personal?.libertadEconomica?.igualdad,
+                            neutral:personal?.libertadEconomica?.neutral,
+                            libertad:personal?.libertadEconomica?.libertad
+                        }
+                    }}
+                />
+                )}
                 
 
-            </FrontPage>
+            </div>
         </>
     );
 }
 
 export default ProfilePage;
 
-const ProfileHeader = styled.div`
-display:flex;
-background-color:white;
-margin-bottom: 10px;
-padding: 1rem 0;
-.username{
-    color:#284b63c7;
-    font-size:1.5rem;
-}
-.extras{
-    display:flex;
-    align-items:center;
-    gap:10px;
-
-}
-`
-
-
-const Dashboard = styled.div`
-
-display: grid;
-grid-template-columns: repeat(4,1fr);
-gap: 10px;
-margin-bottom: 10px;
-
-.db{
-    background-color:white;
-}
-
-`
-const FrontPage = styled.div`
-padding-top:60px;
-display: grid;
-grid-template-columns: 65%;
-align-items:center;
-justify-content:center;
-background-color: #f4f4f9;
-
-
-.feed-rest-news{    
-    display:grid;
-    grid-template-columns: 3fr 1fr;
-}
-
-.news-container{
-    background-color: white;
-    padding: 20px;
-}
-.news-container .header{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap:20px;
-}
-.news-container .sub-header{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap:10px;
-}
-.title{
-    padding: 10px;
-    font-size:2rem;
-    font-weight:300;
-    background-color:white;
-    color:#284b63c7;
-    display:flex;
-    align-items:center;
-    gap:10px;    
-    margin-bottom: 10px;
-    
-}
-
-
-`

@@ -11,7 +11,8 @@ import {
   MenuItem,
   MenuItemLink,
   MobileIcon,
-  UserContainer
+  UserContainer,
+  BottomBarContainer
 } from "./Narbar.elements";
 import {
   FaBars,
@@ -26,7 +27,7 @@ import { NavbarDataNav } from './NavbarData';
 import Button from '@mui/material/Button';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Cookies from 'universal-cookie';
-
+import SimpleBottomNavigation from "./SimpleBottomNavigation";
 
 
 const Navbar = () => {
@@ -97,7 +98,13 @@ const Navbar = () => {
               <MenuItem key={index}>
                 <MenuItemLink variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)} to={item.path}>
                   <div>
-                    {item.title}
+                    {
+                      item.title === 'Analizar' || item.title === 'Suscribir'
+                      ? cookies.get('userData')?.premium
+                        ? item.title
+                        : <></>
+                      :item.title
+                    }
                   </div>
                 </MenuItemLink>
               </MenuItem>
@@ -111,7 +118,7 @@ const Navbar = () => {
         <UserContainer>
           {cookies.get('userData') ? 
           <>  
-          {!cookies.get('userData').premium ?
+          {!cookies.get('userData')?.premium ?
           <Button component={Link} to="/suscripcion" variant="outlined" >Suscribirse</Button>  
           :
           <></>} 
@@ -126,6 +133,9 @@ const Navbar = () => {
         </UserContainer>
       </Wrapper>
     </Container>
+    <BottomBarContainer>
+      <SimpleBottomNavigation/>
+    </BottomBarContainer>
      
     </>
   );

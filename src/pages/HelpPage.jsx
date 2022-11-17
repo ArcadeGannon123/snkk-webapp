@@ -1,14 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
-import Donut from '../components/Donut';
-import BarChart from '../components/BarChart';
-import SideBar from '../components/SideBar/SideBar';
 import StackedBar from '../components/StackedBar';
-import DashScore from '../components/DashScore';
 import HelpCenterIcon from '@mui/icons-material/HelpCenter';
 import WarningIcon from '@mui/icons-material/Warning';
-import ProfilePage from "./Dashboard";
 
 
 function HelpPage(props) {

@@ -6,6 +6,9 @@ import MultipleSelectCheckmarks from '../../components/searchcomponents/Multiple
 import BasicSelect from '../../components/searchcomponents/BasicSelect';
 import axios from 'axios';
 import MissField from '../../components/UtilsComponents/MissField';
+import EmptyArea from '../../components/UtilsComponents/EmptyArea';
+import LoadingArea from '../../components/UtilsComponents/LoadingArea';
+import './DynamicChartPage.css';
 
 const sesgos = [
     'Conservador Progresista',
@@ -33,7 +36,7 @@ function DynamicChartPage(props) {
     const [xaxis, setXaxis] = React.useState('');
     const [yaxis, setYaxis] = React.useState('');
     const [selectedmedia, setSelectedmedia] = React.useState([]);
-    const [media, setMedia] = React.useState([]);
+    const [media, setMedia] = React.useState(null);
 
     const [medios, setMedios] = React.useState(null); 
 
@@ -91,8 +94,11 @@ function DynamicChartPage(props) {
                         <ScatterPlotIcon fontSize='large' />
                         Gráfico de medios
                     </span>
-                </div>  
-                <div className="dynamic-chart-container">
+                </div> 
+                
+                <div className="dynamic-chart-container">                    
+                {media ?                     
+                media.length !== 0 ? <>
                     <div className="bias-chart-options">
                         <div className="bias-chart-axis">
                             <span>
@@ -107,6 +113,7 @@ function DynamicChartPage(props) {
                         <div className="bias-chart-media">
                             <div className="sub-text">Medios de comunicación</div>
                             <MultipleSelectCheckmarks label='Medio' options={media} selection={selectedmedia} setSelection={setSelectedmedia}/>
+                            
                         </div>
                     </div>
                     <div className="dynamic-bias-chart">
@@ -127,10 +134,14 @@ function DynamicChartPage(props) {
                         ):
                         <MissField />
                         }
-                    </div>
-
-                    
-                </div>
+                    </div>  
+                    </> 
+                    :
+                    <EmptyArea />
+                    :
+                    <LoadingArea />
+                    }                   
+                </div>                              
             </div>
             
         </>

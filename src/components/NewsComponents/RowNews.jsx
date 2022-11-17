@@ -10,6 +10,7 @@ import StackedBarUltraDeluxe from '../biascomponents/StackedBarUltraDeluxe';
 import './RowNews.css';
 import Addto from './Addto';
 import {Link} from 'react-router-dom';
+import {encode as base64_encode} from 'base-64';
 
 function RowNews({data}) {
 
@@ -53,8 +54,7 @@ function RowNews({data}) {
                 {cookies.get('userData') && <Addto urlNoticia={data.url}/>}
                 <span>
                     <Link                            
-                        to={'/detalles/'+data.fechaAnalisis.replaceAll('.','').replaceAll(':','')}
-                        state= {data}
+                        to={'/detalles/'+base64_encode(data.url)}
                     >   
                         <Button variant='outlined' sx={{width:'100%'}} startIcon={<AnalyticsIcon />}>                                                    
                                 Detalles

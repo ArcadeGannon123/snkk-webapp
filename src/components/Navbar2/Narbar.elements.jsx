@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import {NavLink} from 'react-router-dom';
 
+export const BottomBarContainer = styled.div`
+  display:none;
+  @media screen and (max-width: 950px) {
+    display: block;
+  }
+
+`
+
 export const UserContainer = styled.div`
   display:flex;
   gap:1rem;
@@ -18,8 +26,9 @@ export const SideBarContainer = styled.div`
   flex-wrap: wrap;
   justify-content: space-between;
   background-color: #353535;
-  z-index:10;
+  z-index:200;
   padding-bottom:10vh;
+  overflow-y: scroll;
   @media screen and (max-width: 700px) {
     width:100%;
   }
@@ -36,7 +45,7 @@ export const SideBarContainer2 = styled.div`
   z-index:10;
   overflow-y: scroll;
   padding-bottom:10vh;
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 950px) {
     display:none;
   }
 `;
@@ -100,7 +109,7 @@ export const Menu = styled.ul`
   align-items: center;
   list-style: none;
   margin:0 auto 0 0;
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width: 950px) {
     display:none;
     color: black;
     background-color: #F7F9F4;

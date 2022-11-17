@@ -35,7 +35,8 @@ function NnewsPage(props) {
         }
         
         await axios.get(url)
-        .then(res => {                                
+        .then(res => {    
+            console.log(res.data)                            
             setData(res.data)
         
         })

@@ -9,6 +9,7 @@ import FeedbackReport from '../../components/analysiscomponents/FeedbackReport';
 import Cookies from 'universal-cookie';
 import axios from 'axios';
 import LoadingArea from '../../components/UtilsComponents/LoadingArea';
+import Alert from '@mui/material/Alert';
 
 function FeedbackPage(props) {
 
@@ -23,9 +24,14 @@ function FeedbackPage(props) {
     const handleClear = () => {
         setText('');
     };
-    const handleSend = () => {
-        setWaiting(true);
-        getBias();
+    const handleSend = () => {        
+        if(text.length > 1500){
+            setWaiting(true);
+            getBias();
+        }else{
+            alert('¡El texto no cumple con la cantidad mínima de caracteres (1500 caracteres)!')
+        }
+        
     };
 
     const getBias = async () => {        
@@ -69,7 +75,7 @@ function FeedbackPage(props) {
                                 className='text-area-space'                         
                                 aria-label="minimum height"
                                 minRows={10}
-                                placeholder="Ingrese algún texto"
+                                placeholder="Ingrese algún texto (mínimo 1500 caracteres)"
                                 style={{ width: '100%' }}
                                 onChange={onChangeHandlerText}
                                 value={text}

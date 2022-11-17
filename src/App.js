@@ -6,7 +6,7 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import PopularPage from './pages/PopularPage'
 import Periodistas from './pages/Periodistas'
-import ProfilePage from './pages/Dashboard'
+import ProfilePage from './pages/UserDash/Dashboard'
 import SearchPage from './pages/searchpage/SearchPage';
 import Aos from 'aos';
 import {useEffect, useState} from 'react';

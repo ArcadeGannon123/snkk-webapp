@@ -83,14 +83,43 @@ const Navbar = () => {
               </div>
             </MenuItemLink>
           </MenuItem>
-
+          {!cookies.get('userData') ?
+          <></>
+          : cookies.get('userData').premium ?
           <MenuItem>
-            <MenuItemLink variant = {color ? 'True':'False'}  onClick={() => _setShowMobileMenu(showMobileMenu)} to='/register'>
+            <MenuItemLink variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)} to='/analize'>
               <div>
-                Registrarse
+                Analizar Noticia
               </div>
             </MenuItemLink>
           </MenuItem>
+          :<></>
+          }
+
+          {!cookies.get('userData') ?
+          <></>
+          : cookies.get('userData').premium ?
+          <MenuItem>
+            <MenuItemLink variant = {color ? 'True':'False'} onClick={() => _setShowMobileMenu(showMobileMenu)} to='/subscribeMail'>
+              <div>
+                Suscrición por correo
+              </div>
+            </MenuItemLink>
+          </MenuItem>
+          :<></>
+          }
+
+          {
+            !cookies.get('userData')
+            ? <MenuItem>
+                <MenuItemLink variant = {color ? 'True':'False'}  onClick={() => _setShowMobileMenu(showMobileMenu)} to='/register'>
+                  <div>
+                    Registrarse
+                  </div>
+                </MenuItemLink>
+              </MenuItem>
+            : <></>
+          }
           {!cookies.get('userData') ?
           <MenuItem>
             <MenuItemLink variant = {color ? 'True':'False'}  onClick={() => _setShowMobileMenu(showMobileMenu)} to='/login'>

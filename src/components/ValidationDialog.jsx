@@ -90,8 +90,6 @@ export default function ValidationDialog({data}) {
 
   };
   const handleValidar = () => {
-    console.log(data.url);
-    console.log(data.idUsuario);
     sendValidation(true);
 
 
@@ -144,6 +142,18 @@ export default function ValidationDialog({data}) {
           </DialogContentText>          
           <div style={{display:'flex',justifyContent:'center', margin:'0.5rem 0'}}>
             <Chip label={checkBias(4,data.economia)} color="primary" variant="outlined" />            
+          </div>
+          <DialogContentText >
+            Motivo:
+          </DialogContentText>          
+          <div style={{display:'flex',justifyContent:'center', margin:'0.5rem 0'}}>
+            {
+              data.motivo === null
+              ? <Chip label={checkBias(5,'No hay motivo')} color="primary" variant="outlined" />
+              : <div style={{color: '#2196f3', textAlign: 'center'}}>
+                  {checkBias(5, data.motivo)}
+                </div>
+            }
           </div>
         </DialogContent>
         <DialogActions>
