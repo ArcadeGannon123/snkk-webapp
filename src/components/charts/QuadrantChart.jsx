@@ -7,7 +7,41 @@ import {
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Scatter } from 'react-chartjs-2';
+import {Scatter} from 'react-chartjs-2';
+import  biobiochile  from '../../images/medios/biobiochile.png';
+import  cambio21 from '../../images/medios/cambio21.png';
+import  ciperchile  from '../../images/medios/ciperchile.png';
+import  cnnchile  from '../../images/medios/cnnchile.png';
+import  elespectador  from '../../images/medios/elespectador.png';
+import  emol  from '../../images/medios/emol.png';
+import  izquierdadiario  from '../../images/medios/izquierdadiario.png';
+import  lacuarta  from '../../images/medios/lacuarta.png';
+import  lanacion  from '../../images/medios/lanacion.png';
+import  latercera  from '../../images/medios/latercera.png';
+import  meganoticias  from '../../images/medios/meganoticias.png';
+import  radioagricultura  from '../../images/medios/radioagricultura.png';
+import  t13  from '../../images/medios/t13.png';
+import  adprensa  from '../../images/medios/adprensa.png';
+import defaultlogo from '../../images/icon2.png';
+import { display } from '@mui/system';
+
+const LOGOS = {
+  "www.emol.com":emol,
+  "www.adprensa.cl":adprensa,
+  "www.cnnchile.com":cnnchile,
+  "www.ciperchile.cl":ciperchile,
+  "www.t13.cl":t13,
+  "www.laizquierdadiario.cl":izquierdadiario,
+  "www.biobiochile.cl":biobiochile,
+  "www.elespectador.com":elespectador,
+  "www.latercera.com":latercera,
+  "www.lacuarta.com":lacuarta,
+  "www.meganoticias.cl":meganoticias,
+  "www.radioagricultura.cl":radioagricultura,
+  "cambio21.cl":cambio21,
+  "www.lanacion.cl":lanacion
+}
+
 ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 export default function QuadrantChart({medios,selectedbias,xlabels,ylabels}) {
@@ -70,7 +104,7 @@ export default function QuadrantChart({medios,selectedbias,xlabels,ylabels}) {
     var logos = [];
     medios.map((media) => {
         const img = new Image(50,50);
-        img.src = `https://logo.clearbit.com/${media}`;
+        img.src = LOGOS[media] ? LOGOS[media] : defaultlogo;
         logos.push(img);
     })
     setMediaLogos(logos);
@@ -80,10 +114,10 @@ export default function QuadrantChart({medios,selectedbias,xlabels,ylabels}) {
   return (
     <>    
       {medialogos !== 0 && (
-        <div style={{color:'white'}}>
-        <div style={{textAlign:'center',fontSize:'1.2rem',backgroundColor:'#284b6397'}}>{ylabels[1]}</div>
+        <div style={{color:'white',fontWeight:'300',fontSize:'1.2rem'}}>
+        <div style={{display:'flex', justifyContent:'center'}}><span style={{backgroundColor:'#284b6396', padding:'0 10px'}}>{ylabels[1]}</span></div>
         <div style={{display:'flex'}}>
-          <div style={{textAlign:'center',textOrientation: 'mixed',writingMode: 'vertical-rl',fontSize:'1.2rem',backgroundColor:'#284b6397'}}>{xlabels[0]}</div>
+        <div style={{display:'flex', justifyContent:'center',textOrientation: 'mixed',writingMode: 'vertical-rl'}}><span style={{backgroundColor:'#284b6396', padding:'10px 0'}}>{xlabels[0]}</span></div>
           <div style={{flexGrow:'1'}}>
             <Scatter 
               options={options} 
@@ -91,9 +125,9 @@ export default function QuadrantChart({medios,selectedbias,xlabels,ylabels}) {
               plugins= {[canvasBackgroundColor]}
             />
           </div>
-          <div style={{textAlign:'center',textOrientation: 'mixed',writingMode: 'vertical-rl',fontSize:'1.2rem',backgroundColor:'#284b6397'}}>{xlabels[1]}</div>
+          <div style={{display:'flex', justifyContent:'center',textOrientation: 'mixed',writingMode: 'vertical-rl'}}><span style={{backgroundColor:'#284b6396', padding:'10px 0'}}>{xlabels[1]}</span></div>
         </div>
-        <div style={{textAlign:'center',fontSize:'1.2rem',backgroundColor:'#284b6397'}}>{ylabels[0]}</div>
+        <div style={{display:'flex', justifyContent:'center'}}><span style={{backgroundColor:'#284b6396', padding:'0 10px'}}>{ylabels[0]}</span></div>
         </div>
       )}  
     </>    

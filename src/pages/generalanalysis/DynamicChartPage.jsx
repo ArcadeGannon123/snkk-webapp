@@ -45,6 +45,7 @@ function DynamicChartPage(props) {
         await axios.get(url)
         .then(res => {  
             const _medios = res.data.map((medio)=>(medio.nombre));
+            console.log(_medios)
             setMedia(_medios)
             setMedios(res.data);
         
@@ -99,7 +100,12 @@ function DynamicChartPage(props) {
                 <div className="dynamic-chart-container">                    
                 {media ?                     
                 media.length !== 0 ? <>
-                    <div className="bias-chart-options">
+                    <div className="bias-chart-options">                          
+                        <div className="bias-chart-media">
+                            <div className="sub-text">Medios de comunicación</div>
+                            <MultipleSelectCheckmarks label='Medio' options={media} selection={selectedmedia} setSelection={setSelectedmedia}/>
+                            
+                        </div>
                         <div className="bias-chart-axis">
                             <span>
                                 <div className="sub-text">Eje X</div>
@@ -109,11 +115,6 @@ function DynamicChartPage(props) {
                                 <div className="sub-text">Eje Y</div>
                                 <BasicSelect label='sesgo' options={sesgos} selection={yaxis} setSelection={setYaxis}/>
                             </span>
-                        </div>
-                        <div className="bias-chart-media">
-                            <div className="sub-text">Medios de comunicación</div>
-                            <MultipleSelectCheckmarks label='Medio' options={media} selection={selectedmedia} setSelection={setSelectedmedia}/>
-                            
                         </div>
                     </div>
                     <div className="dynamic-bias-chart">

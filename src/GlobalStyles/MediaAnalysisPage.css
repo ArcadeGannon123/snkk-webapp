@@ -3,8 +3,12 @@
     background-color: white;
 }
 .bias-chart-options{
-    display: grid;
-    grid-template-columns: 50% 50%;
     gap:30px;
     padding:10px ;
+}
+
+.bias-chart-axis{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:10px;
 }
