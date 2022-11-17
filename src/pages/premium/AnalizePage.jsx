@@ -103,6 +103,7 @@ export default function AnalizePage() {
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'1'}}> Sesgo de Izquierda o Derecha </div>
                                         <StackedBarUltraDeluxe 
                                             labels={['Izquierda','Centro','Derecha']} 
+                                            color={0}
                                             bias={[
                                                 data?.sesgoIzquierdaDerecha?.izquierda,
                                                 data?.sesgoIzquierdaDerecha?.neutral,
@@ -114,6 +115,7 @@ export default function AnalizePage() {
                                     <div className="media-bias c3-5">
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'2'}}> ¿Es una noticia sensacionalista? </div>
                                         <StackedBarUltraDeluxe 
+                                            color={4}
                                             labels={['No Sensacionalista','Sensacionalista']} 
                                             bias={[data?.sesgoSensacionalismo?.noSensacionalista,data?.sesgoSensacionalismo?.sensacionalista]}
                                         />
@@ -121,6 +123,7 @@ export default function AnalizePage() {
                                     <div className="media-bias c1-3">
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'3'}}> Sesgo Conservador o Progresista </div>
                                         <StackedBarUltraDeluxe 
+                                            color={1}
                                             labels={['Progresista','Neutral','Conservador']} 
                                             bias={[data?.sesgoConservadorProgresista?.liberal,data?.sesgoConservadorProgresista?.neutral,data?.sesgoConservadorProgresista?.conservador]}
                                         />
@@ -128,6 +131,7 @@ export default function AnalizePage() {
                                     <div className="media-bias c3-5">
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'4'}}> Sesgo en libertad económica </div>
                                         <StackedBarUltraDeluxe 
+                                            color={2}
                                             labels={['Igualdad','Neutral','Libertad']} 
                                             bias={[data?.sesgoLibertadEconomica?.igualdad,data?.sesgoLibertadEconomica?.neutral,data?.sesgoLibertadEconomica?.libertad]}
                                         />
@@ -135,6 +139,7 @@ export default function AnalizePage() {
                                     <div className="media-bias c1-3">
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'5'}}> Sesgo de género </div>
                                         <StackedBarUltraDeluxe 
+                                            color={5}
                                             labels={['Femenino','Desconocido','Masculino']} 
                                             bias={[data?.sesgoGenero?.femenino,data?.sesgoGenero?.desconocido,data?.sesgoGenero?.masculino]}
                                         />
@@ -142,6 +147,7 @@ export default function AnalizePage() {
                                     <div className="media-bias c3-5">
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'6'}}> Sesgo de sentimiento </div>
                                         <StackedBarUltraDeluxe 
+                                            color={3}
                                             labels={['Negativo','Neutral','Positivo']} 
                                             bias={[data?.sesgoSentimiento?.negativo,data?.sesgoSentimiento?.neutral,data?.sesgoSentimiento?.positivo]}
                                         />
