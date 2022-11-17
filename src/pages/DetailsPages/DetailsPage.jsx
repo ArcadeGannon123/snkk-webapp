@@ -13,17 +13,6 @@ import EmptyArea from '../../components/UtilsComponents/EmptyArea';
 import LoadingArea from '../../components/UtilsComponents/LoadingArea';
 import axios from 'axios';
 
-const keywords = [
-    'key',
-    'key',
-    'key',
-    'key',
-    'key',
-    'key',
-    'key',
-    'key',
-    'key'
-]
 
 function DetailsPage(props) {
 
@@ -77,7 +66,7 @@ function DetailsPage(props) {
                 <div className="news-keywords">
                     <div className="sub-text">Palabras clave:</div>
                     <div className='list-keywords'>
-                        {data.keywords.map((key,i)=> <Chip key={i} label={key} />)}
+                        {data.keywords.map((key,i)=> <Link to={'/keyword/'+key}><Chip sx={{cursor:'pointer'}} key={i} label={key} /></Link>)}
                     </div>
                 </div>
                 <div className="news-summary">

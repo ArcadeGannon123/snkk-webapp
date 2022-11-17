@@ -30,7 +30,7 @@ export default function ValidationDialog({data}) {
         return 'Derecha'
       }
     }else if (index === 2){
-      if(bias === 0){
+      if(bias === 1){
         return 'Sensacionalista'
       }else{
         return 'No Sensacionalista'

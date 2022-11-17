@@ -34,6 +34,7 @@ import TwitterPage from './pages/TwitterPage/TwitterPage';
 import AnalizePage from './pages/premium/AnalizePage';
 import SubscribeMailPage from './pages/premium/SubscribeMailPage';
 import KeywordsPage from './pages/RecentNewsPages/KeywordsPage';
+import KeywordSearch from './pages/searchpage/KeywordSearch';
 import './GlobalStyles/GlobalStyles.css';
 import './GlobalStyles/BiasPerDays.css';
 import './GlobalStyles/Feedback.css';
@@ -95,6 +96,7 @@ function App() {
             <Route path='/analize' element={<AnalizePage/>}/>
             <Route path='/subscribeMail' element={<SubscribeMailPage/>}/>
             <Route path='/actualidad' element={<KeywordsPage/>}/>
+            <Route path='/keyword/:keyword' element={<KeywordSearch/>}/>
         </Routes>
       </Router>
     </UserContext.Provider>
