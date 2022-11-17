@@ -8,7 +8,7 @@ function StackedBarUltraDeluxe({labels,bias,color=0}) {
         ['#00afb9','#fdfcdc','#80b918'],
         ['#9e2a2b','#efd3d7','#d9ed92'], 
         ['#f8ecbe','#970a81'],
-        ['#0085cc','#fffbb0','#fb90f1'],        
+        ['#00becc','#fffbb0','#9097fb'],        
         ['#c0c0c0','#403d39'],
     ]
     const textColor = [
