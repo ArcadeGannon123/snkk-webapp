@@ -76,7 +76,7 @@ function App() {
             <Route  path='/populares' element={<PopularPage/>}/>   
             <Route  path='/test' element={<TestPage/>}/>  
             <Route  path='/recientes' element={<NnewsPage/>}/>
-            <Route  path='/detalles/:url' element={<DetailsPage/>}/>            
+            <Route  path='/detalles/:id' element={<DetailsPage/>}/>            
             <Route  path='/detalles/topico/:topic' element={<TopicsAnalysis/>}/>             
             <Route  path='/detalles/medio/:media' element={<DetailsMediaPage/>}/>
             <Route  path='/medios' element={<MediaAnalysis/>}/>

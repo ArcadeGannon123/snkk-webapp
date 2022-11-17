@@ -9,7 +9,6 @@ import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
 import PersonIcon from '@mui/icons-material/Person';
 import Addto from './Addto';
 import {Link} from 'react-router-dom';
-import {encode as base64_encode} from 'base-64';
 
 
 function FirstNews({data}) {
@@ -52,7 +51,7 @@ function FirstNews({data}) {
                 </div>
                 <div className="fn-actions-buttons"> 
                     <Link                            
-                        to={'/detalles/'+base64_encode(data.url)}
+                        to={'/detalles/'+data.id}
                     >   
                         <Button variant='outlined' sx={{width:'100%'}} startIcon={<AnalyticsIcon />}>                                                    
                                 Detalles

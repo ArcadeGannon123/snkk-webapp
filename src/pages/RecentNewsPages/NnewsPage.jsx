@@ -110,7 +110,7 @@ function NnewsPage(props) {
                     <FirstNews data={data[0]}/>
                     <hr/>
                     <div className="list-row-news">
-                        {data.slice(1,10).map((news,i) =>(
+                        {data.slice(1).map((news,i) =>(
                             <div key={i} >
                                 <RowNews data={news}/>
                                 <hr/>

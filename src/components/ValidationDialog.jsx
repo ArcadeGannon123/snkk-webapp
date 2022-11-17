@@ -43,7 +43,7 @@ export default function ValidationDialog({data}) {
       }else{
         return 'Concervador'
       }
-    }else{
+    }if (index === 4){
       if(bias === 0){
         return 'Igualdad'
       }else if(bias === 0.5){
@@ -51,6 +51,8 @@ export default function ValidationDialog({data}) {
       }else{
         return 'Libertad'
       }
+    }else{
+      return bias;
     }
   }
 

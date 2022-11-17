@@ -10,8 +10,8 @@ import Typography from '@mui/material/Typography';
 export default function AlignItemsList({data}) {
   return (     
         <List sx={{ width: '100%', bgcolor: 'background.paper', overflow: 'auto', maxHeight: '300px'}}>
-        {data.map((usuario) => ( 
-            <>  
+        {data.map((usuario,i) => ( 
+            <div key={i}>  
             <ListItem alignItems="flex-start">
                 <ListItemAvatar>
                 <Avatar alt={usuario.nombreUsuario} src="/static/images/avatar/1.jpg" />
@@ -34,7 +34,7 @@ export default function AlignItemsList({data}) {
                 />
             </ListItem>
             <Divider variant="inset" component="li" />
-        </>))}
+        </div>))}
     </List>
   );
 }

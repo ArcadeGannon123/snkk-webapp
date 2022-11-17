@@ -9,7 +9,7 @@ import GroupsIcon from '@mui/icons-material/Groups';
 export default function AlignItemsListPP({data}) {
   return (     
         <List sx={{ width: '100%', bgcolor: 'background.paper', overflow: 'auto', maxHeight: '300px'}}>
-        {data.map((partido) => (<>  
+        {data.map((partido,i) => (<div key={i}>  
             <ListItem>
                   <ListItemIcon>
                     <GroupsIcon />
@@ -19,7 +19,7 @@ export default function AlignItemsListPP({data}) {
                   />
             </ListItem>
             <Divider variant="inset" component="li" />
-        </>))}
+        </div>))}
     </List>
   );
 }

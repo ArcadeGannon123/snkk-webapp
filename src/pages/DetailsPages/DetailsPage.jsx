@@ -12,7 +12,6 @@ import Chip from '@mui/material/Chip';
 import EmptyArea from '../../components/UtilsComponents/EmptyArea';
 import LoadingArea from '../../components/UtilsComponents/LoadingArea';
 import axios from 'axios';
-import {decode as base64_decode} from 'base-64';
 
 const keywords = [
     'key',
@@ -37,7 +36,7 @@ function DetailsPage(props) {
 
     const getDatos = async () => {        
         const url='https://api-news-feria-2022.herokuapp.com/noticia/obtener-noticia'
-        const body = {url:base64_decode(params.url)}
+        const body = {url:params.id}
         console.log(body)
         await axios.post(url,body)
         .then(res => {                      
