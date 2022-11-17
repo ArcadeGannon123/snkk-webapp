@@ -68,7 +68,7 @@ function AnalysisReport({data,title='Análisis'}) {
                     <div className="bias-label"> Sesgo de género </div>
                     <StackedBarUltraDeluxe
                         color={5}
-                        labels={['Masculino','Desconocido','Femenino']} 
+                        labels={['Masculino','Neutro','Femenino']} 
                         bias={[ data?.genero?.masculino,
                                 data?.genero?.desconocido,
                                 data?.genero?.femenino]}                    

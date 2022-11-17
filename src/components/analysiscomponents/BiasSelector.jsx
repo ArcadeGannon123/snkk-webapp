@@ -135,7 +135,7 @@ function BiasSelector({data}) {
                     <div className="bias-label"> Sesgo de género </div>
                     <StackedBarUltraDeluxe 
                         color={5}
-                        labels={['Masculino','Desconocido','Femenino']} 
+                        labels={['Masculino','Neutro','Femenino']} 
                         bias={[data.sesgoGenero.masculino,data.sesgoGenero.desconocido,data.sesgoGenero.femenino]}
                     />
                 </div>

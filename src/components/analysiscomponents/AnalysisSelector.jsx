@@ -5,6 +5,7 @@ import Tab from '@mui/material/Tab';
 import AnalysisReport from './AnalysisReport';
 import BiasPerDays from './BiasPerDays';
 import axios from 'axios';
+import PPselector from './PPselector';
 
 function AnalysisSelector({medio}) {
 
@@ -20,12 +21,8 @@ function AnalysisSelector({medio}) {
     const [sentimiento,setSentimiento]= useState(null);
 
     const getSentimiento= async () => {    
-        const url ='https://api-news-feria-2022.herokuapp.com/medio/sesgo-por-dia-acumulado'; 
-        const body={
-            url:medio,
-            dias:30
-        };    
-        await axios.post(url,body)
+        const url ='https://api-news-feria-2022.herokuapp.com/sentimiento/partidos?medio='+medio; 
+        await axios.get(url)
         .then(res => {                                
             setSentimiento(res.data)        
         })
@@ -52,8 +49,7 @@ function AnalysisSelector({medio}) {
         const url ='https://api-news-feria-2022.herokuapp.com/medio/sesgo'; 
         const body={url:medio};    
         await axios.post(url,body)
-        .then(res => {         
-            console.log(res.data)                        
+        .then(res => {                             
             setData(res.data)        
         })
         .catch(err => {
@@ -75,6 +71,7 @@ function AnalysisSelector({medio}) {
         getData();
         getPeriodista();        
         getCambioBias();
+        getSentimiento();
     }, []);
 
 
@@ -85,7 +82,7 @@ function AnalysisSelector({medio}) {
             case 1:
                 return bpd ? <BiasPerDays data={bpd}/>:<></>;
             case 2:
-                return bpd ? <BiasPerDays data={bpd}/>:<></>;
+                return sentimiento ? <PPselector data={sentimiento}/>:<></>;
             default:
                 return <></>;
         }
