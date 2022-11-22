@@ -17,6 +17,24 @@
 .ta-action{
     margin-bottom: 5px ;
 }
-.send-actions{
 
+.fp-display-desk-flex{
+    display: flex;
+}
+.fp-display-mobile{
+    display: none;
+}
+@media screen and (max-width: 500px) {
+.fp-display-desk-flex{
+    display: none;
+}
+.fp-display-mobile{
+    display: flex;
+}
+.text-area-actions{
+    flex-direction: row;
+    justify-content: center;
+    gap:10px;    
+    margin: 10px 0;
+}
 }

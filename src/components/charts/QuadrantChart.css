@@ -1,0 +1,20 @@
+.qchart-wrapper{
+    color:white;
+    font-weight:300;
+    font-size:1.2rem;
+    height: 600px;
+}
+
+.y-label{
+    background-color:#284b6396;
+    padding: 0 10px;
+}
+.x-label{
+    background-color:#284b6396;
+    padding: 10px 0;
+}
+@media screen and (max-width: 700px) {
+.qchart-wrapper{
+    font-size:0.9rem;
+}
+}

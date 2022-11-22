@@ -79,7 +79,7 @@ function FeedbackPage(props) {
                                 onChange={onChangeHandlerText}
                                 value={text}
                             />
-                            <div className="text-area-actions">
+                            <div className="text-area-actions fp-display-desk-flex">
                                 <div className="ta-action" onClick={handleSend}>
                                     <Fab size="small" color="primary" aria-label="edit" sx={{boxShadow:'none',zIndex:'0'}} title='Enviar'>
                                         <SendIcon/>
@@ -90,6 +90,18 @@ function FeedbackPage(props) {
                                         <ClearIcon/>
                                     </Fab>
                                 </div>
+                            </div>
+                        </div>
+                        <div className="text-area-actions fp-display-mobile">
+                            <div className="ta-action" onClick={handleSend}>
+                                <Fab size="small" color="primary" aria-label="edit" sx={{boxShadow:'none',zIndex:'0'}} title='Enviar'>
+                                    <SendIcon/>
+                                </Fab>
+                            </div>
+                            <div className="ta-action" onClick={handleClear} >
+                                <Fab size="small" color="secondary" aria-label="edit" sx={{boxShadow:'none',zIndex:'0'}} title='Limpiar'>
+                                    <ClearIcon/>
+                                </Fab>
                             </div>
                         </div>
                     </div>

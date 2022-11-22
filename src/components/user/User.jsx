@@ -65,7 +65,7 @@ export default User;
 
 const Base = styled.div`
 display:flex;
-margin: 0 20px;
+margin: 0 10px;
 .user-container{
     display:flex;
     align-items:center;
@@ -74,6 +74,6 @@ margin: 0 20px;
 .username{
     color:white;
     font-size:0.9rem;
-    margin: 0 0.8rem;
+    margin-left:10px;
 }
 `

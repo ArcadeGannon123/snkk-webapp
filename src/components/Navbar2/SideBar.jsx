@@ -4,6 +4,12 @@ import { SidebarDataPages,SidebarDataDash,SidebarDataOther } from './SideBarData
 import { IconContext } from 'react-icons';
 import styled from 'styled-components';
 import Cookies from 'universal-cookie';
+import {
+  UserContainerMobile
+} from "./Narbar.elements";
+import Button from '@mui/material/Button';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import User from '../user/User';
 
 function SideBar({sidebar}) {
 
@@ -23,6 +29,22 @@ function SideBar({sidebar}) {
   return (
     <BaseSideBar variant = {color ? 'True':'False'} >
       <IconContext.Provider value={{ size: 20, color: '#ffffff'}}>
+        <UserContainerMobile>
+          {cookies.get('userData') ? 
+          <>  
+          {!cookies.get('userData')?.premium ?
+          <Button component={Link} to="/suscripcion" variant="outlined" >Suscribirse</Button>  
+          :
+          <></>} 
+          <div style={{  borderLeft: '1px solid #ffffff37',height: '100%'}}></div>         
+          <User />
+          </>
+          :
+          <Button sx={{height:'100%'}} component={Link} to="/login" variant="outlined" startIcon={<AccountCircleIcon />}>
+            Acceder
+          </Button>
+          }
+        </UserContainerMobile>
         <nav className='nav-menu active' >
           <ul className='nav-menu-items' >      
 
@@ -100,7 +122,8 @@ export default SideBar;
 
 const BaseSideBar = styled.div`
 width:300px;
-padding: 10px 0;
+padding: 10px 0 ;
+height:100%;
 @media screen and (max-width: 700px) {
     width:100%;
   }

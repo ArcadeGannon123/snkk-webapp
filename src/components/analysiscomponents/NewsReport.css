@@ -10,3 +10,12 @@
     grid-template-columns: 1fr 1fr;
     gap:10px;
 }
+
+@media screen and (max-width:  550px) {
+.report-scores{
+    grid-template-columns: 1fr;
+}
+.report-list-container{
+    grid-template-columns: 1fr;
+}
+}

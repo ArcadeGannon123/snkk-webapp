@@ -8,14 +8,15 @@ import TvIcon from '@mui/icons-material/Tv';
 import Button from '@mui/material/Button';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import { Link } from 'react-router-dom';
+import EmptyArea from '../../components/UtilsComponents/EmptyArea';
+import LoadingArea from '../../components/UtilsComponents/LoadingArea';
 
 
 function MediaAnalysis(props) {
 
     const cookies = new Cookies();
 
-    const [data,setData]= useState([]);
-    const [loaded,setLoaded]= useState(false);
+    const [data,setData]= useState(null);
 
     const getData = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/medio/confiabilidad-medios';  
@@ -23,7 +24,6 @@ function MediaAnalysis(props) {
         await axios.get(url)
         .then(res => {                                
             setData(res.data)
-            setLoaded(true)
         
         })
         .catch(err => {
@@ -49,13 +49,18 @@ function MediaAnalysis(props) {
                     </Button>                             
                 </div>
                 <div className="media-container">
-                    {loaded ? 
+                    {data ?                     
+                    data.length !== 0 ?
                     data.map((medio,i) =>(
                         <div className='media-wrapper' key={i} >
                             <MediaCard data={medio}/>
                         </div>
                     ))
-                    :<></>}
+                    :
+                    <EmptyArea />
+                    :
+                    <LoadingArea />
+                    }
                 </div>                
             </div>
         </>

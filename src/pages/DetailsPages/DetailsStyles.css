@@ -18,7 +18,7 @@
     font-size:2rem;
 }
 
-.bias-block .bias-label{
+.bias-block > .bias-label{
     font-size:1.1rem;
     margin-bottom: 10px;
     color:#284b63c7;
@@ -94,4 +94,34 @@
     gap: 5px;
     max-height: 200px;
     overflow-y: auto;
+}
+
+@media screen and (max-width: 750px) {
+.analysis-report{
+    display:initial;
+}
+.bias-block{
+    margin-bottom: 1rem;
+}
+}
+@media screen and (max-width: 500px) {
+.header-media-container{
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+}
+.media-info{
+    display: initial;
+}
+.media-image > img{
+    height: 100px;
+    object-fit: cover;
+    margin:auto;
+    display: block;
+}
+.media-data{
+    padding-left:0;
+    margin-bottom: 10px;
+}
+
 }

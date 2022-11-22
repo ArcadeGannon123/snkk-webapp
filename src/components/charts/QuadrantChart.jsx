@@ -23,7 +23,7 @@ import  radioagricultura  from '../../images/medios/radioagricultura.png';
 import  t13  from '../../images/medios/t13.png';
 import  adprensa  from '../../images/medios/adprensa.png';
 import defaultlogo from '../../images/icon2.png';
-import { display } from '@mui/system';
+import './QuadrantChart.css';
 
 const LOGOS = {
   "www.emol.com":emol,
@@ -49,7 +49,13 @@ export default function QuadrantChart({medios,selectedbias,xlabels,ylabels}) {
   const [medialogos, setMediaLogos] = React.useState([]);
 
   const options = {
-    responsive: true,
+    responsive:true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
     elements:{
       point:{
         pointStyle: medialogos,
@@ -59,13 +65,20 @@ export default function QuadrantChart({medios,selectedbias,xlabels,ylabels}) {
     scales: {
       x:{
         max:1.0,
-        min:-1.0
+        min:-1.0,
+        ticks: {
+          display: false
+        }
       },
       y: {        
         max:1.0,
-        min:-1.0
-      },
-    }
+        min:-1.0,
+        ticks: {
+          display: false
+        }
+      }
+    },
+    
   };
 
   const data = {
@@ -75,8 +88,7 @@ export default function QuadrantChart({medios,selectedbias,xlabels,ylabels}) {
         data: selectedbias.map ((bias)=>(
           {x:bias[0],y:bias[1]}
         )),
-        backgroundColor: 'rgba(255, 99, 132, 1)',
-        
+        backgroundColor: 'rgba(255, 99, 132, 1)',        
       },
     ],
   };
@@ -114,10 +126,10 @@ export default function QuadrantChart({medios,selectedbias,xlabels,ylabels}) {
   return (
     <>    
       {medialogos !== 0 && (
-        <div style={{color:'white',fontWeight:'300',fontSize:'1.2rem'}}>
-        <div style={{display:'flex', justifyContent:'center'}}><span style={{backgroundColor:'#284b6396', padding:'0 10px'}}>{ylabels[1]}</span></div>
-        <div style={{display:'flex'}}>
-        <div style={{display:'flex', justifyContent:'center',textOrientation: 'mixed',writingMode: 'vertical-rl'}}><span style={{backgroundColor:'#284b6396', padding:'10px 0'}}>{xlabels[0]}</span></div>
+        <div className='qchart-wrapper' >
+        <div style={{display:'flex', justifyContent:'center'}}><span className='y-label'>{ylabels[1]}</span></div>
+        <div style={{display:'flex',height:'100%'}}>
+          <div style={{display:'flex', justifyContent:'center',textOrientation: 'mixed',writingMode: 'vertical-rl'}}><span className='x-label'>{xlabels[0]}</span></div>
           <div style={{flexGrow:'1'}}>
             <Scatter 
               options={options} 
@@ -125,9 +137,9 @@ export default function QuadrantChart({medios,selectedbias,xlabels,ylabels}) {
               plugins= {[canvasBackgroundColor]}
             />
           </div>
-          <div style={{display:'flex', justifyContent:'center',textOrientation: 'mixed',writingMode: 'vertical-rl'}}><span style={{backgroundColor:'#284b6396', padding:'10px 0'}}>{xlabels[1]}</span></div>
+          <div style={{display:'flex', justifyContent:'center',textOrientation: 'mixed',writingMode: 'vertical-rl'}}><span className='x-label'>{xlabels[1]}</span></div>
         </div>
-        <div style={{display:'flex', justifyContent:'center'}}><span style={{backgroundColor:'#284b6396', padding:'0 10px'}}>{ylabels[0]}</span></div>
+        <div style={{display:'flex', justifyContent:'center'}}><span className='y-label'>{ylabels[0]}</span></div>
         </div>
       )}  
     </>    

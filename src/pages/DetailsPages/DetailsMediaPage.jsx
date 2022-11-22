@@ -19,8 +19,7 @@ function DetailsMediaPage(props) {
 
     return (
         <>   
-            <Navbar />        
-            {console.log(medioData)}        
+            <Navbar />              
             <div className='front-page'>
                 <div className="return-bar" style={{fontSize:'1.3rem'}}>
                     <a style={{textDecoration: 'none'}} href={lastpage}>

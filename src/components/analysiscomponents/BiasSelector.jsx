@@ -36,7 +36,7 @@ const fakedata=[
 
 function BiasSelector({data}) {
     const [state, setState] = React.useState({
-        IzDe: false,
+        IzDe: true,
         PrCo: false,
         LbEc: false,
         Sens: false,

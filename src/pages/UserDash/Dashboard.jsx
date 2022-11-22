@@ -132,23 +132,23 @@ function ProfilePage(props) {
                     <PublicIcon/>
                     Global                                      
                 </div>
-                <div className='dashboard-score'>
-                    <div className="db score s1" style={{gridRow:'1/2',gridColumn:'1/2'}}><DashScore data={{title:'Puntaje BlankPoint',score:bp.toFixed(2)}}/> </div>
-                    <div className="db score s1" style={{gridRow:'1/2',gridColumn:'2/3'}}><DashScore data={{title:'Ingresos estimados',score:`${ingresos.toFixed(2)} CLP`}}/> </div>
-                    <div className="db score s2" style={{gridRow:'2/3',gridColumn:'1/2'}}><DashScore data={{title:'Noticias analizadas',score:datos.noticiasAnalizadas}}/> </div>
-                    <div className="db score s3" style={{gridRow:'2/3',gridColumn:'2/3'}}><DashScore data={{title:'Análisis contribuidos',score:datos.sesgosReportados}}/> </div> 
-                    <div className="db chart c1" style={{gridRow:'1/3',gridColumn:'3/5'}}><BarChart datos={datos.interaccionesDiarias} title='Actividad de los últimos 5 días' label='cantidad'/></div>
+                <div className='dashboard-global'>
+                    <div className="db-global db-g-1" style={{gridRow:'1/2',gridColumn:'1/2'}}><DashScore data={{title:'Puntaje BlankPoint',score:bp.toFixed(2)}}/> </div>
+                    <div className="db-global db-g-2" style={{gridRow:'1/2',gridColumn:'2/3'}}><DashScore data={{title:'Ingresos estimados',score:`${ingresos.toFixed(2)} CLP`}}/> </div>
+                    <div className="db-global db-g-3" style={{gridRow:'2/3',gridColumn:'1/2'}}><DashScore data={{title:'Noticias analizadas',score:datos.noticiasAnalizadas}}/> </div>
+                    <div className="db-global db-g-4" style={{gridRow:'2/3',gridColumn:'2/3'}}><DashScore data={{title:'Análisis contribuidos',score:datos.sesgosReportados}}/> </div> 
+                    <div className="db-global db-g-5" style={{gridRow:'1/3',gridColumn:'3/5'}}><BarChart datos={datos.interaccionesDiarias} title='Actividad de los últimos 5 días' label='cantidad'/></div>
                 </div>
                 <div className="subtitle-bar" style={{fontSize:'1.5rem',marginTop:0}}>
                     <QueryStatsIcon/>
                     Sesgos enviados                                      
                 </div>
-                <div className='dashboard-score' style={{marginBottom:0}}>
-                    <div className="db donut d1" style={{gridRow:'1/3',gridColumn:'1/3'}}><Donut datos={datos.distribucionSesgos.izquierdaDerecha} title='Sesgo de Izquierda o Derecha' label='cantidad' /> </div> 
-                    <div className="db donut d2" style={{gridRow:'2/3',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.lenguajeOfensivo} title='Presencia de lenguaje ofensivo' label='cantidad'/> </div> 
-                    <div className="db donut d3" style={{gridRow:'1/2',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.sensacionalismo} title='¿Es una noticia sensacionalista?' label='cantidad'/> </div> 
-                    <div className="db donut d4" style={{gridRow:'1/2',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo Conservador o Progresista' label='cantidad'/> </div> 
-                    <div className="db donut d4" style={{gridRow:'2/3',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo en libertad económica' label='cantidad'/> </div> 
+                <div className='dashboard-send' style={{marginBottom:0}}>
+                    <div className="db-send db-s-1" style={{gridRow:'1/3',gridColumn:'1/3'}}><Donut datos={datos.distribucionSesgos.izquierdaDerecha} title='Sesgo de Izquierda o Derecha' label='cantidad' /> </div> 
+                    <div className="db-send db-s-2" style={{gridRow:'2/3',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.lenguajeOfensivo} title='Presencia de lenguaje ofensivo' label='cantidad'/> </div> 
+                    <div className="db-send db-s-3" style={{gridRow:'1/2',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.sensacionalismo} title='¿Es una noticia sensacionalista?' label='cantidad'/> </div> 
+                    <div className="db-send db-s-4" style={{gridRow:'1/2',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo Conservador o Progresista' label='cantidad'/> </div> 
+                    <div className="db-send db-s-5" style={{gridRow:'2/3',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo en libertad económica' label='cantidad'/> </div> 
                 </div>
                 </>:<></>}  
                 {personal && (

@@ -13,9 +13,25 @@ export const UserContainer = styled.div`
   display:flex;
   gap:1rem;
   padding:5px 10px;
+  margin-left:auto;
+  @media screen and (max-width: 600px) {
+    display:none;
+  }
 
 `
+export const UserContainerMobile = styled.div`
+  display:none;
+  padding:5px 10px;
+  margin-left:auto;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  gap:10px;
+  @media screen and (max-width: 600px) {
+    display:flex;
+  }
 
+`
 
 export const SideBarContainer = styled.div`
 
@@ -64,7 +80,7 @@ export const Container = styled.div`
   height: 50px;
   background-color:#0f0f0f;
   position:fixed;
-  z-index:10;
+  z-index:1000;
   transition: 0.5s all ease;
   box-shadow:  2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 

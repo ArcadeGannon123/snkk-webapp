@@ -1,9 +1,10 @@
 import React from 'react';
-import {FaHandHoldingHeart,FaJournalWhills} from 'react-icons/fa';
-import {BiNews} from 'react-icons/bi';
 import HomeIcon from '@mui/icons-material/Home';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import HelpIcon from '@mui/icons-material/Help';
+import StackedBarChartIcon from '@mui/icons-material/StackedBarChart';
+import EmailIcon from '@mui/icons-material/Email';
+import NewspaperIcon from '@mui/icons-material/Newspaper';
 
 export const NavbarDataNav = [
   {
@@ -15,19 +16,19 @@ export const NavbarDataNav = [
   {
     title: 'Noticias',
     path: '/recientes',
-    icon: <BarChartIcon />,
+    icon: <NewspaperIcon />,
     cName: 'nav-text'
   },
   {
     title: 'Analizar',
     path: '/analize',
-    icon: <FaHandHoldingHeart />,
+    icon: <StackedBarChartIcon />,
     cName: 'nav-text'
   },
   {
     title: 'Correo',
     path: '/subscribeMail',
-    icon: <FaHandHoldingHeart />,
+    icon: <EmailIcon />,
     cName: 'nav-text'
   },
   {

@@ -7,17 +7,6 @@ import ListAltIcon from '@mui/icons-material/ListAlt';
 import GroupsIcon from '@mui/icons-material/Groups';
 import AlignItemsListPP from './ListPP';
 
-const partidos =[
-    'Unión Demócrata Independiente',
-    'Renovación Nacional',
-    'Partido Socialista de Chile',
-    'Partido Demócrata Cristiano',
-    'Unión Demócrata Independiente',
-    'Renovación Nacional',
-    'Partido Socialista de Chile',
-    'Partido Demócrata Cristiano'
-]
-
 function NewsReport({data}) {
     return (
         <div className='news-report-container'>

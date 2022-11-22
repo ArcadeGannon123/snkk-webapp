@@ -23,6 +23,9 @@ function RowNews({data}) {
             <div className="row-info">
                 <div className="row-media">
                     <span>{data.medio.nombre.replace('www.','').replace(/\.(cl|com|org)/,'')}</span>
+                    <span className='rn-display-mobile'>
+                        {cookies.get('userData') && <Addto urlNoticia={data.url}/>}
+                    </span>
                 </div>
                 <div className="row-title">
                     {data.title}
@@ -37,7 +40,7 @@ function RowNews({data}) {
                         {data.published_date.split('T')[0]}
                     </div>
                 </div>
-                <div className="row-bias">                    
+                <div className="row-bias rn-display-desk-block">                    
                     <div className='sub-text' >Analizado el {data.fechaAnalisis.split('T')[0]}</div>
                     <StackedBarUltraDeluxe 
                         labels={['Izquierda','Centro','Derecha']} 
@@ -49,7 +52,7 @@ function RowNews({data}) {
                     />
                 </div>                            
             </div>
-            <div className="row-actions-buttons">
+            <div className="row-actions-buttons rn-display-desk-flex">
                 {cookies.get('userData') && <Addto urlNoticia={data.url}/>}
                 <span>
                     <Link                            
@@ -63,6 +66,31 @@ function RowNews({data}) {
                         Ir a la noticia
                     </Button>  
                 </span>
+            </div>
+            <div className="fn-info rn-display-mobile" style={{gridColumn:'1/3'}}>                
+                <div className="fn-bias">                    
+                    <div className='sub-text' >Analizado el {data.fechaAnalisis.split('T')[0]}</div>
+                    <StackedBarUltraDeluxe 
+                        labels={['Izquierda','Centro','Derecha']} 
+                        bias={[
+                            data.sesgoIzquierdaDerecha.izquierda,
+                            data.sesgoIzquierdaDerecha.neutral,
+                            data.sesgoIzquierdaDerecha.derecha
+                        ]}
+                    />
+                </div>
+                <div className="fn-actions-buttons"> 
+                    <Link                            
+                        to={'/detalles/'+data.id}
+                    >   
+                        <Button variant='outlined' sx={{width:'100%'}} startIcon={<AnalyticsIcon />}>                                                    
+                                Detalles
+                        </Button>                    
+                    </Link>   
+                    <Button disableElevation variant="outlined" href={data.url} target="_blank" rel="noreferrer noopener" endIcon={<ArrowForwardIcon />}>
+                        Ir a la noticia
+                    </Button> 
+                </div>                            
             </div>
         </div>
     );

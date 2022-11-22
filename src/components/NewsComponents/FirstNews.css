@@ -10,9 +10,6 @@
 }
 .header-actions-buttons{
     margin-top:30px;
-    position: absolute;
-    bottom: 0;
-    right: 0;
 }
 
 .fn-title{
@@ -32,9 +29,7 @@
 }
 
 .fn-image-container{
-    position:relative;
-    background-color:black;
-    
+    background-color:black;   
 }
 
 .fn-image-container img{
@@ -71,3 +66,34 @@
     align-items: center;
     gap:3px;
 }
+
+
+
+.display-mobile{
+    display: none;
+}
+.display-desk{
+    display: initial;
+}
+@media screen and (max-width: 700px) {
+
+.display-mobile{
+    display: initial;
+}
+.display-desk{
+    display: none;
+}
+.first-news-wrapper{
+    display:initial
+}
+.fn-image-container img{
+    mask-image: none;
+}
+.fn-info{
+    padding-left:0;
+}
+.fn-image-container{
+    margin-bottom: 10px;   
+}
+}
+    

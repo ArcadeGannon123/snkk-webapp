@@ -91,7 +91,7 @@ function AnalysisSelector({medio}) {
     return (
         <>
             <Box sx={{ width: '100%', bgcolor: 'background.paper'}}>
-                <Tabs value={value} onChange={handleChange}>
+                <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto" >
                     <Tab label="Sesgo promedio" />
                     <Tab label="Sesgo de los ultimos dias" />
                     <Tab label="Partidos políticos" />

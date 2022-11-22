@@ -88,7 +88,6 @@ function NnewsPage(props) {
                     </Button>                                       
                 </div>    
                 <div style={{display: userData ? userData.premium ? 'none' : 'flex' : 'flex', justifyContent:'center'}}>
-                    <img src='https://www.plerdy.com/wp-content/uploads/2020/01/3.jpg' alt='publicidad' />
                     <Adsense client="ca-pub-2909524242328894" slot=""/>
                 </div>              
                 <Box sx={{ maxWidth: '100%', bgcolor: 'background.paper', padding:'0 1rem'}}>

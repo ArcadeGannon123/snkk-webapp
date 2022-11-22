@@ -17,7 +17,7 @@ function NewsHeader({data}) {
 
     return (
         <div className='first-news-wrapper'>
-            <div className="fn-image-container">
+            <div className="fn-image-container display-desk">
                 <img src={data.urlToImage} alt='' />
             </div>
             <div className="fn-info">
@@ -27,6 +27,9 @@ function NewsHeader({data}) {
                 </div>
                 <div className="fn-title">
                     {data.title}
+                </div>
+                <div className="fn-image-container display-mobile">
+                    <img src={data.urlToImage} alt='' />
                 </div>
                 <div className="fn-author">
                     <div className="fn-icon-text">                        

@@ -40,7 +40,7 @@ function OpinionsPageCreation(props) {
         })
     }
     const goBack = () => {
-        navigate(-1);
+        navigate('/opiniones');
       };
 
     const handleSend = () =>{

@@ -19,13 +19,22 @@
 
 }
 
-.dashboard-score{
+.dashboard-global,.dashboard-send{
 display: grid;
 grid-template-columns: repeat(4,1fr);
 gap: 10px;
 margin-bottom: 10px;
 }
-.db{
+.db-send, .db-global {
     background-color:white;
 }
 
+
+@media screen and (max-width: 850px) {
+.dashboard-global{
+    grid-template-columns: 1fr 1fr;
+}
+.db-g-1,.db-g-2,.db-g-3,.db-g-4,.db-g-5{
+    grid-column: auto;
+}
+}
