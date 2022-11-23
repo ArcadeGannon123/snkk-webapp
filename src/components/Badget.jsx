@@ -37,15 +37,13 @@ function Badget() {
         const url ='https://api-news-feria-2022.herokuapp.com/usuario/comprar';
         const token = cookies.get('userData').token;
         
-        console.log(url)
         await axios.post(url,{},{
             headers: {
                 'Authorization': `Bearer ${token}`
             }})
         .then(res => {    
             actualizar();   
-            setTrans(res.data)                        
-            console.log(res.data)           
+            setTrans(res.data)              
         })
         .catch(err => {
             setTrans(false)
@@ -58,7 +56,6 @@ function Badget() {
         const url ='https://api-news-feria-2022.herokuapp.com/usuario/credito';
         const token = cookies.get('userData').token;
         
-        console.log(url)
         await axios.get(url,{
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -75,7 +72,6 @@ function Badget() {
         const url ='https://api-news-feria-2022.herokuapp.com/usuario/nivel-medalla';
         const token = cookies.get('userData').token;
         
-        console.log(url)
         await axios.get(url,{
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -103,7 +99,7 @@ function Badget() {
     }
 
     return (
-        <div style={{display:'flex',gap:'10px', alignItems:'center'}}>
+        <div style={{display:'flex',gap:'10px', alignItems:'center',flexWrap:'wrap'}}>
             <Chip icon={<MilitaryTechIcon />} sx={{backgroundColor:Color[badget]}} label={Nivel[badget]} variant="outlined" />
             
             

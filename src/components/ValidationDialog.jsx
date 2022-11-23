@@ -152,7 +152,7 @@ export default function ValidationDialog({data}) {
             {
               data.motivo === null
               ? <Chip label={checkBias(5,'No hay motivo')} color="primary" variant="outlined" />
-              : <div style={{color: '#2196f3', textAlign: 'center'}}>
+              : <div style={{color: '#284b63', textAlign: 'center'}}>
                   {checkBias(5, data.motivo)}
                 </div>
             }

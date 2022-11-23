@@ -28,7 +28,6 @@ function ProfilePage(props) {
         const url ='https://api-news-feria-2022.herokuapp.com/usuario/recompensa';
         const token = cookies.get('userData').token;
         
-        console.log(url)
         await axios.get(url,{
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -45,8 +44,7 @@ function ProfilePage(props) {
     const getIngresos = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/incentivos/usuario';
         const token = cookies.get('userData').token;
-        
-        console.log(url)
+
         await axios.get(url,{
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -61,8 +59,7 @@ function ProfilePage(props) {
     const getDatos = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/perfil/personal';
         const token = cookies.get('userData').token;
-        
-        console.log(url)
+
         await axios.get(url,{
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -77,14 +74,12 @@ function ProfilePage(props) {
     const getPersonal = async () => {    
         const url ='https://api-news-feria-2022.herokuapp.com/favorito/sesgo';
         const token = cookies.get('userData').token;
-        
-        console.log(url)
+
         await axios.get(url,{
             headers: {
                 'Authorization': `Bearer ${token}`
             }})
-        .then(res => {       
-            console.log(res.data)                     
+        .then(res => {                           
             setPersonal(res.data)     
         })
         .catch(err => {
@@ -133,22 +128,21 @@ function ProfilePage(props) {
                     Global                                      
                 </div>
                 <div className='dashboard-global'>
-                    <div className="db-global db-g-1" style={{gridRow:'1/2',gridColumn:'1/2'}}><DashScore data={{title:'Puntaje BlankPoint',score:bp.toFixed(2)}}/> </div>
-                    <div className="db-global db-g-2" style={{gridRow:'1/2',gridColumn:'2/3'}}><DashScore data={{title:'Ingresos estimados',score:`${ingresos.toFixed(2)} CLP`}}/> </div>
-                    <div className="db-global db-g-3" style={{gridRow:'2/3',gridColumn:'1/2'}}><DashScore data={{title:'Noticias analizadas',score:datos.noticiasAnalizadas}}/> </div>
-                    <div className="db-global db-g-4" style={{gridRow:'2/3',gridColumn:'2/3'}}><DashScore data={{title:'Análisis contribuidos',score:datos.sesgosReportados}}/> </div> 
-                    <div className="db-global db-g-5" style={{gridRow:'1/3',gridColumn:'3/5'}}><BarChart datos={datos.interaccionesDiarias} title='Actividad de los últimos 5 días' label='cantidad'/></div>
+                    <div className="db-global db-g-1" ><DashScore data={{title:'Puntaje BlankPoint',score:bp.toFixed(2)}}/> </div>
+                    <div className="db-global db-g-2" ><DashScore data={{title:'Ingresos estimados',score:`${ingresos.toFixed(2)} CLP`}}/> </div>
+                    <div className="db-global db-g-3" ><DashScore data={{title:'Noticias analizadas',score:datos.noticiasAnalizadas}}/> </div>
+                    <div className="db-global db-g-4" ><DashScore data={{title:'Análisis contribuidos',score:datos.sesgosReportados}}/> </div> 
+                    <div className="db-global db-g-5" ><BarChart datos={datos.interaccionesDiarias} title='Actividad de los últimos 5 días' label='cantidad'/></div>
                 </div>
                 <div className="subtitle-bar" style={{fontSize:'1.5rem',marginTop:0}}>
                     <QueryStatsIcon/>
                     Sesgos enviados                                      
                 </div>
                 <div className='dashboard-send' style={{marginBottom:0}}>
-                    <div className="db-send db-s-1" style={{gridRow:'1/3',gridColumn:'1/3'}}><Donut datos={datos.distribucionSesgos.izquierdaDerecha} title='Sesgo de Izquierda o Derecha' label='cantidad' /> </div> 
-                    <div className="db-send db-s-2" style={{gridRow:'2/3',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.lenguajeOfensivo} title='Presencia de lenguaje ofensivo' label='cantidad'/> </div> 
-                    <div className="db-send db-s-3" style={{gridRow:'1/2',gridColumn:'3/4'}}><Donut datos={datos.distribucionSesgos.sensacionalismo} title='¿Es una noticia sensacionalista?' label='cantidad'/> </div> 
-                    <div className="db-send db-s-4" style={{gridRow:'1/2',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo Conservador o Progresista' label='cantidad'/> </div> 
-                    <div className="db-send db-s-5" style={{gridRow:'2/3',gridColumn:'4/5'}}><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo en libertad económica' label='cantidad'/> </div> 
+                    <div className="db-send db-s-1" ><Donut datos={datos.distribucionSesgos.izquierdaDerecha} title='Sesgo de Izquierda o Derecha' label='cantidad' /> </div> 
+                    <div className="db-send db-s-2" ><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo Conservador o Progresista' label='cantidad'/> </div> 
+                    <div className="db-send db-s-3" ><Donut datos={datos.distribucionSesgos.conservadorProgresista} title='Sesgo en libertad económica' label='cantidad'/> </div> 
+                    <div className="db-send db-s-4" ><Donut datos={datos.distribucionSesgos.sensacionalismo} title='¿Es una noticia sensacionalista?' label='cantidad'/> </div> 
                 </div>
                 </>:<></>}  
                 {personal && (
@@ -177,6 +171,16 @@ function ProfilePage(props) {
                             igualdad:personal?.libertadEconomica?.igualdad,
                             neutral:personal?.libertadEconomica?.neutral,
                             libertad:personal?.libertadEconomica?.libertad
+                        },
+                        genero: {
+                            igualdad:personal?.genero?.masculino,
+                            desconocido:personal?.genero?.desconocido,
+                            libertad:personal?.genero?.derecha
+                        },
+                        sentimiento: {
+                            negativo:personal?.genero?.negativo,
+                            neutral:personal?.genero?.neutral,
+                            positivo:personal?.genero?.positivo
                         }
                     }}
                 />

@@ -42,10 +42,10 @@ function BarChart({datos,title, label}) {
     };
 
     const options = {
-      responsive: true,
+      responsive: true,      
       plugins: {
         legend: {
-          position: 'top',
+          display: false
         },
         title: {
           display: true,
@@ -56,7 +56,6 @@ function BarChart({datos,title, label}) {
 
     useEffect(() => {
       
-      console.log(datos)
       const keys = Object.keys(datos);
       const values= [];
       keys.map((key)=> values.push(datos[key])); 
