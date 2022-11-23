@@ -122,8 +122,8 @@ export default SideBar;
 
 const BaseSideBar = styled.div`
 width:300px;
-padding: 10px 0 ;
-height:100%;
+padding: 10px 0;
+
 @media screen and (max-width: 700px) {
     width:100%;
   }
@@ -165,7 +165,7 @@ height:100%;
 
 .nav-menu.active {
   left: 0;
-
+  padding-bottom:100px;
   
 }
 

@@ -171,16 +171,6 @@ function ProfilePage(props) {
                             igualdad:personal?.libertadEconomica?.igualdad,
                             neutral:personal?.libertadEconomica?.neutral,
                             libertad:personal?.libertadEconomica?.libertad
-                        },
-                        genero: {
-                            igualdad:personal?.genero?.masculino,
-                            desconocido:personal?.genero?.desconocido,
-                            libertad:personal?.genero?.derecha
-                        },
-                        sentimiento: {
-                            negativo:personal?.genero?.negativo,
-                            neutral:personal?.genero?.neutral,
-                            positivo:personal?.genero?.positivo
                         }
                     }}
                 />

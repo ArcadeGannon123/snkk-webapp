@@ -3,19 +3,19 @@ import Chip from '@mui/material/Chip';
 
 function StackedBarUltraDeluxe({labels,bias,color=0}) {
     const bgColor = [
-        ['#3c6e71','#f3d687','#ef8354'],  
-        ['#284b63','#ffb3c6ba','#3a0ca3ba'], 
-        ['#00afb9ba','#fdfcdcba','#80b918ba'],
-        ['#9e2a2bba','#efd3d7ba','#d9ed92ba'], 
-        ['#f8ecbeba','#970a81'],
-        ['#00beccba','#fffbb0ba','#9097fbba'],        
+        ['#3C6E71','#D9D9D9','#284B63'],  
+        ['#4a4e69','#D9D9D9','#004e98'], 
+        ['#00afb9ba','#D9D9D9','#1985a1'],
+        ['#9e2a2bba','#D9D9D9','#a4c3b2'], 
+        ['#f8ecbeba','#970a82c8'],
+        ['#00beccba','#eee4e1','#9097fbba'],        
         ['#c0c0c0ba','#403d39ba'],
     ]
     const textColor = [
         ['#fff','#284b63','#fff'],
         ['#fff','#284b63','#fff'],
         ['#fff','#284b63','#fff'],
-        ['#fff','#284b63','#284b63'],
+        ['#fff','#284b63','#fff'],
         ['#284b63','#fff','#fff'],
         ['#fff','#284b63','#fff'],
         ['#284b63','#fff','#fff']    

@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from '../../components/Navbar2/Navbar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import Comentarios from '../../components/comments/Comentarios';
-import {Link,useNavigate,useLocation,useParams} from 'react-router-dom';
+import {Link,useNavigate,useParams} from 'react-router-dom';
 import NewsHeader from '../../components/NewsComponents/NewsHeader';
 import './DetailsStyles.css';
 import AnalysisReport from '../../components/analysiscomponents/AnalysisReport';

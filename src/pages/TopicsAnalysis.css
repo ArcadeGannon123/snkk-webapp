@@ -1,0 +1,33 @@
+.topic-header{
+    display:grid;
+    grid-template-columns: 3fr 1fr;
+    gap:1rem;
+}
+
+.topic-title{
+    padding: 10px;
+    font-size:2rem;
+    font-weight:300;
+    background-color:white;
+    color:#284b63c7;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    text-transform: capitalize;
+}
+.topic-chart{
+    
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap:1rem;
+}
+.topic-bias{
+    background-color:white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+}
+
+@media screen and (max-width: 800px) {
+.topic-chart{
+    grid-template-columns: 1fr;
+}
+}

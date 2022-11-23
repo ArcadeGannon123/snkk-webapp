@@ -1,8 +1,7 @@
 import React,{useState, useEffect} from 'react';
-import styled from 'styled-components';
 import Navbar from '../components/Navbar2/Navbar';
 import axios from 'axios';
-import NewsCard from '../components/NewsCard';
+import NewsCard from '../components/NewsComponents/NewsCard';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
@@ -12,9 +11,7 @@ import Button from '@mui/material/Button';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import LinearProgress from '@mui/material/LinearProgress';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
-
-const Topicos = ['Todos','topico2','topico3','hello','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3','topico1','topico2','topico3']
-
+import './PopularPage.css';
 
 function PopularPage(props) {
 
@@ -74,8 +71,8 @@ function PopularPage(props) {
     return (
         <>            
             <Navbar />            
-            <FrontPage>   
-                <div className="title">
+            <div className='front-page'>   
+                <div className="main-title">
                     <span>
                         <TrendingUpIcon/>
                         Populares  
@@ -97,13 +94,14 @@ function PopularPage(props) {
                         ))}
                     </Tabs>
                 </Box>
-                {data ? 
-                <div className="news-container">
-                    <div className="header"> 
-                        {data.slice(0, 6).map((news => (
-                            <NewsCard data={news}/> 
-                        )))}      
-                    </div>
+                {data ? <>
+                <div className="popular-header"> 
+                    {data.slice(0, 6).map((news => (
+                        <NewsCard data={news}/> 
+                    )))}      
+                </div>
+                <div className="body-container">
+                    
                     <hr/>
                     <div className="feed-rest-news">
                         <div className="news">
@@ -116,62 +114,16 @@ function PopularPage(props) {
                         </div>
                     </div>
                 </div>
+                </>
                 :                  
                 <Box sx={{ width: '100%', margin:'1rem 0'}}>
                     <LinearProgress />
                 </Box>}
                 
-            </FrontPage>
+            </div>
         </>
     );
 }
 
 export default PopularPage;
 
-const FrontPage = styled.div`
-padding-top:60px;
-display: grid;
-grid-template-columns: 65%;
-align-items:center;
-justify-content:center;
-background-color: #f4f4f9;
-
-
-.feed-rest-news{    
-    display:grid;
-    grid-template-columns: 3fr 1fr;
-}
-
-.news-container{
-    background-color: white;
-    padding: 20px;
-}
-.news-container .header{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap:20px;
-}
-.news-container .sub-header{
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap:10px;
-}
-.title span{
-    font-size:2rem;
-    font-weight:300;
-    color:#284b63c7;
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-.title{
-    
-    padding: 10px;    
-    margin-bottom: 10px;
-    background-color:white;
-    display: flex;
-    justify-content: space-between;
-}
-
-
-`
