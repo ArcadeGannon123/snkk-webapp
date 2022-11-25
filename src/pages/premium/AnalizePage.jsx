@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect }             from 'react';
 import Navbar                                     from '../../components/Navbar2/Navbar';
 import StackedBarUltraDeluxe                      from '../../components/biascomponents/StackedBarUltraDeluxe';
 import Box                                        from '@mui/material/Box';
@@ -9,7 +9,7 @@ import Button                                     from '@mui/material/Button';
 import CircularProgress                           from '@mui/material/CircularProgress';
 import AnalyticsIcon                              from '@mui/icons-material/Analytics';
 import ArrowBackIcon                              from '@mui/icons-material/ArrowBack';
-import Cookies from 'universal-cookie';
+import Cookies                                    from 'universal-cookie';
 
 export default function AnalizePage() {
 
@@ -17,6 +17,7 @@ export default function AnalizePage() {
     const token = cookies.get('userData').token;
 
     const [data, setData] = useState(null);
+    const [dataN, setDataN] = useState(null);
     const [link, setLink] = useState("");
     const [analize, setAnalize] = useState(false);
     const [flag, setFlag] = useState(0);
@@ -38,6 +39,7 @@ export default function AnalizePage() {
     const handleBack = (event) => {
         setAnalize(false);
         setData(null);
+        setDataN(null);
         setFlag(0);
     }
 
@@ -63,12 +65,27 @@ export default function AnalizePage() {
                     console.log(flag);
                     console.log(error);
                 })
-            
         }
-        if ((token !== '' && data === null) && analize) {
+
+        async function getDatos (link, setDataN) {        
+            const url='https://api-news-feria-2022.herokuapp.com/noticia/obtener'
+            const body = {url: link}
+            console.log(body)
+            await axios.post(url,body)
+            .then(res => {      
+                console.log(res.data);                
+                setDataN(res.data);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        }
+
+        if ((token !== '' && data === null) && (analize && dataN === null)) {
             getBiasNews(link, token, setData, setFlag);
+            getDatos(link, setDataN);
         }
-    }, [data, analize, link, token, flag]);
+    }, [data, dataN, analize, link, token, flag]);
 
 
     return (
@@ -77,7 +94,7 @@ export default function AnalizePage() {
                 <FrontPage>
                 {
                     analize
-                    ? data === null
+                    ? data === null || dataN === null
                         ?   <div style={{
                                 gridRow: "3",
                                 gridColumn: "4",
@@ -98,7 +115,21 @@ export default function AnalizePage() {
                                     <AnalyticsIcon/>
                                     Sesgos de la noticia                                   
                                 </div>
+                                
                                 <Analysis>
+                                    <div className='first-news-wrapper c1-3' style={{backgroundColor:'white',padding:'10px'}}>
+                                        <div className="fn-image-container">
+                                            <img src={dataN.urlToImage} alt='' />
+                                        </div>
+                                        <div className="fn-info">
+                                            <div className="fn-header">
+                                                <span>{dataN.medio.nombre.replace('www.','').replace(/\.(cl|com|org)/,'')}</span>
+                                            </div>
+                                            <div className="fn-title">
+                                                {dataN.title}
+                                            </div>                      
+                                        </div>
+                                    </div>
                                     <div className="media-bias c1-3" >
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'1'}}> Sesgo de Izquierda o Derecha </div>
                                         <StackedBarUltraDeluxe 
@@ -140,8 +171,10 @@ export default function AnalizePage() {
                                         <div style={{color:'#284b63c7',textAlign:'center',fontWeight:'300',fontSize:'1.3rem', gridRow:'5'}}> Sesgo de género </div>
                                         <StackedBarUltraDeluxe 
                                             color={5}
-                                            labels={['Femenino','Desconocido','Masculino']} 
-                                            bias={[data?.sesgoGenero?.femenino,data?.sesgoGenero?.desconocido,data?.sesgoGenero?.masculino]}
+                                            labels={['Masculino','Desconocido','Femenino']} 
+                                            bias={[data?.sesgoGenero?.masculino,
+                                                data?.sesgoGenero?.desconocido,
+                                                data?.sesgoGenero?.femenino]}
                                         />
                                     </div>
                                     <div className="media-bias c3-5">
@@ -214,7 +247,7 @@ gap:1rem;
 
 
 const FrontPage = styled.div`
-padding:50px 0 100px 0;
+padding:50px 0 200px 0;
 display: grid;
 grid-template-columns: auto repeat(5, 1fr);
 grid-template-rows: auto auto repeat(1, 1fr);
