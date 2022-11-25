@@ -18,6 +18,8 @@ import Card                                     from '@mui/material/Card';
 import CardContent                              from '@mui/material/CardContent';
 import Typography                               from '@mui/material/Typography';
 import CircularProgress                         from '@mui/material/CircularProgress';
+import Cookies from 'universal-cookie';
+import User from '../../components/user/User';
 
 
 const ITEM_HEIGHT = 48;
@@ -44,7 +46,9 @@ const sesgos = [
 
 export default function SubscribeMailPage () {
 
-    const {token, setToken}                 = useContext(UserContext);
+    const cookies = new Cookies();
+
+    const token = cookies.get('userData').token;
     const [topico, setTopico]               = useState('');
     const [medio, setMedio]                 = useState('');
     const [sesgo, setSesgo]                 = useState([]);
